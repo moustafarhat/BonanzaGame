@@ -12,6 +12,7 @@ public class GameManager implements IGameManager {
 
     @Override
     public void Shuffle() {
+        System.out.println("hello");
      //implementation here
     }
 
