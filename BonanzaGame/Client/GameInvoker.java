@@ -17,7 +17,7 @@ public class GameInvoker {
             System.exit(1);
         }*/
 
-        //Test
+        //Test1
         try {
             Scanner input = new Scanner(System.in);
 
