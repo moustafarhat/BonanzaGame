@@ -18,6 +18,7 @@ public class GameInvoker {
         }*/
 
         //Test1
+        //Test2
         try {
             Scanner input = new Scanner(System.in);
 
