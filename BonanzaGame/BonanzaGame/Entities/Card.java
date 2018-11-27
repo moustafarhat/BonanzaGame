@@ -3,29 +3,41 @@ package BonanzaGame.Entities;
 import BonanzaGame.Core.Enums.CardTypes;
 import BonanzaGame.Entities.Reward;
 
+import java.awt.*;
+import java.awt.font.ImageGraphicAttribute;
 import java.util.List;
 
 public class Card
 {
-    private int _maxCardNumber;
+    private CardTypes cardType;
+    private int maxCardCount;
+    private List<Reward> rewards;
+    //private Image image;
+
+
+    public Card(CardTypes cardType) {
+        this.cardType = cardType;
+        this.maxCardCount = cardType.getMaxCardCount();
+        this.rewards = cardType.getRewards();
+    }
 
     public int getMaxCardNumber()
     {
-        return _maxCardNumber;
+        return maxCardCount;
     }
 
-    public void setMaxCardNumber(int maxCardNumber)
+    public void setMaxCardNumber(int maxCardCount)
     {
-        this._maxCardNumber = maxCardNumber;
+        this.maxCardCount = maxCardCount;
     }
 
-    public CardTypes types()
+    public CardTypes getCardType()
     {
-        return null;
+        return this.cardType;
     }
 
-    public List<Reward> rewards()
+    public List<Reward> getRewards()
     {
-        return null;
+        return this.rewards;
     }
 }

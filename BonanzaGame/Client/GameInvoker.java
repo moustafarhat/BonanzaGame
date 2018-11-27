@@ -36,7 +36,9 @@ public class GameInvoker {
 
                 switch (selection) {
                     case 1:
-                        System.out.println("Option1");
+                        System.out.println("Start Game");
+                        IGameManager gameManager = new GameManager();
+                        gameManager.startNewGame();
                         break;
                     case 2:
                         System.out.println("Option2");
@@ -52,12 +54,6 @@ public class GameInvoker {
 
 
             } while (selection != 4);
-
-
-            //IGameManager gameManager= new GameManager();
-
-            //gameManager.startNewGame();
-
         }
         catch (Exception ex)
         {

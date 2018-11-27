@@ -5,14 +5,15 @@ import BonanzaGame.Entities.Card;
 import BonanzaGame.Entities.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameManager implements IGameManager {
     private Table _table;
 
     @Override
-    public void Shuffle() {
-        System.out.println("hello");
+    public void shuffle(List<Card> cards) {
+        //todo
      //implementation here
     }
 
@@ -39,16 +40,23 @@ public class GameManager implements IGameManager {
 
     private boolean GameInitializer()
     {
-
-        return false;
+        try {
+            this._table = new Table();
+            this.shuffle(_table.drawPile());
+            return true;
+        } catch (Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
     }
+
     @Override
-    public Player gerWinner() {
+    public Player getWinner() {
         return null;
     }
 
     @Override
-    public void endTurn(Turn cuurentTurn) {
+    public void endTurn(Turn currentTurn) {
     //implementation here
     }
 

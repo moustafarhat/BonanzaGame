@@ -8,12 +8,12 @@ import java.util.List;
 
 public interface IGameManager
 {
-    void Shuffle();
+    void shuffle(List <Card> cards);
     void newRound();
     void finishGame();
     Turn newTurn();
     void startNewGame();
-    Player gerWinner();
+    Player getWinner();
     void endTurn(Turn cuurentTurn);
     List<Card> draw(int count);
 }

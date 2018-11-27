@@ -1,35 +1,56 @@
 package BonanzaGame.Core;
 
+import BonanzaGame.Core.Enums.CardTypes;
 import BonanzaGame.Entities.Card;
 import BonanzaGame.Entities.Player;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Table
 {
-    private int i = 10;
-    public Table(List<Player> playerList)
-    {
+    private List<Player> players;
+    private List<Card> cards;
+    private List<Card> discardedCards;
 
+    public Table()
+    {
+        List<Player> players = Arrays.asList( new Player(), new Player(), new Player(), new Player());
+        this.cards = generateCards();
+        this.players = players;
+        this.discardedCards = new ArrayList<>();
     }
 
-    public List<Player> isPlayer()
+    private List<Card> generateCards(){
+
+        List<Card> cards = new ArrayList<>();
+
+        for (CardTypes cardType : CardTypes.values()){
+            for (int i = 0; i < cardType.getMaxCardCount(); i++){
+                cards.add(new Card(cardType));
+            }
+        }
+
+        return cards;
+    }
+
+    public List<Player> playerList()
     {
-      return null;
+      return this.players;
     }
 
     public List<Card> drawPile()
     {
-        return null;
+        return this.cards;
     }
 
     public List<Card> discardPile()
     {
-        return null;
+        return this.discardedCards;
     }
 
     @Override
     public String toString() {
-        return "Table Class Moustafa";
+        return "Table Class";
     }
 }
