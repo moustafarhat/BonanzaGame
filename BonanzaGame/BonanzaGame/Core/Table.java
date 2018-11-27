@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Table
 {
-    private int i = 0;
+    private int i = 11;
     public Table(List<Player> playerList)
     {
 
