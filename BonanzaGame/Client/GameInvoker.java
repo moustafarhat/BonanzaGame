@@ -27,10 +27,10 @@ public class GameInvoker {
             int selection;
 
             do {
-                System.out.println("[1] Start Game");
+                System.out.println("[1] Start New Game");
                 System.out.println("[2] Option2");
                 System.out.println("[3] Option3");
-                System.out.println("[4] Option4");
+                System.out.println("[4] Exit");
                 System.out.println("Insert Selection: ");
                 selection = input.nextInt();
 

@@ -41,6 +41,10 @@ public class GameManager implements IGameManager {
         }
         else System.out.println();
         System.out.println("The winner is " + getWinner().getName() + " with " + getWinner().getCoinCount() + " coins in his treasury");
+        for (Player player : _table.playerList()){
+            System.out.println(player.getName() + " has earned " + player.getCoinCount() + " coins");
+        }
+        System.out.println();
         System.out.println();
     }
 
@@ -54,9 +58,6 @@ public class GameManager implements IGameManager {
         //GameInitializer sets up table, players, player cards
         GameInitializer();
         System.out.println("Cards in deck left: " + _table.drawPile().size());
-        for (Player player : _table.playerList()){
-            System.out.println(player.getName() + " hand size is " + player.getHand().size());
-        }
         //Now the game starts, the game lasts for maxRoundCount rounds
         for (roundCount = 0; roundCount < maxRoundCount; roundCount++){
             //One round lasts until the drawPile is emptied
