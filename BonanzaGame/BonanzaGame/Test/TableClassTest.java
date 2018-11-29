@@ -7,19 +7,19 @@ import org.junit.Assert;
 
 public class TableClassTest
 {
+
+    Table table = new Table();
     @Test
     public void discardPileTest()
     {
-        Table table = new Table();
+
         Assert.assertEquals(table.discardPile().size(), 0);
     }
 
     @Test
     public void drawPileTest1()
     {
-        Table table = new Table();
         Assert.assertEquals(104, table.drawPile().size());
-
     }
 
     @Test

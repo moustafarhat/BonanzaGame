@@ -27,7 +27,7 @@ public class GameInvoker {
             int selection;
 
             do {
-                System.out.println("[1] Option1");
+                System.out.println("[1] Start Game");
                 System.out.println("[2] Option2");
                 System.out.println("[3] Option3");
                 System.out.println("[4] Option4");
@@ -36,7 +36,7 @@ public class GameInvoker {
 
                 switch (selection) {
                     case 1:
-                        System.out.println("Start Game");
+                        System.out.println("Started Game");
                         IGameManager gameManager = new GameManager();
                         gameManager.startNewGame();
                         break;

@@ -10,15 +10,19 @@ import java.util.List;
 public class Table
 {
     private List<Player> players;
-    private List<Card> cards;
+    private List<Card> deck;
     private List<Card> discardedCards;
 
     public Table()
     {
-        List<Player> players = Arrays.asList( new Player(), new Player(), new Player(), new Player());
-        this.cards = generateCards();
-        this.players = players;
+        //List<Player> players = Arrays.asList( new Player("Player1", 1), new Player(), new Player(), new Player());
+        this.deck = generateCards();
+        this.players = new ArrayList<>();
         this.discardedCards = new ArrayList<>();
+    }
+
+    public void addPlayer(String name, int position){
+        this.players.add(new Player(name, position));
     }
 
     private List<Card> generateCards(){
@@ -34,6 +38,13 @@ public class Table
         return cards;
     }
 
+    public boolean fillDrawPileWithDiscardedCards(){
+        if (drawPile().isEmpty() && !discardPile().isEmpty()){
+            this.deck = this.discardPile();
+            return true;
+        } else return false;
+    }
+
     public List<Player> playerList()
     {
       return this.players;
@@ -41,7 +52,19 @@ public class Table
 
     public List<Card> drawPile()
     {
-        return this.cards;
+        return this.deck;
+    }
+
+    public boolean removeCardFromDrawPile(Card card){
+        return this.deck.remove(card);
+    }
+
+    public boolean addCardToDiscardPile(List<Card> cards){
+        return this.discardedCards.addAll(cards);
+    }
+
+    public void setDeck(List<Card> deck) {
+        this.deck = deck;
     }
 
     public List<Card> discardPile()
