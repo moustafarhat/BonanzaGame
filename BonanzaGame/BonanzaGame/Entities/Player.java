@@ -25,16 +25,18 @@ public class Player {
     }
 
     public void addCardsToHand(List<Card> cards){
+        //Cards from GameManager's draw function are put into the player's hand
         System.out.println(name + " receives " + cards.size() + " cards into his hand");
         this.hand.addAll(cards);
     }
 
     public int getCoinCount(){
+        //The amount of coins a player has equals to the amount of cards that were put into his/her treasury
         return treasury.size();
     }
 
     private boolean isValidFieldPosition(int fieldPosition){
-        //Check for valid fieldPosition, valid parameters are only 0,1,2
+        //Check for valid fieldPosition, when planting or harvesting, valid parameters are only 0,1,2
         if (fieldPosition > 2 || fieldPosition <0){
             return false;
         }
@@ -113,7 +115,7 @@ public class Player {
         //Check if player has enough coins to buy another field
         if (treasury.size() >= 3){
             //If yes add a new field to this player's Array of fields and remove 3 cards (= coins) from player's treasury
-            //todo may need to change this method cause removed cards from treasury need to be placed into discardPile probably?
+            //todo may need to change this method with other return type cause removed cards from treasury need to be placed into discardPile probably?
             this.fields.add(new Field());
             this.treasury.remove(0);
             this.treasury.remove(0);
@@ -147,10 +149,12 @@ public class Player {
 
     public boolean startTrading(boolean playerWantsToTrade){
         System.out.println("Does player want to trade? " + playerWantsToTrade);
+        //todo all trading functionality
         return playerWantsToTrade;
     }
 
     public void addCardsToTradingArea(List<Card> cardsToTrade){
+        //When a player draws two cards in his trading phase this method puts them into his trading area
         for (Card card : cardsToTrade){
             System.out.println("Card " + card.getCardType() + " put in trading area");
         }
@@ -158,6 +162,7 @@ public class Player {
     }
 
     public void plantAnotherCard(boolean playersChoice, int fieldPosition){
+        //Method for optional second planting, depending on players choice
         if (playersChoice){
             plant(hand.get(0), fieldPosition);
         } else System.out.println(name + " didn't want to plant another card");

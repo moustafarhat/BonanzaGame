@@ -24,12 +24,14 @@ public class GameManager implements IGameManager {
 
     @Override
     public void newRound() {
-     //implementation here
+        //bis jetzt nicht wichtig, da wir nur eine Runde implementieren müssen
+        //implementation here
     }
 
     @Override
     public void finishGame() {
-     //implementation here
+        //Should be called when the drawPile isEmpty and the maxRoundCount was reached
+        //Prints out the winner or the draw
         if (getWinner()==null){
             System.out.println();
             System.out.println("The Game is over and nobody has won");
@@ -64,10 +66,11 @@ public class GameManager implements IGameManager {
             while (_table.drawPile().size() != 0){
                 //Each player goes through the TurnPhases
                 for (Player player : _table.playerList()){
+                    //If there are not enough cards in the deck this breaks to finish the game
                     if (_table.drawPile().size() < 2){
                         break;
                     }
-                    // 1. plants up to two cards
+                    // 1. Player plants up to two cards
                     System.out.println();
                     System.out.println(player.getName() + "'s turn");
                     currentTurnPhase = TurnPhases.PLANTING;
@@ -78,7 +81,7 @@ public class GameManager implements IGameManager {
                         player.plant(player.getHand().get(0),0);
                     }
                     player.plantAnotherCard(false, 0);
-                    // 2. draws two trade cards and either trades or plants them
+                    // 2. Player draws two trade cards and either trades or plants them
                     currentTurnPhase = TurnPhases.TRADING;
                     System.out.println("---------- Trading Phase ----------");
                     player.addCardsToTradingArea(draw(2));
@@ -98,14 +101,14 @@ public class GameManager implements IGameManager {
                         }
                         player.removeFromTadingArea(cardsToBeRemovedFromTradingArea);
                     }
-                    // 3. draws another 3 cards and ends his/her turn
+                    // 3. Player draws another 3 cards and ends his/her turn
                     currentTurnPhase = TurnPhases.DRAWING;
                     System.out.println("---------- Drawing Phase ----------");
                     player.addCardsToHand(draw(3));
                     System.out.println("Cards in deck left: " + _table.drawPile().size());
                 }
             }
-            //DrawPile is now empty, second round begins and so on
+            //DrawPile is now empty, second round can begin here and so on
         }
         finishGame();
     }
@@ -137,6 +140,8 @@ public class GameManager implements IGameManager {
 
     @Override
     public Player getWinner() {
+        //Counts each players coins and puts out one winner if a player has more coins than the others
+        //todo need to improve to allow multiple Winners if they have the same coins and more than 0
         if (gameOver()){
             Player currentWinner = _table.playerList().get(0);
             for (Player player : _table.playerList()){
@@ -152,6 +157,7 @@ public class GameManager implements IGameManager {
     }
 
     private boolean gameOver(){
+        //Game is over when maxRoundCount from the settings is reached
         return true;
         //return roundCount == maxRoundCount;//Integer.parseInt(gameSettings.getSettingValue("Round Count"));
     }
@@ -164,10 +170,12 @@ public class GameManager implements IGameManager {
     @Override
     public List<Card> draw(int count) {
         List<Card> hand = new ArrayList<>();
+        //If there are not enough cards to draw normally, set the deck to 0 and finish the game
         if (count >= _table.drawPile().size()){
             _table.setDeck(new ArrayList<>());
             return hand;
         }
+        //Else give out an ArrayList of cards with count cards in it
         for (int i = 0; i < count; i++) {
             if (_table.drawPile().size()> 0){
                 Card randomCard = _table.drawPile().get(randomizer.nextInt(_table.drawPile().size()));

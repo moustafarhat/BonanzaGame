@@ -26,7 +26,7 @@ public class Table
     }
 
     private List<Card> generateCards(){
-
+        //Generates 104 cards, with maxCardCount of each CardType
         List<Card> cards = new ArrayList<>();
 
         for (CardTypes cardType : CardTypes.values()){
@@ -39,6 +39,7 @@ public class Table
     }
 
     public boolean fillDrawPileWithDiscardedCards(){
+        //Method for filling the DrawPile after the end of a round, the discardPile becomes the new DrawPile
         if (drawPile().isEmpty() && !discardPile().isEmpty()){
             this.deck = this.discardPile();
             return true;
