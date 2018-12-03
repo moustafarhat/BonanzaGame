@@ -1,7 +1,6 @@
 package BonanzaGame.Core;
 
 import BonanzaGame.Entities.Card;
-import BonanzaGame.Entities.Player;
 
 import java.util.List;
 
@@ -29,5 +28,10 @@ public class TradingManager
     public void deal(Card currentPlayerCard, Card dealPlayerCards)
     {
       //implementation here
+    }
+
+    @Override
+    public String toString() {
+        return "TradingManager Class";
     }
 }

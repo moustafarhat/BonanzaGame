@@ -6,17 +6,33 @@ import java.util.List;
 
 public class GameSettings  {
 
-    public List<GameSettingItem> items() {
+    private static GameSettings instance;
+
+    private GameSettings(){}
+
+    public static synchronized GameSettings getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new GameSettings();
+        }
+        return instance;
+    }
+
+    private List<GameSettingItem> items() {
         return null;
     }
 
-
-    public void setSettingValus(String key, String value) {
+    private void setSettingValus(String key, String value) {
         //implementation here
     }
 
-
-    public String getSettingValue(String key) {
+    private String getSettingValue(String key) {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "GameSettings Class";
     }
 }

@@ -4,9 +4,14 @@ import BonanzaGame.Core.Enums.GameState;
 import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Core.Interfaces.IGameManager;
 import BonanzaGame.Entities.Card;
-import BonanzaGame.Entities.Player;
 
 import java.util.*;
+
+/**
+ * The class starts the game and implement the public interface IGameManager
+ * @version 1
+ * @author Moustafa Farhat , Author
+ */
 
 public class GameManager implements IGameManager {
     private Table _table;
@@ -51,11 +56,6 @@ public class GameManager implements IGameManager {
     }
 
     @Override
-    public Turn newTurn() {
-        return null;
-    }
-
-    @Override
     public void startNewGame() {
         //GameInitializer sets up table, players, player cards
         GameInitializer();
@@ -88,7 +88,7 @@ public class GameManager implements IGameManager {
                     System.out.println("Cards in deck left: " + _table.drawPile().size());
                     //todo if startTrading is false, trade cards must be planted and cards on that field harvested
                     player.startTrading(false);
-                    //Player doesnt trade so his tradingArea must be planted
+                    //Player does not trade so his trading Area must be planted
                     if (!player.getTradingArea().isEmpty()){
                         List<Card> cardsToBeRemovedFromTradingArea = new ArrayList<>();
                         for (Card card : player.getTradingArea()){
@@ -113,6 +113,9 @@ public class GameManager implements IGameManager {
         finishGame();
     }
 
+    /** Initialize the Game.
+     * @return true of false
+    */
     private boolean GameInitializer()
     {
         try {
@@ -123,6 +126,7 @@ public class GameManager implements IGameManager {
             this._table = new Table();
             this.shuffle(_table.drawPile());
             //todo maybe Console Input for Player names and automatic position
+
             _table.addPlayer("Player1", 1);
             _table.addPlayer("Player2", 2);
             _table.addPlayer("Player3", 3);
@@ -133,6 +137,7 @@ public class GameManager implements IGameManager {
             return true;
         } catch (Exception ex){
             System.out.println("GameManager could not initialize the game");
+            System.out.println(ex);
             ex.printStackTrace();
             return false;
         }
@@ -160,11 +165,6 @@ public class GameManager implements IGameManager {
         //Game is over when maxRoundCount from the settings is reached
         return true;
         //return roundCount == maxRoundCount;//Integer.parseInt(gameSettings.getSettingValue("Round Count"));
-    }
-
-    @Override
-    public void endTurn(Turn currentTurn) {
-    //implementation here
     }
 
     @Override

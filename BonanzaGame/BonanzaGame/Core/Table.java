@@ -2,10 +2,10 @@ package BonanzaGame.Core;
 
 import BonanzaGame.Core.Enums.CardTypes;
 import BonanzaGame.Entities.Card;
-import BonanzaGame.Entities.Player;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
 
 public class Table
 {
@@ -45,6 +45,7 @@ public class Table
             return true;
         } else return false;
     }
+
 
     public List<Player> playerList()
     {
