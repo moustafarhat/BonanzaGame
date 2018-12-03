@@ -4,7 +4,7 @@ import BonanzaGame.Core.Enums.CardTypes;
 import BonanzaGame.Core.GameManager;
 import BonanzaGame.Entities.Card;
 import BonanzaGame.Entities.Field;
-import BonanzaGame.Entities.Player;
+import BonanzaGame.Core.Player;
 import org.junit.Test;
 
 import java.util.Arrays;

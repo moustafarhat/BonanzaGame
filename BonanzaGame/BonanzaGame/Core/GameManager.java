@@ -1,6 +1,6 @@
 package BonanzaGame.Core;
 
-import BonanzaGame.Core.Enums.GameStates;
+import BonanzaGame.Core.Enums.GameState;
 import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Core.Interfaces.IGameManager;
 import BonanzaGame.Entities.Card;
@@ -8,26 +8,19 @@ import BonanzaGame.Entities.Player;
 
 import java.util.*;
 
-/**
- * The class starts the game and implements the public interface IGameManager
- * @version 1
- * @author Moustafa Farhat , Author
- */
 public class GameManager implements IGameManager {
     private Table _table;
     private Random _randomizer;
     private int _roundCount;
-    private GameStates _gameStates;
+    private GameState _gameState;
     private GameSettings _gameSettings;
     private TurnPhases _currentTurnPhase;
     private int maxRoundCount;
 
-
     @Override
     public void shuffle(List<Card> cards) {
-        //brauchen wir shuffle? da wir einfach bei draw eine zufällige Karte ausgeben können
+        //Glaube wir brauchen kein shuffle, da wir einfach bei draw eine zufällige Karte ausgeben können
     }
-
 
     @Override
     public void newRound() {
@@ -57,6 +50,10 @@ public class GameManager implements IGameManager {
         System.out.println();
     }
 
+    @Override
+    public Turn newTurn() {
+        return null;
+    }
 
     @Override
     public void startNewGame() {
@@ -121,7 +118,7 @@ public class GameManager implements IGameManager {
         try {
             //gameSettings.getSettingValue("Round Count");
             maxRoundCount = 1; //todo here needs to be a setting
-            _gameStates = GameStates.STARTED;
+            _gameState = GameState.STARTED;
             _randomizer = new Random();
             this._table = new Table();
             this.shuffle(_table.drawPile());
@@ -144,16 +141,12 @@ public class GameManager implements IGameManager {
     @Override
     public Player getWinner() {
         //Counts each players coins and puts out one winner if a player has more coins than the others
-        //Return null if there's no winner or it's a draw between multiple winners
-        //If two players have more than 0 coins its automatically a draw
+        //todo need to improve to allow multiple Winners if they have the same coins and more than 0
         if (gameOver()){
             Player currentWinner = _table.playerList().get(0);
             for (Player player : _table.playerList()){
                 if (player.getCoinCount() > currentWinner.getCoinCount()){
                     currentWinner = player;
-                }
-                if (!player.equals(currentWinner) && player.getCoinCount() == currentWinner.getCoinCount() && player.getCoinCount()!= 0){
-                    return null;
                 }
             }
             if (currentWinner.getCoinCount() == 0){
@@ -170,9 +163,14 @@ public class GameManager implements IGameManager {
     }
 
     @Override
+    public void endTurn(Turn currentTurn) {
+    //implementation here
+    }
+
+    @Override
     public List<Card> draw(int count) {
         List<Card> hand = new ArrayList<>();
-        //If there are not enough cards to draw normally, set the deck to 0
+        //If there are not enough cards to draw normally, set the deck to 0 and finish the game
         if (count >= _table.drawPile().size()){
             _table.setDeck(new ArrayList<>());
             return hand;
