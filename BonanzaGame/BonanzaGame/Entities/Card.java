@@ -7,6 +7,13 @@ import java.awt.*;
 import java.awt.font.ImageGraphicAttribute;
 import java.util.List;
 
+/**
+ * The class 'Card' depicts a model of a real card that players play with and the deck, discard pile, trading areas etc. are filled with
+ * A card has one CardType which gives information about the Rewards (eg. 3 cards are worth 1 coin) and the
+ * number of occurences in the card deck (or draw pile)
+ * @version 1
+ * @author Arthur K
+ */
 public class Card
 {
     private CardTypes cardType;

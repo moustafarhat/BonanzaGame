@@ -5,6 +5,12 @@ import BonanzaGame.Entities.Card;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class 'Field' depicts a model of a player's harvest field
+ * Each player starts with two fields, is able to buy a third one, and plants and harvests bean cards from these fields
+ * @version 1
+ * @author Arthur K
+ */
 public class Field
 {
     private List<Card> cards;
