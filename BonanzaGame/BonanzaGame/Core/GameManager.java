@@ -144,12 +144,16 @@ public class GameManager implements IGameManager {
     @Override
     public Player getWinner() {
         //Counts each players coins and puts out one winner if a player has more coins than the others
-        //todo need to improve to allow multiple Winners if they have the same coins and more than 0
+        //Return null if there's no winner or it's a draw between multiple winners
+        //If two players have more than 0 coins its automatically a draw
         if (gameOver()){
             Player currentWinner = _table.playerList().get(0);
             for (Player player : _table.playerList()){
                 if (player.getCoinCount() > currentWinner.getCoinCount()){
                     currentWinner = player;
+                }
+                if (!player.equals(currentWinner) && player.getCoinCount() == currentWinner.getCoinCount() && player.getCoinCount()!= 0){
+                    return null;
                 }
             }
             if (currentWinner.getCoinCount() == 0){
