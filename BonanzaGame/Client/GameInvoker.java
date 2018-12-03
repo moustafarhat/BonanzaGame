@@ -40,13 +40,13 @@ public class GameInvoker {
                         gameManager.startNewGame();
                         break;
                     case 2:
-                        System.out.println("Option2");
+                        System.exit(0);
                         break;
                     case 3:
                         System.out.println("Option3");
                         break;
                     case 4:
-                        System.exit(0);
+
                     default:
                         System.out.println("The Selection is invalid");
                 }
