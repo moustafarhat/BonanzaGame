@@ -3,6 +3,13 @@ package BonanzaGame.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * The class 'Player' depicts a model of a real player participating at the game
+ * A player is identified by his name and position, has a hand, trading area, treasury and multiple harvest fields
+ * @version 1
+ * @author Arthur K
+ */
 public class Player {
 
     private String name;

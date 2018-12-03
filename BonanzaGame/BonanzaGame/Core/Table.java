@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The class 'Table' describes the model of a real game table including the cards that are on
+ * the table (the deck and discard pile), the players sitting around the table and manages these instances
+ * @version 1
+ * @author Arthur K
+ */
 public class Table
 {
     private List<Player> players;

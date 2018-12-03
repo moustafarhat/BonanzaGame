@@ -5,6 +5,13 @@ import BonanzaGame.Entities.Reward;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The enumeration 'CardTypes' describes a datatype for all avaiable card types in the game
+ * Each CardType has a varying maximum number of instances in the card deck described by the maxCardCount variable,
+ * a name which specifies the toString output and specific Rewards depending on the CardType
+ * @version 1
+ * @author Arthur K
+ */
 public enum CardTypes
 {
     BLUEBEAN (20, "Blue Bean", Arrays.asList(

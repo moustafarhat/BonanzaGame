@@ -6,6 +6,12 @@ import com.google.inject.Injector;
 
 import java.util.Scanner;
 
+/**
+ * The class 'GameInvoker' handles the task of starting the game in the console and simulates one round in the game until the deck is empty
+ * It creates a GameManager object and asks the user for an input, one of which starts the game
+ * @version 1
+ * @author Arthur K
+ */
 public class GameInvoker {
     public static void main(String[] args) {
 

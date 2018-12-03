@@ -5,6 +5,12 @@ import BonanzaGame.Entities.Player;
 
 import java.util.List;
 
+
+/**
+ * The class 'TableManager' handles the task of trading between players
+ * @version 1
+ * @author Arthur K
+ */
 public class TradingManager
 {
     public Player currentPlayer;

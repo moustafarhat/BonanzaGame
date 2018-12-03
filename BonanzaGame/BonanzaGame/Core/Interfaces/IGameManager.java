@@ -6,6 +6,11 @@ import BonanzaGame.Entities.Player;
 
 import java.util.List;
 
+/**
+ * The interface 'IGameManager' sets up the needed methods which a concrete GameManager has to implement
+ * @version 1
+ * @author Moustafa Farhat , Author
+ */
 public interface IGameManager
 {
     void shuffle(List <Card> cards);

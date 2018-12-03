@@ -1,6 +1,6 @@
 package BonanzaGame.Core;
 
-import BonanzaGame.Core.Enums.GameState;
+import BonanzaGame.Core.Enums.GameStates;
 import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Core.Interfaces.IGameManager;
 import BonanzaGame.Entities.Card;
@@ -8,11 +8,16 @@ import BonanzaGame.Entities.Player;
 
 import java.util.*;
 
+/**
+ * The class starts the game and implements the public interface IGameManager
+ * @version 1
+ * @author Moustafa Farhat , Author
+ */
 public class GameManager implements IGameManager {
     private Table _table;
     private Random _randomizer;
     private int _roundCount;
-    private GameState _gameState;
+    private GameStates _gameStates;
     private GameSettings _gameSettings;
     private TurnPhases _currentTurnPhase;
     private int maxRoundCount;
@@ -118,7 +123,7 @@ public class GameManager implements IGameManager {
         try {
             //gameSettings.getSettingValue("Round Count");
             maxRoundCount = 1; //todo here needs to be a setting
-            _gameState = GameState.STARTED;
+            _gameStates = GameStates.STARTED;
             _randomizer = new Random();
             this._table = new Table();
             this.shuffle(_table.drawPile());
