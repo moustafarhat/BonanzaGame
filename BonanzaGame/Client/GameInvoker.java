@@ -1,29 +1,20 @@
 package Client;
 import BonanzaGame.Core.GameManager;
-import BonanzaGame.Core.Interfaces.IGameManager;
+import BonanzaGame.GameModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class GameInvoker {
     public static void main(String[] args) {
-        //Console console = System.console();
 
-        /*if (console == null) {
-            System.out.println("Console is not supported");
-            System.exit(1);
-        }*/
+        Injector injector = Guice.createInjector(new GameModule() );
+        GameManager gameManager = injector.getInstance( GameManager.class );
 
-        //Test1
-        //Test2
         try {
             Scanner input = new Scanner(System.in);
-
             System.out.println("Welcome to the BonanzaGame");
-
             int selection;
 
             do {
@@ -37,7 +28,6 @@ public class GameInvoker {
                 switch (selection) {
                     case 1:
                         System.out.println("Started Game");
-                        IGameManager gameManager = new GameManager();
                         gameManager.startNewGame();
                         break;
                     case 2:
@@ -51,8 +41,6 @@ public class GameInvoker {
                     default:
                         System.out.println("The Selection is invalid");
                 }
-
-
             } while (selection != 4);
         }
         catch (Exception ex)

@@ -10,11 +10,11 @@ import java.util.*;
 
 public class GameManager implements IGameManager {
     private Table _table;
-    private Random randomizer;
-    private int roundCount;
-    private GameState gameState;
-    private GameSettings gameSettings;
-    private TurnPhases currentTurnPhase;
+    private Random _randomizer;
+    private int _roundCount;
+    private GameState _gameState;
+    private GameSettings _gameSettings;
+    private TurnPhases _currentTurnPhase;
     private int maxRoundCount;
 
     @Override
@@ -61,7 +61,7 @@ public class GameManager implements IGameManager {
         GameInitializer();
         System.out.println("Cards in deck left: " + _table.drawPile().size());
         //Now the game starts, the game lasts for maxRoundCount rounds
-        for (roundCount = 0; roundCount < maxRoundCount; roundCount++){
+        for (_roundCount = 0; _roundCount < maxRoundCount; _roundCount++){
             //One round lasts until the drawPile is emptied
             while (_table.drawPile().size() != 0){
                 //Each player goes through the TurnPhases
@@ -73,7 +73,7 @@ public class GameManager implements IGameManager {
                     // 1. Player plants up to two cards
                     System.out.println();
                     System.out.println(player.getName() + "'s turn");
-                    currentTurnPhase = TurnPhases.PLANTING;
+                    _currentTurnPhase = TurnPhases.PLANTING;
                     System.out.println("---------- Planting Phase ----------");
                     if (!player.plant(player.getHand().get(0), 0)){
                         _table.addCardToDiscardPile(player.harvest(0));
@@ -82,7 +82,7 @@ public class GameManager implements IGameManager {
                     }
                     player.plantAnotherCard(false, 0);
                     // 2. Player draws two trade cards and either trades or plants them
-                    currentTurnPhase = TurnPhases.TRADING;
+                    _currentTurnPhase = TurnPhases.TRADING;
                     System.out.println("---------- Trading Phase ----------");
                     player.addCardsToTradingArea(draw(2));
                     System.out.println("Cards in deck left: " + _table.drawPile().size());
@@ -102,7 +102,7 @@ public class GameManager implements IGameManager {
                         player.removeFromTadingArea(cardsToBeRemovedFromTradingArea);
                     }
                     // 3. Player draws another 3 cards and ends his/her turn
-                    currentTurnPhase = TurnPhases.DRAWING;
+                    _currentTurnPhase = TurnPhases.DRAWING;
                     System.out.println("---------- Drawing Phase ----------");
                     player.addCardsToHand(draw(3));
                     System.out.println("Cards in deck left: " + _table.drawPile().size());
@@ -118,8 +118,8 @@ public class GameManager implements IGameManager {
         try {
             //gameSettings.getSettingValue("Round Count");
             maxRoundCount = 1; //todo here needs to be a setting
-            gameState = GameState.STARTED;
-            randomizer = new Random();
+            _gameState = GameState.STARTED;
+            _randomizer = new Random();
             this._table = new Table();
             this.shuffle(_table.drawPile());
             //todo maybe Console Input for Player names and automatic position
@@ -178,7 +178,7 @@ public class GameManager implements IGameManager {
         //Else give out an ArrayList of cards with count cards in it
         for (int i = 0; i < count; i++) {
             if (_table.drawPile().size()> 0){
-                Card randomCard = _table.drawPile().get(randomizer.nextInt(_table.drawPile().size()));
+                Card randomCard = _table.drawPile().get(_randomizer.nextInt(_table.drawPile().size()));
                 hand.add(randomCard);
                 _table.removeCardFromDrawPile(randomCard);
             }
