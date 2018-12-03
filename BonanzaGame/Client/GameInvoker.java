@@ -30,9 +30,7 @@ public class GameInvoker {
 
             do {
                 System.out.println("[1] Start New Game");
-                System.out.println("[2] Option2");
-                System.out.println("[3] Option3");
-                System.out.println("[4] Exit");
+                System.out.println("[2] Exit");
                 System.out.println("Insert Selection: ");
                 selection = input.nextInt();
 
@@ -52,7 +50,7 @@ public class GameInvoker {
                     default:
                         System.out.println("The Selection is invalid");
                 }
-            } while (selection != 4);
+            } while (selection != 2);
         }
         catch (Exception ex)
         {
