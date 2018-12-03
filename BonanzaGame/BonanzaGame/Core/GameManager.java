@@ -22,10 +22,12 @@ public class GameManager implements IGameManager {
     private TurnPhases _currentTurnPhase;
     private int maxRoundCount;
 
+
     @Override
     public void shuffle(List<Card> cards) {
-        //Glaube wir brauchen kein shuffle, da wir einfach bei draw eine zufällige Karte ausgeben können
+        //brauchen wir shuffle? da wir einfach bei draw eine zufällige Karte ausgeben können
     }
+
 
     @Override
     public void newRound() {
@@ -55,10 +57,6 @@ public class GameManager implements IGameManager {
         System.out.println();
     }
 
-    @Override
-    public Turn newTurn() {
-        return null;
-    }
 
     @Override
     public void startNewGame() {
@@ -168,14 +166,9 @@ public class GameManager implements IGameManager {
     }
 
     @Override
-    public void endTurn(Turn currentTurn) {
-    //implementation here
-    }
-
-    @Override
     public List<Card> draw(int count) {
         List<Card> hand = new ArrayList<>();
-        //If there are not enough cards to draw normally, set the deck to 0 and finish the game
+        //If there are not enough cards to draw normally, set the deck to 0
         if (count >= _table.drawPile().size()){
             _table.setDeck(new ArrayList<>());
             return hand;

@@ -58,6 +58,13 @@ public enum CardTypes
     private int maxCardCount;
     private String name;
 
+    /**
+     * Constructor for a CardType
+     * Each enumeration object of CardType contains variables which depend on the specific CardType
+     * @param maxCardCount describes the amount of occurrences of a given CardType in the game deck
+     * @param name describes a card name and its toString implementation of a given CardType
+     * @param rewards describes the list of coin rewards of a given CardType
+     */
     CardTypes(int maxCardCount, String name, List<Reward> rewards) {
         this.maxCardCount = maxCardCount;
         this.name = name;

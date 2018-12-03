@@ -5,6 +5,11 @@ import BonanzaGame.Core.Interfaces.IGameManager;
 import com.google.inject.AbstractModule;
 import com.google.inject.binder.LinkedBindingBuilder;
 
+/**
+ *
+ * @version 1
+ * @author Moustafa Farhat , Author
+ */
 public class GameModule extends AbstractModule
 {
     @Override
