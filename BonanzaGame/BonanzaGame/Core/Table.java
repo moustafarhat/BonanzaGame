@@ -62,7 +62,9 @@ public class Table
     }
 
     public boolean addCardToDiscardPile(List<Card> cards){
-        return this.discardedCards.addAll(cards);
+        if (cards.size() == 0){
+            return true;
+        } else return this.discardedCards.addAll(cards);
     }
 
     public void setDeck(List<Card> deck) {

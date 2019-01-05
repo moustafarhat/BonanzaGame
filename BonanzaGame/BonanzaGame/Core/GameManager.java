@@ -1,10 +1,10 @@
 package BonanzaGame.Core;
 
-import BonanzaGame.Core.Enums.GameState;
+import BonanzaGame.Core.Enums.GameStates;
 import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Core.Interfaces.IGameManager;
 import BonanzaGame.Entities.Card;
-import BonanzaGame.Entities.Player;
+import BonanzaGame.Core.Player;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ public class GameManager implements IGameManager {
     private Table _table;
     private Random _randomizer;
     private int _roundCount;
-    private GameState _gameState;
+    private GameStates _gameState;
     private GameSettings _gameSettings;
     private TurnPhases _currentTurnPhase;
     private int maxRoundCount;
@@ -50,10 +50,6 @@ public class GameManager implements IGameManager {
         System.out.println();
     }
 
-    @Override
-    public Turn newTurn() {
-        return null;
-    }
 
     @Override
     public void startNewGame() {
@@ -70,7 +66,7 @@ public class GameManager implements IGameManager {
                     if (_table.drawPile().size() < 2){
                         break;
                     }
-                    // 1. Player plants up to two cards
+                    // First step: Player plants up to two cards
                     System.out.println();
                     System.out.println(player.getName() + "'s turn");
                     _currentTurnPhase = TurnPhases.PLANTING;
@@ -81,7 +77,7 @@ public class GameManager implements IGameManager {
                         player.plant(player.getHand().get(0),0);
                     }
                     player.plantAnotherCard(false, 0);
-                    // 2. Player draws two trade cards and either trades or plants them
+                    // Second step: Player draws two trade cards and either trades or plants them
                     _currentTurnPhase = TurnPhases.TRADING;
                     System.out.println("---------- Trading Phase ----------");
                     player.addCardsToTradingArea(draw(2));
@@ -89,7 +85,7 @@ public class GameManager implements IGameManager {
                     //todo if startTrading is false, trade cards must be planted and cards on that field harvested
                     player.startTrading(false);
                     //Player doesnt trade so his tradingArea must be planted
-                    if (!player.getTradingArea().isEmpty()){
+                    if (player.getTradingArea().size() > 0){
                         List<Card> cardsToBeRemovedFromTradingArea = new ArrayList<>();
                         for (Card card : player.getTradingArea()){
                             if (!player.plant(card,0 )) {
@@ -101,7 +97,7 @@ public class GameManager implements IGameManager {
                         }
                         player.removeFromTadingArea(cardsToBeRemovedFromTradingArea);
                     }
-                    // 3. Player draws another 3 cards and ends his/her turn
+                    // Third step: Player draws another 3 cards and ends his/her turn
                     _currentTurnPhase = TurnPhases.DRAWING;
                     System.out.println("---------- Drawing Phase ----------");
                     player.addCardsToHand(draw(3));
@@ -118,7 +114,6 @@ public class GameManager implements IGameManager {
         try {
             //gameSettings.getSettingValue("Round Count");
             maxRoundCount = 1; //todo here needs to be a setting
-            _gameState = GameState.STARTED;
             _randomizer = new Random();
             this._table = new Table();
             this.shuffle(_table.drawPile());
@@ -160,11 +155,6 @@ public class GameManager implements IGameManager {
         //Game is over when maxRoundCount from the settings is reached
         return true;
         //return roundCount == maxRoundCount;//Integer.parseInt(gameSettings.getSettingValue("Round Count"));
-    }
-
-    @Override
-    public void endTurn(Turn currentTurn) {
-    //implementation here
     }
 
     @Override

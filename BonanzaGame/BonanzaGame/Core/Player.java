@@ -91,13 +91,13 @@ public class Player {
 
     public boolean plant(Card card, int fieldPosition){
         //Check fieldPosition parameter for validity
-        if (!isValidFieldPosition(fieldPosition)){
+        if (!isValidFieldPosition(fieldPosition) || card == null){
             return false;
         }
         else {
             Field field = this.fields.get(fieldPosition);
             //Check if the specified field at fieldPosition is empty or not
-            if (field.getCards().isEmpty()){
+            if (field.getCards().size() == 0){
                 //If the field at fieldPosition is empty, any card is allowed to be planted
                 field.addCardToField(card);
                 System.out.println(this.name + " added " + card.getCardType() + " to his field " + fieldPosition);
@@ -128,7 +128,7 @@ public class Player {
         //Harvest cards from field at fieldPosition, if there are no cards in the field return empty harvest
         List<Card> harvestedCards = new ArrayList<>(this.fields.get(fieldPosition).getCards());
         this.fields.set(0,new Field());
-        if (harvestedCards.isEmpty()){
+        if (harvestedCards.size() == 0){
             return new ArrayList<>();
         }
         //If there's at least one card check for highest suitable reward for that CardType based on number of cards harvested
@@ -143,7 +143,7 @@ public class Player {
         if (highestReward != null){
             //Suitable reward found, now add some cards as coins to the treasury and remove them from the harvested cards pile
             for (int i = 0; i < highestReward.getCoins(); i++){
-                this.treasury.add(harvestedCards.remove(i));
+                this.treasury.add(harvestedCards.remove(0));
             }
             //returns leftover cards after turning some cards into coins
             return harvestedCards;
