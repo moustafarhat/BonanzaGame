@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"BonanzaGame"},{"l":"BonanzaGame.Core"},{"l":"BonanzaGame.Core.Enums"},{"l":"BonanzaGame.Core.Interfaces"},{"l":"BonanzaGame.Entities"},{"l":"BonanzaGame.Test"},{"l":"Client"}]

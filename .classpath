@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/swt.jar" sourcepath="lib/src.zip"/>
+	<classpathentry kind="lib" path="lib/BohnanzaGUI.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.swt">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BohnanzaGuiLibDemo"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/Users/moust/Desktop/BonanzaGame/BonanzaGame/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/moust/.m2/repository/com/google/inject/guice/4.2.2/guice-4.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/moust/.m2/repository/com/google/inject/guice/4.2.2/guice-4.2.2-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/moust/Desktop/BohnanzaGUI.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

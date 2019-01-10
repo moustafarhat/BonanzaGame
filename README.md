@@ -1,2 +1,0 @@
-# BonanzaGame
-Bonanza Game Implementation
