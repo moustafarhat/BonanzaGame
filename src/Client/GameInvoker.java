@@ -2,9 +2,9 @@ package Client;
 import BonanzaGame.Core.CoreGameManager;
 import BonanzaGame.CoreGameModule;
 import BonanzaGame.IMainGameManager;
-import Extensions.Mafia.MafiaExtension;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import Extensions.Mafia.Core.MafiaExtension;
 
 import java.util.Scanner;
 

@@ -1,8 +1,8 @@
-package AlCabohneExtension;
+package Extensions.Mafia.Core;
 
 import BonanzaGame.Core.AbstractTable;
 
-abstract class AlCabohneExtensionTable extends AbstractTable {
+public abstract class AlCabohneExtensionTable extends AbstractTable {
 
     AlCabohneExtensionTable() {
         maxPlayerCount = 4;

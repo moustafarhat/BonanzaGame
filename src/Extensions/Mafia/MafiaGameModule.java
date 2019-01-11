@@ -1,9 +1,8 @@
 package Extensions.Mafia;
 
 import BonanzaGame.IMainGameManager;
-import Extensions.Mafia.MafiaExtension;
+import Extensions.Mafia.Core.MafiaExtension;
 import com.google.inject.AbstractModule;
-import com.google.inject.binder.LinkedBindingBuilder;
 
 /**
  *

@@ -1,11 +1,9 @@
-package AlCabohneExtension;
+package Extensions.Mafia.Core;
 
-import BonanzaGame.Core.Enums.CardTypes;
-import BonanzaGame.Core.Player;
-import BonanzaGame.Entities.Card;
-
-import java.util.ArrayList;
-import java.util.List;
+import Extensions.Mafia.Core.AlCabohneExtensionTable;
+import Extensions.Mafia.Core.BossPlayerAlCabohne;
+import Extensions.Mafia.Core.BossPlayerDonCorlebohne;
+import Extensions.Mafia.Core.BossPlayerJoeBohnano;
 
 public class AlCabohneExtensionTableSolo extends AlCabohneExtensionTable {
 

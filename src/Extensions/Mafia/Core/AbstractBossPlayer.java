@@ -1,4 +1,4 @@
-package AlCabohneExtension;
+package Extensions.Mafia.Core;
 
 import BonanzaGame.Core.AbstractPlayer;
 import BonanzaGame.Entities.Card;

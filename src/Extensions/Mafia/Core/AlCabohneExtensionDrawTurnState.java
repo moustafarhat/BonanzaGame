@@ -1,10 +1,10 @@
-package AlCabohneExtension;
+package Extensions.Mafia.Core;
 
 import BonanzaGame.Core.Interfaces.IGameManager;
 
-public class AlCabohneExtensionGiveBeansToMafiaState extends AlCabohneExtensionTurnState {
+public class AlCabohneExtensionDrawTurnState extends AlCabohneExtensionTurnState {
 
-    public AlCabohneExtensionGiveBeansToMafiaState(IGameManager manager) {
+    public AlCabohneExtensionDrawTurnState(IGameManager manager) {
         super(manager);
     }
 
