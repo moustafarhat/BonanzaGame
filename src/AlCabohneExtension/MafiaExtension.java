@@ -1,4 +1,4 @@
-package MafiaExtension;
+package AlCabohneExtension;
 
 public class MafiaExtension implements IMafiaExtension
 {

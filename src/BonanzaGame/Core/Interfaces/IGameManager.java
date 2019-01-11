@@ -1,7 +1,7 @@
 package BonanzaGame.Core.Interfaces;
 
+import BonanzaGame.Core.AbstractPlayer;
 import BonanzaGame.Entities.Card;
-import BonanzaGame.Core.Player;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ public interface IGameManager
     void newRound();
     void finishGame();
     void startNewGame();
-    Player getWinner();
+    AbstractPlayer getWinner();
     List<Card> draw(int count);
 }

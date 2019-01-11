@@ -17,6 +17,7 @@ public class PlayerTest {
     public void addCardsToHand() {
         Player testPlayer = new Player("TestPlayer", 1);
         GameManager gameManager = new GameManager();
+        //gameManager.GameInitializer();
         gameManager.startNewGame();
         testPlayer.addCardsToHand(gameManager.draw(5));
         assertEquals(5, testPlayer.getHand().size());

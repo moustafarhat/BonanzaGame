@@ -1,13 +1,13 @@
 package BonanzaGame.Core;
 
+import AlCabohneExtension.AbstractBossPlayer;
 import BonanzaGame.Core.Enums.GameStates;
 import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Core.Interfaces.IGameManager;
 import BonanzaGame.Entities.Card;
-import BonanzaGame.Core.Player;
 
 
-import MafiaExtension.IMafiaExtension;
+import AlCabohneExtension.IMafiaExtension;
 
 
 import java.util.*;
@@ -39,7 +39,7 @@ public class GameManager implements IGameManager , IMafiaExtension{
         if (getWinner()==null){
             System.out.println();
             System.out.println("The Game is over and nobody has won");
-            for (Player player : _table.playerList()){
+            for (AbstractPlayer player : _table.playerList()){
                 System.out.println(player.getName() + " has earned " + player.getCoinCount() + " coins");
             }
             System.out.println();
@@ -47,7 +47,7 @@ public class GameManager implements IGameManager , IMafiaExtension{
         }
         else System.out.println();
         System.out.println("The winner is " + getWinner().getName() + " with " + getWinner().getCoinCount() + " coins in his treasury");
-        for (Player player : _table.playerList()){
+        for (AbstractPlayer player : _table.playerList()){
             System.out.println(player.getName() + " has earned " + player.getCoinCount() + " coins");
         }
         System.out.println();
@@ -65,7 +65,7 @@ public class GameManager implements IGameManager , IMafiaExtension{
             //One round lasts until the drawPile is emptied
             while (_table.drawPile().size() != 0){
                 //Each player goes through the TurnPhases
-                for (Player player : _table.playerList()){
+                for (AbstractHumanPlayer player : _table.getHumanPlayers()){
                     //If there are not enough cards in the deck this breaks to finish the game
                     if (_table.drawPile().size() < 2){
                         break;
@@ -133,7 +133,7 @@ public class GameManager implements IGameManager , IMafiaExtension{
             _table.addPlayer("Player2", 2);
             _table.addPlayer("Player3", 3);
             _table.addPlayer("Player4", 4);
-            for (Player player : _table.playerList()){
+            for (AbstractHumanPlayer player : _table.getHumanPlayers()){
                 player.addCardsToHand(draw(5));
             }
             return true;
@@ -146,12 +146,12 @@ public class GameManager implements IGameManager , IMafiaExtension{
     }
 
     @Override
-    public Player getWinner() {
+    public AbstractPlayer getWinner() {
         //Counts each players coins and puts out one winner if a player has more coins than the others
         //todo need to improve to allow multiple Winners if they have the same coins and more than 0
         if (gameOver()){
-            Player currentWinner = _table.playerList().get(0);
-            for (Player player : _table.playerList()){
+            AbstractPlayer currentWinner = _table.playerList().get(0);
+            for (AbstractPlayer player : _table.playerList()){
                 if (player.getCoinCount() > currentWinner.getCoinCount()){
                     currentWinner = player;
                 }
@@ -189,8 +189,7 @@ public class GameManager implements IGameManager , IMafiaExtension{
     }
 
 	@Override
-	public boolean MafiaInitializer() 
-
+	public boolean MafiaInitializer()
 	{
 		// TODO Auto-generated method stub
 		return false;
