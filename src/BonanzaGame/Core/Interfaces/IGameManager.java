@@ -12,6 +12,6 @@ public interface IGameManager extends IMainGameManager {
     void newRound();
     void finishGame();
     void startNewGame();
-    AbstractPlayer getWinner();
+    List<AbstractPlayer> getWinner();
     List<Card> draw(int count);
 }
