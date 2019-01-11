@@ -18,7 +18,7 @@ public class Main {
 public static void main(String[] args) {
 
 		
-		  GUI gui = new GUI(new Size(1000, 800), new Size(60, 80), new Color(50,50,50),
+		  GUI gui = new GUI(new Size(1050, 875), new Size(80, 100), new Color(50,50,50),
 		  new Color(255,255,255));
 
 		  new Thread(new Game(gui, args)).start();
@@ -31,8 +31,7 @@ public static void main(String[] args) {
 	f.setSize(400,400); f.setLayout(null); f.setVisible(true);*/
 
   }
-	  public void actionPerformed(ActionEvent e){
-	  }
+
   }
 
 
