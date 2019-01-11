@@ -20,9 +20,7 @@ public class Player extends AbstractHumanPlayer {
         this.fields.add(new Field());
         this._PlayerState = new ReadyState(this);
         setPlaying(true);
-        for (int i = 1; i <= 12; i++) {
-            playlist.add("Track " + i);
-        }
+
     }
 
     public Player(String name, int position, int fieldCount) {
@@ -34,9 +32,7 @@ public class Player extends AbstractHumanPlayer {
         }
         this._PlayerState = new ReadyState(this);
         setPlaying(true);
-        for (int i = 1; i <= 12; i++) {
-            playlist.add("Track " + i);
-        }
+
     }
     public void addCardsToHand(List<Card> cards){
         //Cards from GameManager's draw function are put into the player's hand

@@ -14,8 +14,6 @@ abstract public class AbstractPlayer {
     protected List<Card> treasury;
     protected PlayerState _playerstate;
     protected boolean playing = false;
-    protected List<String> playlist = new ArrayList<>();
-    protected int currentTrack = 0;
 
     protected AbstractPlayer() {
         this.fields = new ArrayList<>();
@@ -47,13 +45,7 @@ abstract public class AbstractPlayer {
         this.playing = playing;
     }
 
-    public boolean isPlaying() {
-        return playing;
-    }
 
-    public String startPlayback() {
-        return "Playing " + playlist.get(currentTrack);
-    }
 
     public void setTreasury(List<Card> treasury) {
         this.treasury.addAll(treasury);

@@ -6,12 +6,10 @@ import BonanzaGame.Core.Interfaces.IGameManager;
 import BonanzaGame.Entities.Card;
 
 
-import Extensions.Mafia.Interface.IMafiaExtension;
-
 
 import java.util.*;
 
-public class CoreGameManager implements IGameManager , IMafiaExtension{
+public class CoreGameManager implements IGameManager {
     private Table _table;
     private Random _randomizer;
     private int _roundCount;
