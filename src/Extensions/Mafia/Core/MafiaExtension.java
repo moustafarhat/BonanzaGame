@@ -46,7 +46,7 @@ public class MafiaExtension implements IMafiaExtension {
     public List<AbstractPlayer> getWinner() {
 
         if (gameOver()) {
-            if (_table.getClass().getName().equalsIgnoreCase("Extensions.Mafia.Core.AlCabohneExtensionTableSolo")) {
+            if (_table.getHumanPlayers().size() == 1) {
                 //If the table is a solo table:
                 //Counts the player's coins and the mafia's coins (all boss players coins added together)
                 //If the player has more coins than the mafia -> the Player wins otherwise the mafia wins
@@ -61,7 +61,7 @@ public class MafiaExtension implements IMafiaExtension {
                     return winners;
                 } else return new ArrayList<AbstractPlayer>(_table.getBossPlayerList());
             }
-            if (_table.getClass().getName().equalsIgnoreCase("Extensions.Mafia.Core.AlCabohneExtensionTableDuo")) {
+            if (_table.getHumanPlayers().size() == 2) {
                 //If the table is a duo table:
                 //Counts each player's coins and the mafia's coins (all boss players coins added together)
                 //If a player has more coins than the mafia he wins otherwise the mafia wins
