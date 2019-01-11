@@ -29,11 +29,7 @@ public class Game implements Runnable {
         int x = 0;
         int y = 0;
         for (CardType cardType : CardType.values()) {
-            //gui.addCard(cardType, new Coordinate(x, y)).flip();
-
-
-
-
+        //gui.addCard(cardType, new Coordinate(x, y)).flip();
             x += 80;
             if (x > 920) {
                 x = 0;
@@ -43,9 +39,6 @@ public class Game implements Runnable {
                 y = 0;
                 x = 0;
             }
-
-
-            gui.addCard(CardType.AUGEN_BOHNE,new Coordinate(400,300));
         }
         
         Compartment vDistCompartment = gui.addCompartment(new Coordinate(0, 500), new Size(250, 300), "Player1");
@@ -81,9 +74,12 @@ public class Game implements Runnable {
             @Override
             public void buttonPressed(Button button) {
                 hCentCompartment.centerHorizontal(gui.getCardObjectsInCompartment(hCentCompartment));
+
             }
         });
-        
+
+        gui.addCard(CardType.AUGEN_BOHNE,new Coordinate(400,300));
+
         final Label label = gui.addLabel(new Coordinate(500, 0), "<none>");
 
         gui.addCompartment(new Coordinate(1, 1), new Size(140, 140), "Handkarten");
