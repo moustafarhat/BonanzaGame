@@ -10,34 +10,14 @@ import BonanzaGame.Entities.Reward;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
-
-    private PlayerState _PlayerState;
-    private String name;
-    private List<Field> fields;
-    private List<Card> hand;
-    private int position;
-    private List<Card> treasury;
-    private List<Card> tradingArea;
-
-    private PlayerState _playerstate;
-    private boolean playing = false;
-    private List<String> playlist = new ArrayList<>();
-    private int currentTrack = 0;
-
-    public Player() {
-
-    }
+public class Player extends AbstractHumanPlayer {
 
     public Player(String name, int position) {
+        super();
         this.name = name;
         this.position = position;
-        this.fields = new ArrayList<>();
-        fields.add(new Field());
-        fields.add(new Field());
-        this.hand = new ArrayList<>();
-        this.treasury = new ArrayList<>();
-        this.tradingArea = new ArrayList<>();
+        this.fields.add(new Field());
+        this.fields.add(new Field());
         this._PlayerState = new ReadyState(this);
         setPlaying(true);
         for (int i = 1; i <= 12; i++) {
@@ -45,36 +25,23 @@ public class Player {
         }
     }
 
-    public void changeState(PlayerState playerState) {
-        this._PlayerState = playerState;
+    public Player(String name, int position, int fieldCount) {
+        super();
+        this.name = name;
+        this.position = position;
+        for (int i = 0; i < fieldCount; i++){
+            fields.add(new Field());
+        }
+        this._PlayerState = new ReadyState(this);
+        setPlaying(true);
+        for (int i = 1; i <= 12; i++) {
+            playlist.add("Track " + i);
+        }
     }
-
-    public PlayerState get_PlayerStateState() {
-        return _PlayerState;
-    }
-
-    public void setPlaying(boolean playing) {
-        this.playing = playing;
-    }
-
-    public boolean isPlaying() {
-        return playing;
-    }
-
-    public String startPlayback() {
-        return "Playing " + playlist.get(currentTrack);
-    }
-
-
     public void addCardsToHand(List<Card> cards){
         //Cards from GameManager's draw function are put into the player's hand
         System.out.println(name + " receives " + cards.size() + " cards into his hand");
-        this.hand.addAll(cards);
-    }
-
-    public int getCoinCount(){
-        //The amount of coins a player has equals to the amount of cards that were put into his/her treasury
-        return treasury.size();
+        hand.addAll(cards);
     }
 
     private boolean isValidFieldPosition(int fieldPosition){
@@ -168,38 +135,10 @@ public class Player {
         return false;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setTreasury(List<Card> treasury) {
-        this.treasury.addAll(treasury);
-    }
-
-    public List<Card> getHand() {
-        return hand;
-    }
-
-    public void setFields(List<Field> fields) {
-        this.fields = fields;
-    }
-
-    public void removeFromTadingArea(List<Card> cards){
-        this.tradingArea.removeAll(cards);
-    }
-
     public boolean startTrading(boolean playerWantsToTrade){
         System.out.println("Does player want to trade? " + playerWantsToTrade);
         //todo all trading functionality
         return playerWantsToTrade;
-    }
-
-    public void addCardsToTradingArea(List<Card> cardsToTrade){
-        //When a player draws two cards in his trading phase this method puts them into his trading area
-        for (Card card : cardsToTrade){
-            System.out.println("Card " + card.getCardType() + " put in trading area");
-        }
-        this.tradingArea.addAll(cardsToTrade);
     }
 
     public void plantAnotherCard(boolean playersChoice, int fieldPosition){
@@ -209,15 +148,4 @@ public class Player {
         } else System.out.println(name + " didn't want to plant another card");
     }
 
-    public List<Card> getTradingArea() {
-        return tradingArea;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Field> getFields() {
-        return fields;
-    }
 }

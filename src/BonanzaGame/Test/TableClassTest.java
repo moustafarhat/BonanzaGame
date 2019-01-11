@@ -39,6 +39,6 @@ public class TableClassTest
     public void playerListTest()
     {
         Table table=new Table();
-        Assert.assertEquals(table.playerList().size(), 4);
+        Assert.assertEquals(table.playerList().size(), 0);
     }
 }

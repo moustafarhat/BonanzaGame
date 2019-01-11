@@ -46,6 +46,11 @@ public class GameInvoker {
                     case 1:
                         System.out.println("Started Game");
                         gameManager.startNewGame();
+                        /*
+                        for (int i = 0; i < 100; i++){
+
+                        }
+                         */
                         break;
                     case 2:
                         System.exit(0);
