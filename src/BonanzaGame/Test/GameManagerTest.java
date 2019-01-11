@@ -1,21 +1,16 @@
 package BonanzaGame.Test;
 
-import BonanzaGame.Core.GameManager;
-import BonanzaGame.GameModule;
+import BonanzaGame.Core.CoreGameManager;
+import BonanzaGame.CoreGameModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class GameManagerTest {
 
-    Injector injector = Guice.createInjector(new GameModule() );
-    
-    GameManager gameManager = injector.getInstance( GameManager.class );
+    Injector injector = Guice.createInjector(new CoreGameModule() );
+
+    CoreGameManager gameManager = injector.getInstance( CoreGameManager.class );
 
 
     @Test

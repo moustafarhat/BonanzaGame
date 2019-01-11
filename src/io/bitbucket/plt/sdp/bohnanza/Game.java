@@ -29,8 +29,7 @@ public class Game implements Runnable {
         int x = 0;
         int y = 0;
         for (CardType cardType : CardType.values()) {
-            gui.addCard(cardType, new Coordinate(x, y)).flip();
-
+        //gui.addCard(cardType, new Coordinate(x, y)).flip();
             x += 80;
             if (x > 920) {
                 x = 0;
@@ -42,8 +41,8 @@ public class Game implements Runnable {
             }
         }
         
-        Compartment vDistCompartment = gui.addCompartment(new Coordinate(0, 800), new Size(250, 300), "vert. distr.");
-        gui.addButton("arrange", new Coordinate(150, 805), new Size(99, 25), new ButtonHandler() {
+        Compartment vDistCompartment = gui.addCompartment(new Coordinate(0, 500), new Size(250, 300), "Player1");
+        gui.addButton("arrange", new Coordinate(0, 500), new Size(99, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
@@ -51,8 +50,8 @@ public class Game implements Runnable {
             }
         });
         
-        Compartment hDistCompartment = gui.addCompartment(new Coordinate(250, 800), new Size(250, 300), "hor. dist.");
-        gui.addButton("arrange", new Coordinate(400, 805), new Size(99, 25), new ButtonHandler() {
+        Compartment hDistCompartment = gui.addCompartment(new Coordinate(250, 500), new Size(250, 300), "Player2");
+        gui.addButton("arrange", new Coordinate(250, 500), new Size(99, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
@@ -60,8 +59,8 @@ public class Game implements Runnable {
             }
         });
         
-        Compartment vCentCompartment = gui.addCompartment(new Coordinate(500, 800), new Size(250, 300), "vert. center");
-        gui.addButton("arrange", new Coordinate(650, 805), new Size(99, 25), new ButtonHandler() {
+        Compartment vCentCompartment = gui.addCompartment(new Coordinate(500, 500), new Size(250, 300), "Player3");
+        gui.addButton("arrange", new Coordinate(500, 500), new Size(99, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
@@ -69,22 +68,25 @@ public class Game implements Runnable {
             }
         });
 
-        Compartment hCentCompartment = gui.addCompartment(new Coordinate(750, 800), new Size(250, 300), "hor. center");
-        gui.addButton("arrange", new Coordinate(900, 805), new Size(99, 25), new ButtonHandler() {
+        Compartment hCentCompartment = gui.addCompartment(new Coordinate(750, 500), new Size(250, 300), "Player4");
+        gui.addButton("arrange", new Coordinate(750, 500), new Size(99, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
                 hCentCompartment.centerHorizontal(gui.getCardObjectsInCompartment(hCentCompartment));
+
             }
         });
-        
-        final Label label = gui.addLabel(new Coordinate(10, 100), "<none>");
+
+        gui.addCard(CardType.AUGEN_BOHNE,new Coordinate(400,300));
+
+        final Label label = gui.addLabel(new Coordinate(500, 0), "<none>");
 
         gui.addCompartment(new Coordinate(1, 1), new Size(140, 140), "Handkarten");
         
         gui.addCompartment(new Coordinate(1, 200), new Size(300, 200), "Bohnenfelder", "BOHNENFELD_ALLE");
 
-        gui.addButton("exit", new Coordinate(100, 200), new Size(80, 25), new ButtonHandler() {
+        gui.addButton("exit", new Coordinate(500, 20), new Size(80, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
