@@ -1,7 +1,6 @@
 package BonanzaGame;
 
-import BonanzaGame.Core.GameManager;
-import BonanzaGame.Core.Interfaces.IGameManager;
+import Extensions.Mafia.MafiaExtension;
 import com.google.inject.AbstractModule;
 import com.google.inject.binder.LinkedBindingBuilder;
 
@@ -10,10 +9,10 @@ import com.google.inject.binder.LinkedBindingBuilder;
  * @version 1
  * @author Moustafa Farhat , Author
  */
-public class GameModule extends AbstractModule
+public class MafiaGameModule extends AbstractModule
 {
     @Override
     protected void configure() {
-        bind(IGameManager.class).to(GameManager.class);
+        bind(IMainGameManager.class).to(MafiaExtension.class);
     }
 }

@@ -1,7 +1,7 @@
 package BonanzaGame.Test;
 
 import BonanzaGame.Core.Enums.CardTypes;
-import BonanzaGame.Core.GameManager;
+import BonanzaGame.Core.CoreGameManager;
 import BonanzaGame.Entities.Card;
 import BonanzaGame.Entities.Field;
 import BonanzaGame.Core.Player;
@@ -16,7 +16,7 @@ public class PlayerTest {
     @Test
     public void addCardsToHand() {
         Player testPlayer = new Player("TestPlayer", 1);
-        GameManager gameManager = new GameManager();
+        CoreGameManager gameManager = new CoreGameManager();
         gameManager.startNewGame();
         testPlayer.addCardsToHand(gameManager.draw(5));
         assertEquals(5, testPlayer.getHand().size());

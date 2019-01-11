@@ -1,6 +1,6 @@
 package Client;
-import BonanzaGame.Core.GameManager;
-import BonanzaGame.GameModule;
+import BonanzaGame.Core.CoreGameManager;
+import BonanzaGame.CoreGameModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -20,9 +20,9 @@ public class GameInvoker {
      */
     public static void main(String[] args) {
 
-        Injector injector = Guice.createInjector(new GameModule() );
-        
-        GameManager gameManager = injector.getInstance( GameManager.class );
+        Injector injector = Guice.createInjector(new CoreGameModule() );
+
+        CoreGameManager gameManager = injector.getInstance( CoreGameManager.class );
 
         try {
             Scanner input = new Scanner(System.in);

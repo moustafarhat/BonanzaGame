@@ -4,15 +4,14 @@ import BonanzaGame.Core.Enums.GameStates;
 import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Core.Interfaces.IGameManager;
 import BonanzaGame.Entities.Card;
-import BonanzaGame.Core.Player;
 
 
-import MafiaExtension.IMafiaExtension;
+import Extensions.Mafia.Interface.IMafiaExtension;
 
 
 import java.util.*;
 
-public class GameManager implements IGameManager , IMafiaExtension{
+public class CoreGameManager implements IGameManager , IMafiaExtension{
     private Table _table;
     private Random _randomizer;
     private int _roundCount;
@@ -115,14 +114,9 @@ public class GameManager implements IGameManager , IMafiaExtension{
 
     private boolean GameInitializer()
     {
+
     	
-    	
-    	//1
-    	MafiaInitializer();
-    	
-    	
-    	//2
-        try {
+    	        try {
             //gameSettings.getSettingValue("Round Count");
             maxRoundCount = 1; //todo here needs to be a setting
             _randomizer = new Random();
@@ -188,11 +182,5 @@ public class GameManager implements IGameManager , IMafiaExtension{
         return hand;
     }
 
-	@Override
-	public boolean MafiaInitializer() 
 
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
 }
