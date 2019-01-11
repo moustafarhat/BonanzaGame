@@ -1,6 +1,8 @@
 package Client;
 import BonanzaGame.Core.CoreGameManager;
 import BonanzaGame.CoreGameModule;
+import BonanzaGame.IMainGameManager;
+import Extensions.Mafia.MafiaExtension;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -23,6 +25,11 @@ public class GameInvoker {
         Injector injector = Guice.createInjector(new CoreGameModule() );
 
         CoreGameManager gameManager = injector.getInstance( CoreGameManager.class );
+
+        IMainGameManager MafiagameManager = injector.getInstance( MafiaExtension.class );
+
+        //Start new Game ---> Mafia
+        //MafiagameManager.startNewGame();
 
         try {
             Scanner input = new Scanner(System.in);
