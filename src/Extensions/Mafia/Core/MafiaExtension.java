@@ -166,7 +166,14 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
             }
         }
 
-        Compartment vDistCompartment = gui.addCompartment(new Coordinate(150, 500), new Size(250, 300), "Player1");
+        //--------- Karten Stapel -------------
+
+        Compartment drawPile = gui.addCompartment(new Coordinate(150, 400), new Size(250, 200), "BohnenFeld1", "BOHNENFELD_3");
+
+
+        //--------- Bohnen Felder des Spielers -------------
+
+        Compartment vDistCompartment = gui.addCompartment(new Coordinate(150, 400), new Size(250, 200), "BohnenFeld1", "BOHNENFELD_3");
         gui.addButton("arrange", new Coordinate(150, 500), new Size(99, 25), new ButtonHandler() {
 
             @Override
@@ -175,7 +182,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
             }
         });
 
-        Compartment hDistCompartment = gui.addCompartment(new Coordinate(400, 500), new Size(250, 300), "Player2");
+        Compartment hDistCompartment = gui.addCompartment(new Coordinate(400, 400), new Size(250, 200), "BohnenFeld2", "BOHNENFELD_3");
         gui.addButton("arrange", new Coordinate(400, 500), new Size(99, 25), new ButtonHandler() {
 
             @Override
@@ -184,7 +191,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
             }
         });
 
-        Compartment vCentCompartment = gui.addCompartment(new Coordinate(650, 500), new Size(250, 300), "Player3");
+        Compartment vCentCompartment = gui.addCompartment(new Coordinate(650, 400), new Size(250, 200), "BohnenFeld3", "BOHNENFELD_3");
         gui.addButton("arrange", new Coordinate(650, 500), new Size(99, 25), new ButtonHandler() {
 
             @Override
@@ -194,17 +201,33 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         });
 
 
+        //--------- Handkarten des Spielers -------------
+        int handCardX = 200;
+        int handCardY = 645;
+        Compartment playerHand = gui.addCompartment(new Coordinate(100, 600), new Size(800, 200), "Handkarten des Spielers");
+        for (int i = 0; i < 7 ; i++){
+            gui.addCard(CardType.AUGEN_BOHNE, new Coordinate(handCardX, handCardY));
+            handCardX += 90;
+        }
+        gui.addButton("arange cards", new Coordinate(450, 600), new Size(99, 25), new ButtonHandler() {
 
-        gui.addCard(CardType.AUGEN_BOHNE,new Coordinate(430,300));
+            @Override
+            public void buttonPressed(Button button) {
+                playerHand.distributeHorizontal(gui.getCardObjectsInCompartment(playerHand));
+                playerHand.centerVertical(gui.getCardObjectsInCompartment(playerHand));
+            }
+        });
 
-        final Label label = gui.addLabel(new Coordinate(350, 0), " ");
-
-        gui.addCompartment(new Coordinate(430, 150), new Size(140, 140), "Handkarten");
+        //--------- Bohnen Felder der Mafia und Münzen -------------
 
         gui.addCompartment(new Coordinate(1, 200), new Size(300, 200), "Bohnenfeld_Al_Cabohne", "AL_CABOHNE");
         gui.addCompartment(new Coordinate(700, 200), new Size(300, 200), "Bohnenfeld_Don_Corlebohne", "DON_CORLEBOHNE");
         gui.addCompartment(new Coordinate(350, 20), new Size(300, 200), "Bohnenfeld_Joe_Bohnano", "JOE_BOHNANO");
 
+        gui.addCompartment(new Coordinate(440, 230), new Size(150, 130), "Mafia Münzen");
+        gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(470, 250));
+
+        ////--------- Buttons -------------
         gui.addButton("exit", new Coordinate(800, 20), new Size(50, 25), new ButtonHandler() {
 
             @Override
@@ -221,6 +244,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
             }
         });
 
+        final Label label = gui.addLabel(new Coordinate(350, 0), " ");
         gui.setCardDnDHandler(new CardDnDHandler() {
 
             @Override
