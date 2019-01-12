@@ -1,5 +1,6 @@
 package Extensions.Mafia.Core;
 
+import BonanzaGame.Core.AbstractHumanPlayer;
 import BonanzaGame.Core.AbstractPlayer;
 import BonanzaGame.Core.Enums.GameStates;
 import BonanzaGame.Core.Enums.TurnPhases;
@@ -21,6 +22,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
     private GameStates _gameState;
     private GameSettings _gameSettings;
     private TurnPhases _currentTurnPhase;
+    private int maxRoundCount;
     private final GUI gui;
     @SuppressWarnings("unused")
     private final String[] args;
@@ -48,6 +50,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
 
     @Override
     public void startNewGame() {
+        initializeGame();
         run();
     }
 
@@ -123,6 +126,27 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         } return new ArrayList<>();
     }
 
+    private boolean initializeGame()
+    {
+        try {
+            //gameSettings.getSettingValue("Round Count");
+            maxRoundCount = 1; //todo here needs to be a setting
+            _randomizer = new Random();
+            this._table = new AlCabohneExtensionTableSolo();
+            this.shuffle(_table.drawPile());
+            _table.addPlayer("Human Player", 1);
+            for (AbstractHumanPlayer player : _table.getHumanPlayers()){
+                player.addCardsToHand(draw(7));
+            }
+            return true;
+        } catch (Exception ex){
+            System.out.println("GameManager could not initialize the game");
+            ex.printStackTrace();
+            return false;
+        }
+
+    }
+
     private boolean gameOver(){
         //Game is over when maxRoundCount from the settings is reached
         return true;
@@ -169,12 +193,10 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         //--------- Karten Stapel / Draw Pile -------------
 
         Compartment drawPile = gui.addCompartment(new Coordinate(280, 250), new Size(150, 130), "Kartenstapel");
-        gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(310, 275));
-        /*
+        //gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(310, 275));
         for (Card card : this._table.drawPile()){
-            gui.addCard(card.getCardType().get_libraryCardType(), new Coordinate(340, 130));
+            gui.addCard(card.getCardType().get_libraryCardType(), new Coordinate(310, 275));
         }
-         */
 
         //--------- Ablage Stapel / Discard Pile -------------
         Compartment discardPile = gui.addCompartment(new Coordinate(600, 250), new Size(150, 130), "Ablagestapel");

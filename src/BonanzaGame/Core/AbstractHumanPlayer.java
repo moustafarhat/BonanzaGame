@@ -18,7 +18,7 @@ abstract public class AbstractHumanPlayer extends AbstractPlayer {
     //-------- Methods for the Player's handcards ----------
     public List<Card> getHand() { return hand; }
 
-    abstract protected void addCardsToHand(List<Card> cards);
+    abstract public void addCardsToHand(List<Card> cards);
 
     //-------- Methods for the Player's trading area ----------
     public void addCardsToTradingArea(List<Card> cardsToTrade){

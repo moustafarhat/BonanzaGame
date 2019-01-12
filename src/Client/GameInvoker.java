@@ -32,12 +32,9 @@ public class GameInvoker {
                 new Color(50,50,50),
                 new Color(255,255,255));
 
-        new Thread(new MafiaExtension(gui, args)).start();
-
         Injector injector = Guice.createInjector(new CoreGameModule() );
 
         CoreGameManager gameManager = injector.getInstance( CoreGameManager.class );
-        gui.start();
 
         //IMainGameManager MafiagameManager = injector.getInstance( MafiaExtension.class );
 
@@ -71,7 +68,10 @@ public class GameInvoker {
                         break;
                     case 3:
                         System.out.println("Start Mafia Extension Game");
-
+                        MafiaExtension extension = new MafiaExtension(gui, args);
+                        extension.startNewGame();
+                        new Thread(extension).start();
+                        gui.start();
                         //MafiagameManager.startNewGame();
                         break;
                     case 4:
