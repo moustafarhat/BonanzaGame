@@ -1,13 +1,9 @@
 package io.bitbucket.plt.sdp.bohnanza;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 import io.bitbucket.plt.sdp.bohnanza.gui.Color;
 import io.bitbucket.plt.sdp.bohnanza.gui.GUI;
 import io.bitbucket.plt.sdp.bohnanza.gui.Size;
 
-import java.awt.event.ActionEvent;
 
 
 public class Main {
@@ -15,15 +11,17 @@ public class Main {
   /**
  * @param args
  */
+
 public static void main(String[] args) {
 
 		
-		  GUI gui = new GUI(new Size(1050, 875), new Size(80, 100), new Color(50,50,50),
+		  GUI gui = new GUI(new Size(1015, 850), new Size(80, 100), new Color(50,50,50),
 		  new Color(255,255,255));
 
 		  new Thread(new Game(gui, args)).start();
 
-		  gui.start();
+
+	gui.start();
 
 
 /*	JFrame f=new JFrame("Welcome to Bonanza Game"); JButton b=new

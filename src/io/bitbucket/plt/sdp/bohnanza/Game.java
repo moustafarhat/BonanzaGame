@@ -1,15 +1,6 @@
 package io.bitbucket.plt.sdp.bohnanza;
 
-import io.bitbucket.plt.sdp.bohnanza.gui.Button;
-import io.bitbucket.plt.sdp.bohnanza.gui.ButtonHandler;
-import io.bitbucket.plt.sdp.bohnanza.gui.CardDnDHandler;
-import io.bitbucket.plt.sdp.bohnanza.gui.CardObject;
-import io.bitbucket.plt.sdp.bohnanza.gui.CardType;
-import io.bitbucket.plt.sdp.bohnanza.gui.Compartment;
-import io.bitbucket.plt.sdp.bohnanza.gui.Coordinate;
-import io.bitbucket.plt.sdp.bohnanza.gui.GUI;
-import io.bitbucket.plt.sdp.bohnanza.gui.Label;
-import io.bitbucket.plt.sdp.bohnanza.gui.Size;
+import io.bitbucket.plt.sdp.bohnanza.gui.*;
 
 public class Game implements Runnable {
     
@@ -41,8 +32,8 @@ public class Game implements Runnable {
             }
         }
         
-        Compartment vDistCompartment = gui.addCompartment(new Coordinate(0, 500), new Size(250, 300), "Player1");
-        gui.addButton("arrange", new Coordinate(0, 500), new Size(99, 25), new ButtonHandler() {
+        Compartment vDistCompartment = gui.addCompartment(new Coordinate(150, 500), new Size(250, 300), "Player1");
+        gui.addButton("arrange", new Coordinate(150, 500), new Size(99, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
@@ -50,8 +41,8 @@ public class Game implements Runnable {
             }
         });
         
-        Compartment hDistCompartment = gui.addCompartment(new Coordinate(250, 500), new Size(250, 300), "Player2");
-        gui.addButton("arrange", new Coordinate(250, 500), new Size(99, 25), new ButtonHandler() {
+        Compartment hDistCompartment = gui.addCompartment(new Coordinate(400, 500), new Size(250, 300), "Player2");
+        gui.addButton("arrange", new Coordinate(400, 500), new Size(99, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
@@ -59,8 +50,8 @@ public class Game implements Runnable {
             }
         });
         
-        Compartment vCentCompartment = gui.addCompartment(new Coordinate(500, 500), new Size(250, 300), "Player3");
-        gui.addButton("arrange", new Coordinate(500, 500), new Size(99, 25), new ButtonHandler() {
+        Compartment vCentCompartment = gui.addCompartment(new Coordinate(650, 500), new Size(250, 300), "Player3");
+        gui.addButton("arrange", new Coordinate(650, 500), new Size(99, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
@@ -68,32 +59,34 @@ public class Game implements Runnable {
             }
         });
 
-        Compartment hCentCompartment = gui.addCompartment(new Coordinate(750, 500), new Size(250, 300), "Player4");
-        gui.addButton("arrange", new Coordinate(750, 500), new Size(99, 25), new ButtonHandler() {
-            
-            @Override
-            public void buttonPressed(Button button) {
-                hCentCompartment.centerHorizontal(gui.getCardObjectsInCompartment(hCentCompartment));
 
-            }
-        });
 
-        gui.addCard(CardType.AUGEN_BOHNE,new Coordinate(400,300));
+        gui.addCard(CardType.AUGEN_BOHNE,new Coordinate(430,300));
 
-        final Label label = gui.addLabel(new Coordinate(500, 0), "<none>");
+        final Label label = gui.addLabel(new Coordinate(350, 0), " ");
 
-        gui.addCompartment(new Coordinate(1, 1), new Size(140, 140), "Handkarten");
+        gui.addCompartment(new Coordinate(430, 150), new Size(140, 140), "Handkarten");
         
         gui.addCompartment(new Coordinate(1, 200), new Size(300, 200), "Bohnenfelder", "BOHNENFELD_ALLE");
 
-        gui.addButton("exit", new Coordinate(500, 20), new Size(80, 25), new ButtonHandler() {
+        gui.addCompartment(new Coordinate(700, 200), new Size(300, 200), "Bohnenfelder2", "BOHNENFELD_ALLE");
+
+        gui.addButton("exit", new Coordinate(550, 20), new Size(120, 25), new ButtonHandler() {
             
             @Override
             public void buttonPressed(Button button) {
                 gui.stop();
             }
         });
-        
+
+        gui.addButton("Start new Game", new Coordinate(400, 20), new Size(120, 25), new ButtonHandler() {
+
+            @Override
+            public void buttonPressed(Button button) {
+
+            }
+        });
+
         gui.setCardDnDHandler(new CardDnDHandler() {
             
             @Override
