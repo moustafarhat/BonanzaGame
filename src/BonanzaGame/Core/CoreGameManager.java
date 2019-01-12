@@ -43,7 +43,9 @@ public class CoreGameManager implements IGameManager {
             return;
         }
         else System.out.println();
-        System.out.println("The winner is " + getWinner().getName() + " with " + getWinner().getCoinCount() + " coins in his treasury");
+        for (AbstractPlayer player : getWinner()){
+            System.out.println("The winner is " + player.getName() + " with " + player.getCoinCount() + " coins in his treasury");
+        }
         for (AbstractPlayer player : _table.playerList()){
             System.out.println(player.getName() + " has earned " + player.getCoinCount() + " coins");
         }
@@ -138,7 +140,7 @@ public class CoreGameManager implements IGameManager {
     }
 
     @Override
-    public AbstractPlayer getWinner() {
+    public List<AbstractPlayer> getWinner() {
         //Counts each players coins and puts out one winner if a player has more coins than the others
         //todo need to improve to allow multiple Winners if they have the same coins and more than 0
         if (gameOver()){
@@ -151,7 +153,9 @@ public class CoreGameManager implements IGameManager {
             if (currentWinner.getCoinCount() == 0){
                 return null;
             }
-            return currentWinner;
+            ArrayList<AbstractPlayer> winner = new ArrayList<>();
+            winner.add(currentWinner);
+            return winner;
         } else return null;
     }
 

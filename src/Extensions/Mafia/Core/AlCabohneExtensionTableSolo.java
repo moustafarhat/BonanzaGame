@@ -8,9 +8,9 @@ import Extensions.Mafia.Core.BossPlayerJoeBohnano;
 public class AlCabohneExtensionTableSolo extends AlCabohneExtensionTable {
 
     public AlCabohneExtensionTableSolo(){
-        players.add(new BossPlayerAlCabohne());
-        players.add(new BossPlayerDonCorlebohne());
-        players.add(new BossPlayerJoeBohnano());
+        bossPlayerList.add(new BossPlayerAlCabohne());
+        bossPlayerList.add(new BossPlayerDonCorlebohne());
+        bossPlayerList.add(new BossPlayerJoeBohnano());
     }
 
 }
