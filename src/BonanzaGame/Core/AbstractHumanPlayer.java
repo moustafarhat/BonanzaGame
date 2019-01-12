@@ -10,6 +10,7 @@ abstract public class AbstractHumanPlayer extends AbstractPlayer {
     protected List<Card> hand;
     protected List<Card> tradingArea;
     protected int position;
+
     protected AbstractHumanPlayer(){
         this.hand = new ArrayList<>();
         this.tradingArea = new ArrayList<>();

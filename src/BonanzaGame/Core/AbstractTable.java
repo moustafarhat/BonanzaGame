@@ -22,11 +22,11 @@ public abstract class AbstractTable {
         this.humanPlayers = new ArrayList<>();
     }
 
-    public void addPlayer(String name, int position) {
+    public void addPlayer(String name, int position, int fieldCount) {
         if (players.size()>= maxPlayerCount){
             return;
         }
-        this.players.add(new Player(name, position));
+        this.players.add(new Player(name, position, fieldCount));
         this.humanPlayers.add(new Player(name, position));
     }
 

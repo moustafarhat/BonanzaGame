@@ -11,6 +11,7 @@ import Extensions.Mafia.Interface.IMafiaExtension;
 import io.bitbucket.plt.sdp.bohnanza.gui.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -35,7 +36,8 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
 
     @Override
     public void shuffle(List<Card> cards) {
-
+        long seed = System.nanoTime();
+        Collections.shuffle(_table.drawPile(), new Random(seed));
     }
 
     @Override
@@ -134,7 +136,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
             _randomizer = new Random();
             this._table = new AlCabohneExtensionTableSolo();
             this.shuffle(_table.drawPile());
-            _table.addPlayer("Human Player", 1);
+            _table.addPlayer("Human Player", 1,3);
             for (AbstractHumanPlayer player : _table.getHumanPlayers()){
                 player.addCardsToHand(draw(7));
             }

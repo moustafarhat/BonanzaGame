@@ -20,7 +20,7 @@ public class CoreGameManager implements IGameManager {
 
     @Override
     public void shuffle(List<Card> cards) {
-        //Glaube wir brauchen kein shuffle, da wir einfach bei draw eine zufällige Karte ausgeben können
+
     }
 
     @Override
@@ -114,8 +114,6 @@ public class CoreGameManager implements IGameManager {
 
     private boolean GameInitializer()
     {
-
-    	
     	        try {
             //gameSettings.getSettingValue("Round Count");
             maxRoundCount = 1; //todo here needs to be a setting
@@ -123,10 +121,10 @@ public class CoreGameManager implements IGameManager {
             this._table = new Table();
             this.shuffle(_table.drawPile());
             //todo maybe Console Input for Player names and automatic position
-            _table.addPlayer("Player1", 1);
-            _table.addPlayer("Player2", 2);
-            _table.addPlayer("Player3", 3);
-            _table.addPlayer("Player4", 4);
+            _table.addPlayer("Player1", 1,2);
+            _table.addPlayer("Player2", 2,2);
+            _table.addPlayer("Player3", 3,2);
+            _table.addPlayer("Player4", 4,2);
             for (AbstractHumanPlayer player : _table.getHumanPlayers()){
                 player.addCardsToHand(draw(5));
             }
@@ -136,7 +134,6 @@ public class CoreGameManager implements IGameManager {
             ex.printStackTrace();
             return false;
         }
-        
     }
 
     @Override
