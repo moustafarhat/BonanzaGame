@@ -1,11 +1,9 @@
 package Extensions.Mafia.Core.AbstractLayer;
 
-import Bonanza.Core.AbstractLayer.AbstractTable;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Table extends AbstractTable {
+public abstract class Table extends Bonanza.Core.AbstractLayer.Table {
 
     protected List<BossPlayer> bossPlayerList;
 

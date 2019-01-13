@@ -7,7 +7,7 @@ import Bonanza.Core.Entities.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class AbstractPlayer {
+abstract public class Player {
 
     public PlayerState _PlayerState;
     public String name;
@@ -16,7 +16,7 @@ abstract public class AbstractPlayer {
     public PlayerState _playerstate;
     public boolean playing = false;
 
-    protected AbstractPlayer() {
+    protected Player() {
         this.fields = new ArrayList<>();
         this.treasury = new ArrayList<>();
     }

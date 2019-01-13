@@ -1,10 +1,10 @@
 package Bonanza.Core;
 
-import Bonanza.Game.Player;
+import Bonanza.Game.GamePlayer;
 
 public abstract class PlayerState
 {
-    public PlayerState(Player player)
+    public PlayerState(GamePlayer gamePlayer)
     {}
 
     public abstract String onLock();

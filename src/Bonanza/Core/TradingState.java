@@ -1,13 +1,13 @@
 package Bonanza.Core;
 
-import Bonanza.Game.Player;
+import Bonanza.Game.GamePlayer;
 
 public class TradingState extends PlayerState
 {
 
-    TradingState(Player player) {
-        super(player);
-        player.setPlaying(false);
+    TradingState(GamePlayer gamePlayer) {
+        super(gamePlayer);
+        gamePlayer.setPlaying(false);
     }
 
     @Override

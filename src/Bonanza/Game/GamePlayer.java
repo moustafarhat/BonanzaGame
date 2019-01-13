@@ -9,9 +9,9 @@ import Bonanza.Core.Entities.Reward;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends HumanPlayer {
+public class GamePlayer extends HumanPlayer {
 
-    public Player(String name, int position) {
+    public GamePlayer(String name, int position) {
         super();
         this.name = name;
         this.position = position;
@@ -19,10 +19,9 @@ public class Player extends HumanPlayer {
         this.fields.add(new Field());
         this._PlayerState = new ReadyState(this);
         setPlaying(true);
-
     }
 
-    public Player(String name, int position, int fieldCount) {
+    public GamePlayer(String name, int position, int fieldCount) {
         super();
         this.name = name;
         this.position = position;
@@ -129,10 +128,10 @@ public class Player extends HumanPlayer {
             this.treasury.remove(0);
             this.treasury.remove(0);
             this.treasury.remove(0);
-            System.out.println("Player bought a new field");
+            System.out.println("GamePlayer bought a new field");
             return true;
         }
-        System.out.println("Player couldn't buy a new field");
+        System.out.println("GamePlayer couldn't buy a new field");
         return false;
     }
 

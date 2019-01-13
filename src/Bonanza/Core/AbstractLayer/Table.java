@@ -1,22 +1,22 @@
 package Bonanza.Core.AbstractLayer;
 
 import Bonanza.Core.Enums.CardTypes;
-import Bonanza.Game.Player;
 import Bonanza.Core.Entities.Card;
+import Bonanza.Game.GamePlayer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractTable {
+public abstract class Table {
 
-    protected List<AbstractPlayer> players;
+    protected List<Player> players;
     protected List<HumanPlayer> humanPlayers;
     protected List<Card> deck;
     protected List<Card> discardedCards;
     protected int maxPlayerCount;
 
-    protected AbstractTable(){
-        //List<Player> players = Arrays.asList( new Player("Player1", 1), new Player(), new Player(), new Player());
+    protected Table(){
+        //List<GamePlayer> players = Arrays.asList( new GamePlayer("Player1", 1), new GamePlayer(), new GamePlayer(), new GamePlayer());
         this.deck = generateCards();
         this.players = new ArrayList<>();
         this.discardedCards = new ArrayList<>();
@@ -27,8 +27,8 @@ public abstract class AbstractTable {
         if (players.size()>= maxPlayerCount){
             return;
         }
-        this.players.add(new Player(name, position, fieldCount));
-        this.humanPlayers.add(new Player(name, position));
+        this.players.add(new GamePlayer(name, position, fieldCount));
+        this.humanPlayers.add(new GamePlayer(name, position));
     }
 
     public boolean addCardToDiscardPile(List<Card> cards){
@@ -61,6 +61,6 @@ public abstract class AbstractTable {
     public void setDeck(List<Card> deck) { this.deck = deck; }
     public boolean removeCardFromDrawPile(Card card){ return this.deck.remove(card); }
     public List<Card> drawPile() { return this.deck; }
-    public List<AbstractPlayer> playerList() { return this.players; }
+    public List<Player> playerList() { return this.players; }
     public List<Card> discardPile() { return this.discardedCards; }
 }

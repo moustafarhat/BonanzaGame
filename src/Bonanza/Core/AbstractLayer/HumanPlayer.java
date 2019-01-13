@@ -6,7 +6,7 @@ import Bonanza.Core.Entities.Card;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class HumanPlayer extends AbstractPlayer {
+abstract public class HumanPlayer extends Player {
 
     protected List<Card> hand;
     protected List<Card> tradingArea;
@@ -18,12 +18,12 @@ abstract public class HumanPlayer extends AbstractPlayer {
         this.tradingArea = new ArrayList<>();
     }
 
-    //-------- Methods for the Player's handcards ----------
+    //-------- Methods for the GamePlayer's handcards ----------
     public List<Card> getHand() { return hand; }
 
     abstract public void addCardsToHand(List<Card> cards);
 
-    //-------- Methods for the Player's trading area ----------
+    //-------- Methods for the GamePlayer's trading area ----------
     public void addCardsToTradingArea(List<Card> cardsToTrade){
         //When a player e.g draws two cards in his trading phase this method puts them into his trading area
         for (Card card : cardsToTrade){

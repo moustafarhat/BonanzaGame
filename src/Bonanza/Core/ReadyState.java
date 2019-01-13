@@ -1,15 +1,15 @@
 package Bonanza.Core;
 
 import Bonanza.Core.Entities.Card;
-import Bonanza.Game.Player;
+import Bonanza.Game.GamePlayer;
 
 import java.util.List;
 
 public class ReadyState extends PlayerState {
 
-    public ReadyState(Player player) {
-        super(player);
-        player.setPlaying(false);
+    public ReadyState(GamePlayer gamePlayer) {
+        super(gamePlayer);
+        gamePlayer.setPlaying(false);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ReadyState extends PlayerState {
 
 
 
-    public void giveGift(Player player, Card giftCards)
+    public void giveGift(GamePlayer gamePlayer, Card giftCards)
     {
         //implementation here
     }

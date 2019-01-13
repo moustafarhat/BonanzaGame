@@ -1,12 +1,12 @@
 package Bonanza.Core;
 
-import Bonanza.Game.Player;
+import Bonanza.Game.GamePlayer;
 
 public class DrawingState extends PlayerState {
 
-    DrawingState(Player player) {
-        super(player);
-        player.setPlaying(false);
+    DrawingState(GamePlayer gamePlayer) {
+        super(gamePlayer);
+        gamePlayer.setPlaying(false);
     }
     @Override
     public String onLock() {

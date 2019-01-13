@@ -1,13 +1,13 @@
 package Bonanza.Core;
 
 
-import Bonanza.Game.Player;
+import Bonanza.Game.GamePlayer;
 
 public class LockedState extends PlayerState {
 
-    LockedState(Player player) {
-        super(player);
-        player.setPlaying(false);
+    LockedState(GamePlayer gamePlayer) {
+        super(gamePlayer);
+        gamePlayer.setPlaying(false);
     }
 
     @Override

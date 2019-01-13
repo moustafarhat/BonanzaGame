@@ -1,10 +1,10 @@
 package Extensions.Mafia.Core;
 
 import Bonanza.Core.AbstractLayer.HumanPlayer;
-import Bonanza.Core.AbstractLayer.AbstractPlayer;
+import Bonanza.Core.AbstractLayer.Player;
 import Bonanza.Core.Enums.GameStates;
 import Bonanza.Core.Enums.TurnPhases;
-import Bonanza.Core.GameSettings;
+import Bonanza.Core.AbstractLayer.GameSettings;
 import Bonanza.Core.Entities.Card;
 import Extensions.Mafia.Core.AbstractLayer.BossPlayer;
 import Extensions.Mafia.Core.AbstractLayer.Table;
@@ -52,23 +52,23 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
     }
 
     @Override
-    public List<AbstractPlayer> getWinner() {
+    public List<Player> getWinner() {
 
         if (gameOver()) {
             if (_table.getHumanPlayers().size() == 1) {
                 //If the table is a solo table:
                 //Counts the player's coins and the mafia's coins (all boss players coins added together)
-                //If the player has more coins than the mafia -> the Player wins otherwise the mafia wins
+                //If the player has more coins than the mafia -> the GamePlayer wins otherwise the mafia wins
                 int playerCoins = _table.getHumanPlayers().get(0).getCoinCount();
                 int bossPlayersCoins = 0;
                 for (BossPlayer bossPlayer : _table.getBossPlayerList()) {
                     bossPlayersCoins += bossPlayer.getCoinCount();
                 }
-                ArrayList<AbstractPlayer> winners = new ArrayList<>();
+                ArrayList<Player> winners = new ArrayList<>();
                 if (playerCoins > bossPlayersCoins) {
                     winners.add(_table.getHumanPlayers().get(0));
                     return winners;
-                } else return new ArrayList<AbstractPlayer>(_table.getBossPlayerList());
+                } else return new ArrayList<Player>(_table.getBossPlayerList());
             }
             if (_table.getHumanPlayers().size() == 2) {
                 //If the table is a duo table:
@@ -78,13 +78,13 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
                 for (BossPlayer bossPlayer : _table.getBossPlayerList()) {
                     bossPlayersCoins += bossPlayer.getCoinCount();
                 }
-                AbstractPlayer currentWinner = _table.getHumanPlayers().get(0);
+                Player currentWinner = _table.getHumanPlayers().get(0);
                 if (currentWinner.getCoinCount() == _table.getHumanPlayers().get(1).getCoinCount()){
                     //If both players have the same coins and Mafia has more coins, Mafia wins
                     if (bossPlayersCoins > currentWinner.getCoinCount()){
                         return new ArrayList<>(_table.getBossPlayerList());
                     }
-                    ArrayList<AbstractPlayer> winners = new ArrayList<>();
+                    ArrayList<Player> winners = new ArrayList<>();
                     //If both players have the same coins and Mafia has less coins, both players win
                     if (bossPlayersCoins < currentWinner.getCoinCount()){
                         winners.add(currentWinner);
@@ -107,7 +107,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
                 if (bossPlayersCoins > currentWinner.getCoinCount()){
                     return new ArrayList<>(_table.getBossPlayerList());
                 }
-                ArrayList<AbstractPlayer> winners = new ArrayList<>();
+                ArrayList<Player> winners = new ArrayList<>();
                 //If Mafia has less coins, currentWinner wins
                 if (bossPlayersCoins < currentWinner.getCoinCount()){
                     winners.add(currentWinner);
@@ -131,7 +131,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
             _randomizer = new Random();
             this._table = new TableSolo();
             this.shuffle(_table.drawPile());
-            _table.addPlayer("Human Player", 1,3);
+            _table.addPlayer("Human GamePlayer", 1,3);
             for (HumanPlayer player : _table.getHumanPlayers()){
                 player.addCardsToHand(draw(7));
             }

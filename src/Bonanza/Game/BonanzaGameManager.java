@@ -1,10 +1,10 @@
 package Bonanza.Game;
 
 import Bonanza.Core.AbstractLayer.HumanPlayer;
-import Bonanza.Core.AbstractLayer.AbstractPlayer;
+import Bonanza.Core.AbstractLayer.Player;
 import Bonanza.Core.Enums.GameStates;
 import Bonanza.Core.Enums.TurnPhases;
-import Bonanza.Core.GameSettings;
+import Bonanza.Core.AbstractLayer.GameSettings;
 import Bonanza.Core.Entities.Card;
 import Bonanza.Game.Interface.IBonanzaGameManager;
 
@@ -12,7 +12,7 @@ import Bonanza.Game.Interface.IBonanzaGameManager;
 import java.util.*;
 
 public class BonanzaGameManager implements IBonanzaGameManager {
-    private Table _table;
+    private GameTable _Game_table;
     private Random _randomizer;
     private int _roundCount;
     private GameStates _gameState;
@@ -38,17 +38,17 @@ public class BonanzaGameManager implements IBonanzaGameManager {
         if (getWinner()==null){
             System.out.println();
             System.out.println("The Game is over and nobody has won");
-            for (AbstractPlayer player : _table.playerList()){
+            for (Player player : _Game_table.playerList()){
                 System.out.println(player.getName() + " has earned " + player.getCoinCount() + " coins");
             }
             System.out.println();
             return;
         }
         else System.out.println();
-        for (AbstractPlayer player : getWinner()){
+        for (Player player : getWinner()){
             System.out.println("The winner is " + player.getName() + " with " + player.getCoinCount() + " coins in his treasury");
         }
-        for (AbstractPlayer player : _table.playerList()){
+        for (Player player : _Game_table.playerList()){
             System.out.println(player.getName() + " has earned " + player.getCoinCount() + " coins");
         }
         System.out.println();
@@ -60,53 +60,53 @@ public class BonanzaGameManager implements IBonanzaGameManager {
     public void startNewGame() {
         //GameInitializer sets up table, players, player cards
         GameInitializer();
-        System.out.println("Cards in deck left: " + _table.drawPile().size());
+        System.out.println("Cards in deck left: " + _Game_table.drawPile().size());
         //Now the game starts, the game lasts for maxRoundCount rounds
         for (_roundCount = 0; _roundCount < maxRoundCount; _roundCount++){
             //One round lasts until the drawPile is emptied
-            while (_table.drawPile().size() != 0){
+            while (_Game_table.drawPile().size() != 0){
                 //Each player goes through the TurnPhases
-                for (HumanPlayer player : _table.getHumanPlayers()){
+                for (HumanPlayer player : _Game_table.getHumanPlayers()){
                     //If there are not enough cards in the deck this breaks to finish the game
-                    if (_table.drawPile().size() < 2){
+                    if (_Game_table.drawPile().size() < 2){
                         break;
                     }
-                    // First step: Player plants up to two cards
+                    // First step: GamePlayer plants up to two cards
                     System.out.println();
                     System.out.println(player.getName() + "'s turn");
                     _currentTurnPhase = TurnPhases.PLANTING;
                     System.out.println("---------- Planting Phase ----------");
                     if (!player.plant(player.getHand().get(0), 0)){
-                        _table.addCardToDiscardPile(player.harvest(0));
-                        System.out.println("DiscardPile size is " + _table.discardPile().size());
+                        _Game_table.addCardToDiscardPile(player.harvest(0));
+                        System.out.println("DiscardPile size is " + _Game_table.discardPile().size());
                         player.plant(player.getHand().get(0),0);
                     }
                     player.plantAnotherCard(false, 0);
-                    // Second step: Player draws two trade cards and either trades or plants them
+                    // Second step: GamePlayer draws two trade cards and either trades or plants them
                     _currentTurnPhase = TurnPhases.TRADING;
                     System.out.println("---------- Trading Phase ----------");
                     player.addCardsToTradingArea(draw(2));
-                    System.out.println("Cards in deck left: " + _table.drawPile().size());
+                    System.out.println("Cards in deck left: " + _Game_table.drawPile().size());
                     //todo if startTrading is false, trade cards must be planted and cards on that field harvested
                     player.startTrading(false);
-                    //Player doesnt trade so his tradingArea must be planted
+                    //GamePlayer doesnt trade so his tradingArea must be planted
                     if (player.getTradingArea().size() > 0){
                         List<Card> cardsToBeRemovedFromTradingArea = new ArrayList<>();
                         for (Card card : player.getTradingArea()){
                             if (!player.plant(card,0 )) {
-                                _table.addCardToDiscardPile(player.harvest(0));
-                                System.out.println("Player harvested and the DiscardPile size is now " + _table.discardPile().size());
+                                _Game_table.addCardToDiscardPile(player.harvest(0));
+                                System.out.println("GamePlayer harvested and the DiscardPile size is now " + _Game_table.discardPile().size());
                                 player.plant(card,0);
                             }
                             cardsToBeRemovedFromTradingArea.add(card);
                         }
                         player.removeFromTadingArea(cardsToBeRemovedFromTradingArea);
                     }
-                    // Third step: Player draws another 3 cards and ends his/her turn
+                    // Third step: GamePlayer draws another 3 cards and ends his/her turn
                     _currentTurnPhase = TurnPhases.DRAWING;
                     System.out.println("---------- Drawing Phase ----------");
                     player.addCardsToHand(draw(3));
-                    System.out.println("Cards in deck left: " + _table.drawPile().size());
+                    System.out.println("Cards in deck left: " + _Game_table.drawPile().size());
                 }
             }
             //DrawPile is now empty, second round can begin here and so on
@@ -120,14 +120,14 @@ public class BonanzaGameManager implements IBonanzaGameManager {
             //gameSettings.getSettingValue("Round Count");
             maxRoundCount = 1; //todo here needs to be a setting
             _randomizer = new Random();
-            this._table = new Table();
-            this.shuffle(_table.drawPile());
-            //todo maybe Console Input for Player names and automatic position
-            _table.addPlayer("Player1", 1,2);
-            _table.addPlayer("Player2", 2,2);
-            _table.addPlayer("Player3", 3,2);
-            _table.addPlayer("Player4", 4,2);
-            for (HumanPlayer player : _table.getHumanPlayers()){
+            this._Game_table = new GameTable();
+            this.shuffle(_Game_table.drawPile());
+            //todo maybe Console Input for GamePlayer names and automatic position
+            _Game_table.addPlayer("Player1", 1,2);
+            _Game_table.addPlayer("Player2", 2,2);
+            _Game_table.addPlayer("Player3", 3,2);
+            _Game_table.addPlayer("Player4", 4,2);
+            for (HumanPlayer player : _Game_table.getHumanPlayers()){
                 player.addCardsToHand(draw(5));
             }
             return true;
@@ -139,12 +139,12 @@ public class BonanzaGameManager implements IBonanzaGameManager {
     }
 
     @Override
-    public List<AbstractPlayer> getWinner() {
+    public List<Player> getWinner() {
         //Counts each players coins and puts out one winner if a player has more coins than the others
         //todo need to improve to allow multiple Winners if they have the same coins and more than 0
         if (gameOver()){
-            AbstractPlayer currentWinner = _table.playerList().get(0);
-            for (AbstractPlayer player : _table.playerList()){
+            Player currentWinner = _Game_table.playerList().get(0);
+            for (Player player : _Game_table.playerList()){
                 if (player.getCoinCount() > currentWinner.getCoinCount()){
                     currentWinner = player;
                 }
@@ -152,7 +152,7 @@ public class BonanzaGameManager implements IBonanzaGameManager {
             if (currentWinner.getCoinCount() == 0){
                 return null;
             }
-            ArrayList<AbstractPlayer> winner = new ArrayList<>();
+            ArrayList<Player> winner = new ArrayList<>();
             winner.add(currentWinner);
             return winner;
         } else return null;
@@ -168,16 +168,16 @@ public class BonanzaGameManager implements IBonanzaGameManager {
     public List<Card> draw(int count) {
         List<Card> hand = new ArrayList<>();
         //If there are not enough cards to draw normally, set the deck to 0 and finish the game
-        if (count >= _table.drawPile().size()){
-            _table.setDeck(new ArrayList<>());
+        if (count >= _Game_table.drawPile().size()){
+            _Game_table.setDeck(new ArrayList<>());
             return hand;
         }
         //Else give out an ArrayList of cards with count cards in it
         for (int i = 0; i < count; i++) {
-            if (_table.drawPile().size()> 0){
-                Card randomCard = _table.drawPile().get(_randomizer.nextInt(_table.drawPile().size()));
+            if (_Game_table.drawPile().size()> 0){
+                Card randomCard = _Game_table.drawPile().get(_randomizer.nextInt(_Game_table.drawPile().size()));
                 hand.add(randomCard);
-                _table.removeCardFromDrawPile(randomCard);
+                _Game_table.removeCardFromDrawPile(randomCard);
             }
         }
         return hand;

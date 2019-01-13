@@ -1,7 +1,7 @@
 package Bonanza.Core;
 
 import Bonanza.Core.Entities.Card;
-import Bonanza.Game.Player;
+import Bonanza.Game.GamePlayer;
 
 import java.util.List;
 
@@ -13,16 +13,16 @@ import java.util.List;
  */
 public class TradingManager
 {
-    public Player currentPlayer;
-    public Player dealPartner;
-    public List<Player> watingList;
+    public GamePlayer currentGamePlayer;
+    public GamePlayer dealPartner;
+    public List<GamePlayer> watingList;
 
-    public void addToWaitingList(Player player)
+    public void addToWaitingList(GamePlayer gamePlayer)
     {
       //implementation here
     }
 
-    public void removeFromWaitingList(Player player)
+    public void removeFromWaitingList(GamePlayer gamePlayer)
     {
       //implementation here
     }
