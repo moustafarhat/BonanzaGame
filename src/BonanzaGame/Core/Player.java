@@ -1,14 +1,11 @@
 package BonanzaGame.Core;
 
-import BonanzaGame.Core.PlayerState;
-import BonanzaGame.Core.ReadyState;
-import BonanzaGame.Core.PlayerState;
+import BonanzaGame.Core.AbstractLayer.AbstractHumanPlayer;
 import BonanzaGame.Entities.Card;
 import BonanzaGame.Entities.Field;
 import BonanzaGame.Entities.Reward;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Player extends AbstractHumanPlayer {

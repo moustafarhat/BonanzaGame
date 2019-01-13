@@ -1,6 +1,6 @@
-package Extensions.Mafia.Core;
+package Extensions.Mafia.Core.AbstractLayer;
 
-import BonanzaGame.Core.AbstractPlayer;
+import BonanzaGame.Core.AbstractLayer.AbstractPlayer;
 import BonanzaGame.Entities.Card;
 import BonanzaGame.Entities.Field;
 import BonanzaGame.Entities.Reward;
@@ -8,7 +8,7 @@ import BonanzaGame.Entities.Reward;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract public class AbstractBossPlayer extends AbstractPlayer {
+abstract public class BossPlayer extends AbstractPlayer {
 
     //Each boss has a coin harvest threshold (eine Schwelle) at which he automatically harvests his field
     protected int harvestThreshold;
@@ -69,5 +69,4 @@ abstract public class AbstractBossPlayer extends AbstractPlayer {
             return true;
         } else return false;
     }
-
 }

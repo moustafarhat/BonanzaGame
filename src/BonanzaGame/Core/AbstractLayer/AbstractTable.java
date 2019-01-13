@@ -1,6 +1,7 @@
-package BonanzaGame.Core;
+package BonanzaGame.Core.AbstractLayer;
 
 import BonanzaGame.Core.Enums.CardTypes;
+import BonanzaGame.Core.Player;
 import BonanzaGame.Entities.Card;
 
 import java.util.ArrayList;

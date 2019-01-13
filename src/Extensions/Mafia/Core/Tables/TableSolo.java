@@ -1,15 +1,15 @@
-package Extensions.Mafia.Core;
+package Extensions.Mafia.Core.Tables;
 
-import Extensions.Mafia.Core.AlCabohneExtensionTable;
-import Extensions.Mafia.Core.BossPlayerAlCabohne;
-import Extensions.Mafia.Core.BossPlayerDonCorlebohne;
-import Extensions.Mafia.Core.BossPlayerJoeBohnano;
+import Extensions.Mafia.Core.AbstractLayer.Table;
+import Extensions.Mafia.Core.BossPlayers.BossPlayerAlCabohne;
+import Extensions.Mafia.Core.BossPlayers.BossPlayerDonCorlebohne;
+import Extensions.Mafia.Core.BossPlayers.BossPlayerJoeBohnano;
 
 import java.util.ArrayList;
 
-public class AlCabohneExtensionTableSolo extends AlCabohneExtensionTable {
+public class TableSolo extends Table {
 
-    public AlCabohneExtensionTableSolo(){
+    public TableSolo(){
         bossPlayerList.add(new BossPlayerAlCabohne());
         bossPlayerList.add(new BossPlayerDonCorlebohne());
         bossPlayerList.add(new BossPlayerJoeBohnano());
@@ -18,5 +18,4 @@ public class AlCabohneExtensionTableSolo extends AlCabohneExtensionTable {
         this.discardedCards = new ArrayList<>();
         this.humanPlayers = new ArrayList<>();
     }
-
 }

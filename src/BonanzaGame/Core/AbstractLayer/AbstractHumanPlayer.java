@@ -1,4 +1,4 @@
-package BonanzaGame.Core;
+package BonanzaGame.Core.AbstractLayer;
 
 import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Entities.Card;

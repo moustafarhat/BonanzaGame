@@ -2,7 +2,6 @@ package BonanzaGame;
 
 import BonanzaGame.Core.CoreGameManager;
 import com.google.inject.AbstractModule;
-import com.google.inject.binder.LinkedBindingBuilder;
 
 /**
  *
@@ -13,6 +12,6 @@ public class CoreGameModule extends AbstractModule
 {
     @Override
     protected void configure() {
-        bind(IMainGameManager.class).to(CoreGameManager.class);
+        bind(IGameManager.class).to(CoreGameManager.class);
     }
 }

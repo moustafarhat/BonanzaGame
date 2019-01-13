@@ -1,15 +1,17 @@
 package BonanzaGame.Core;
 
+import BonanzaGame.Core.AbstractLayer.AbstractHumanPlayer;
+import BonanzaGame.Core.AbstractLayer.AbstractPlayer;
 import BonanzaGame.Core.Enums.GameStates;
 import BonanzaGame.Core.Enums.TurnPhases;
-import BonanzaGame.Core.Interfaces.IGameManager;
+import BonanzaGame.Core.Interfaces.ICoreGameManager;
 import BonanzaGame.Entities.Card;
 
 
 
 import java.util.*;
 
-public class CoreGameManager implements IGameManager {
+public class CoreGameManager implements ICoreGameManager {
     private Table _table;
     private Random _randomizer;
     private int _roundCount;

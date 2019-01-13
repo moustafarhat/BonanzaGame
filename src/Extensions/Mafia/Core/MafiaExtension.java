@@ -1,12 +1,14 @@
 package Extensions.Mafia.Core;
 
-import BonanzaGame.Core.AbstractHumanPlayer;
-import BonanzaGame.Core.AbstractPlayer;
+import BonanzaGame.Core.AbstractLayer.AbstractHumanPlayer;
+import BonanzaGame.Core.AbstractLayer.AbstractPlayer;
 import BonanzaGame.Core.Enums.GameStates;
 import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Core.GameSettings;
-import BonanzaGame.Core.Table;
 import BonanzaGame.Entities.Card;
+import Extensions.Mafia.Core.AbstractLayer.BossPlayer;
+import Extensions.Mafia.Core.AbstractLayer.Table;
+import Extensions.Mafia.Core.Tables.TableSolo;
 import Extensions.Mafia.Interface.IMafiaExtension;
 import io.bitbucket.plt.sdp.bohnanza.gui.*;
 
@@ -17,7 +19,7 @@ import java.util.Random;
 
 public class MafiaExtension implements IMafiaExtension, Runnable {
 
-    private AlCabohneExtensionTable _table;
+    private Table _table;
     private Random _randomizer;
     private int _roundCount;
     private GameStates _gameState;
@@ -26,12 +28,10 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
     private int maxRoundCount;
     private final GUI gui;
     @SuppressWarnings("unused")
-    private final String[] args;
 
-    public MafiaExtension (GUI gui, String[] args) {
+    public MafiaExtension (GUI gui) {
         super();
         this.gui = gui;
-        this.args = args;
     }
 
     @Override
@@ -41,14 +41,10 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
     }
 
     @Override
-    public void newRound() {
-
-    }
+    public void newRound() { }
 
     @Override
-    public void finishGame() {
-
-    }
+    public void finishGame() { }
 
     @Override
     public void startNewGame() {
@@ -65,7 +61,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
                 //If the player has more coins than the mafia -> the Player wins otherwise the mafia wins
                 int playerCoins = _table.getHumanPlayers().get(0).getCoinCount();
                 int bossPlayersCoins = 0;
-                for (AbstractBossPlayer bossPlayer : _table.getBossPlayerList()) {
+                for (BossPlayer bossPlayer : _table.getBossPlayerList()) {
                     bossPlayersCoins += bossPlayer.getCoinCount();
                 }
                 ArrayList<AbstractPlayer> winners = new ArrayList<>();
@@ -79,7 +75,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
                 //Counts each player's coins and the mafia's coins (all boss players coins added together)
                 //If a player has more coins than the mafia he wins otherwise the mafia wins
                 int bossPlayersCoins = 0;
-                for (AbstractBossPlayer bossPlayer : _table.getBossPlayerList()) {
+                for (BossPlayer bossPlayer : _table.getBossPlayerList()) {
                     bossPlayersCoins += bossPlayer.getCoinCount();
                 }
                 AbstractPlayer currentWinner = _table.getHumanPlayers().get(0);
@@ -133,7 +129,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
             //gameSettings.getSettingValue("Round Count");
             maxRoundCount = 1; //todo here needs to be a setting
             _randomizer = new Random();
-            this._table = new AlCabohneExtensionTableSolo();
+            this._table = new TableSolo();
             this.shuffle(_table.drawPile());
             _table.addPlayer("Human Player", 1,3);
             for (AbstractHumanPlayer player : _table.getHumanPlayers()){

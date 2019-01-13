@@ -1,5 +1,6 @@
-package BonanzaGame.Core;
+package BonanzaGame.Core.AbstractLayer;
 
+import BonanzaGame.Core.PlayerState;
 import BonanzaGame.Entities.Card;
 import BonanzaGame.Entities.Field;
 

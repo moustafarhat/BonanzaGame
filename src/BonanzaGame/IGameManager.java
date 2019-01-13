@@ -1,11 +1,11 @@
 package BonanzaGame;
 
-import BonanzaGame.Core.AbstractPlayer;
+import BonanzaGame.Core.AbstractLayer.AbstractPlayer;
 import BonanzaGame.Entities.Card;
 
 import java.util.List;
 
-public interface IMainGameManager
+public interface IGameManager
 {
 	void shuffle(List<Card> cards);
 	void newRound();

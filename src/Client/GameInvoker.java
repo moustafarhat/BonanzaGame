@@ -1,16 +1,8 @@
 package Client;
-import BonanzaGame.Core.CoreGameManager;
-import BonanzaGame.CoreGameModule;
-import BonanzaGame.IMainGameManager;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import Extensions.Mafia.Core.MafiaExtension;
-import io.bitbucket.plt.sdp.bohnanza.Game;
 import io.bitbucket.plt.sdp.bohnanza.gui.Color;
 import io.bitbucket.plt.sdp.bohnanza.gui.GUI;
 import io.bitbucket.plt.sdp.bohnanza.gui.Size;
-
-import java.util.Scanner;
 
 /**
  * The class 'GameInvoker' handles the task of starting the game in the console and simulates one round in the game until the deck is empty
@@ -32,17 +24,23 @@ public class GameInvoker {
                 new Color(50,50,50),
                 new Color(255,255,255));
 
-        Injector injector = Guice.createInjector(new CoreGameModule() );
+        //Injector injector = Guice.createInjector(new CoreGameModule() );
 
-        CoreGameManager gameManager = injector.getInstance( CoreGameManager.class );
+        //CoreGameManager gameManager = injector.getInstance( CoreGameManager.class );
 
-        //IMainGameManager MafiagameManager = injector.getInstance( MafiaExtension.class );
+        //IGameManager MafiagameManager = injector.getInstance( MafiaExtension.class );
 
         //Start new Game ---> Mafia
         //MafiagameManager.startNewGame();
 
         try {
-            Scanner input = new Scanner(System.in);
+
+            MafiaExtension extension = new MafiaExtension(gui);
+            extension.startNewGame();
+            new Thread(extension).start();
+            gui.start();
+
+/*            Scanner input = new Scanner(System.in);
             System.out.println("Welcome to the BonanzaGame");
             int selection;
 
@@ -57,18 +55,18 @@ public class GameInvoker {
                     case 1:
                         System.out.println("Started Game");
                         gameManager.startNewGame();
-                        /*
+                        *//*
                         for (int i = 0; i < 100; i++){
 
                         }
-                         */
+                         *//*
                         break;
                     case 2:
                         System.exit(0);
                         break;
                     case 3:
                         System.out.println("Start Mafia Extension Game");
-                        MafiaExtension extension = new MafiaExtension(gui, args);
+                        MafiaExtension extension = new MafiaExtension(gui);
                         extension.startNewGame();
                         new Thread(extension).start();
                         gui.start();
@@ -79,7 +77,7 @@ public class GameInvoker {
                     default:
                         System.out.println("The Selection is invalid");
                 }
-            } while (selection != 2);
+            } while (selection != 2);*/
         }
         catch (Exception ex)
         {
