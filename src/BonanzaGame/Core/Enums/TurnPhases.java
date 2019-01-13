@@ -9,7 +9,9 @@ package BonanzaGame.Core.Enums;
  */
 public enum TurnPhases
 {
+    GIVEBEANSTOMAFIA,
     PLANTING,
+    REVEALFROMPILE,
     TRADING,
     DRAWING
 }

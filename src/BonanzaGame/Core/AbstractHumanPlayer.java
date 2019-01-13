@@ -1,5 +1,6 @@
 package BonanzaGame.Core;
 
+import BonanzaGame.Core.Enums.TurnPhases;
 import BonanzaGame.Entities.Card;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ abstract public class AbstractHumanPlayer extends AbstractPlayer {
     protected List<Card> hand;
     protected List<Card> tradingArea;
     protected int position;
+    protected TurnPhases turnPhase;
 
     protected AbstractHumanPlayer(){
         this.hand = new ArrayList<>();
@@ -38,13 +40,13 @@ abstract public class AbstractHumanPlayer extends AbstractPlayer {
 
     public int getPosition() { return position; }
 
-    abstract protected boolean startTrading(boolean playerWantsToTrade);
+    abstract public boolean startTrading(boolean playerWantsToTrade);
 
-    abstract protected void plantAnotherCard(boolean playersChoice, int fieldPosition);
+    abstract public void plantAnotherCard(boolean playersChoice, int fieldPosition);
 
-    abstract protected boolean buyField();
+    abstract public boolean buyField();
 
-    abstract protected boolean plant(Card card, int fieldPosition);
+    abstract public boolean plant(Card card, int fieldPosition);
 
-    abstract protected List<Card> harvest(int fieldPosition);
+    abstract public List<Card> harvest(int fieldPosition);
 }

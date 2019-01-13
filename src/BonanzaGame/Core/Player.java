@@ -8,6 +8,7 @@ import BonanzaGame.Entities.Field;
 import BonanzaGame.Entities.Reward;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Player extends AbstractHumanPlayer {
@@ -37,7 +38,11 @@ public class Player extends AbstractHumanPlayer {
     public void addCardsToHand(List<Card> cards){
         //Cards from GameManager's draw function are put into the player's hand
         System.out.println(name + " receives " + cards.size() + " cards into his hand");
+        List<Card> handCurrent = List.copyOf(hand);
+        hand.clear();
         hand.addAll(cards);
+        hand.addAll(handCurrent);
+        System.out.println(name + " has "+ hand.size() + " cards in his hand");
     }
 
     private boolean isValidFieldPosition(int fieldPosition){
@@ -63,6 +68,7 @@ public class Player extends AbstractHumanPlayer {
             if (field.getCards().size() == 0){
                 //If the field at fieldPosition is empty, any card is allowed to be planted
                 field.addCardToField(card);
+                hand.remove(card);
                 System.out.println(this.name + " added " + card.getCardType() + " to his field " + fieldPosition);
                 return true;
             } else {
@@ -70,6 +76,7 @@ public class Player extends AbstractHumanPlayer {
                 if (field.getCards().get(0).getCardType().equals(card.getCardType())){
                     //CardType of card was correct so the card will be added to the field
                     field.addCardToField(card);
+                    hand.remove(card);
                     System.out.println(this.name + " added " + card.getCardType() + " to his field " + fieldPosition);
                     return true;
                 } else return false;
@@ -90,7 +97,7 @@ public class Player extends AbstractHumanPlayer {
         }
         //Harvest cards from field at fieldPosition, if there are no cards in the field return empty harvest
         List<Card> harvestedCards = new ArrayList<>(this.fields.get(fieldPosition).getCards());
-        this.fields.set(0,new Field());
+        this.fields.set(fieldPosition,new Field());
         if (harvestedCards.size() == 0){
             return new ArrayList<>();
         }

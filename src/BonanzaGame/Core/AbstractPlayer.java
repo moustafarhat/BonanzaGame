@@ -8,12 +8,12 @@ import java.util.List;
 
 abstract public class AbstractPlayer {
 
-    protected PlayerState _PlayerState;
-    protected String name;
-    protected List<Field> fields;
-    protected List<Card> treasury;
-    protected PlayerState _playerstate;
-    protected boolean playing = false;
+    public PlayerState _PlayerState;
+    public String name;
+    public List<Field> fields;
+    public List<Card> treasury;
+    public PlayerState _playerstate;
+    public boolean playing = false;
 
     protected AbstractPlayer() {
         this.fields = new ArrayList<>();
@@ -45,9 +45,9 @@ abstract public class AbstractPlayer {
         this.playing = playing;
     }
 
-
-
     public void setTreasury(List<Card> treasury) {
         this.treasury.addAll(treasury);
     }
+
+    public List<Card> getTreasury() { return treasury; }
 }

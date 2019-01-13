@@ -53,7 +53,6 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
     @Override
     public void startNewGame() {
         initializeGame();
-        run();
     }
 
     @Override
@@ -167,9 +166,9 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         //Else give out an ArrayList of cards with count-amount of cards in it
         for (int i = 0; i < count; i++) {
             if (_table.drawPile().size()> 0){
-                Card randomCard = _table.drawPile().get(_randomizer.nextInt(_table.drawPile().size()));
-                hand.add(randomCard);
-                _table.removeCardFromDrawPile(randomCard);
+                Card topCard = _table.drawPile().get(_table.drawPile().size()-1);
+                hand.add(topCard);
+                _table.removeCardFromDrawPile(topCard);
             }
         }
         return hand;
@@ -177,6 +176,9 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
 
     @Override
     public void run() {
+
+        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+
         int x = 0;
         int y = 0;
         for (CardType cardType : CardType.values()) {
@@ -193,7 +195,6 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         }
 
         //--------- Karten Stapel / Draw Pile -------------
-
         Compartment drawPile = gui.addCompartment(new Coordinate(280, 250), new Size(150, 130), "Kartenstapel");
         //gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(310, 275));
         for (Card card : this._table.drawPile()){
@@ -202,34 +203,71 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
 
         //--------- Ablage Stapel / Discard Pile -------------
         Compartment discardPile = gui.addCompartment(new Coordinate(600, 250), new Size(150, 130), "Ablagestapel");
-        gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(470, 275));
+        //gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(470, 275));
 
         //--------- Münzen der Mafia -------------
         gui.addCompartment(new Coordinate(440, 250), new Size(150, 130), "Mafia Münzen");
-        gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(620, 275));
+        //gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(620, 275));
 
-        //--------- Bohnen Felder des Spielers -------------
-
-        Compartment vDistCompartment = gui.addCompartment(new Coordinate(200, 410), new Size(150, 170), "BohnenFeld1", "BOHNENFELD_3");
-        gui.addButton("arrange", new Coordinate(200, 483), new Size(50, 25), new ButtonHandler() {
+        //--------- Münzen des Spielers -------------
+        Compartment playerTreasury = gui.addCompartment(new Coordinate(25, 430), new Size(150, 130), "Spieler Münzen");
+        Button playerTreasuryButton = gui.addButton("arrange", new Coordinate(25, 450), new Size(50, 25), new ButtonHandler() {
 
             @Override
             public void buttonPressed(Button button) {
-                vDistCompartment.distributeVertical(gui.getCardObjectsInCompartment(vDistCompartment));
+                playerTreasury.centerVertical(gui.getCardObjectsInCompartment(playerTreasury));
+                playerTreasury.distributeHorizontal(gui.getCardObjectsInCompartment(playerTreasury));
+            }
+        });
+        //gui.addCard(CardType.BLAUE_BOHNE, new Coordinate(620, 275));
+
+        //--------- Bohnen Felder des Spielers -------------
+        Compartment field1 = gui.addCompartment(new Coordinate(200, 410), new Size(150, 170), "BohnenFeld1", "BOHNENFELD_3");
+        gui.addButton("harvest", new Coordinate(200, 483), new Size(50, 25), new ButtonHandler() {
+
+            @Override
+            public void buttonPressed(Button button) {
+                _table.addCardToDiscardPile(_table.getHumanPlayers().get(0).harvest(0));
+                for (CardObject object : gui.getCardObjectsInCompartment(field1)){
+                    gui.removeCard(object);
+                }
+                updateDiscardPile(discardPile);
+                updateTreasury(playerTreasury);
+                playerTreasuryButton.buttonHandler.buttonPressed(playerTreasuryButton);
+                //vDistCompartment.distributeVertical(gui.getCardObjectsInCompartment(vDistCompartment));
+            }
+        });
+        Button arrangeField1Button = gui.addButton("arrange", new Coordinate(200, 508), new Size(50, 25), new ButtonHandler() {
+            @Override
+            public void buttonPressed(Button button) {
+                field1.distributeVertical(gui.getCardObjectsInCompartment(field1));
+                field1.centerHorizontal(gui.getCardObjectsInCompartment(field1));
             }
         });
 
-        Compartment hDistCompartment = gui.addCompartment(new Coordinate(425, 410), new Size(150, 170), "BohnenFeld2", "BOHNENFELD_3");
-        gui.addButton("arrange", new Coordinate(425, 483), new Size(50, 25), new ButtonHandler() {
-
+        Compartment field2 = gui.addCompartment(new Coordinate(425, 410), new Size(150, 170), "BohnenFeld2", "BOHNENFELD_3");
+        gui.addButton("harvest", new Coordinate(425, 483), new Size(50, 25), new ButtonHandler() {
             @Override
             public void buttonPressed(Button button) {
-                hDistCompartment.distributeHorizontal(gui.getCardObjectsInCompartment(hDistCompartment));
+                _table.addCardToDiscardPile(_table.getHumanPlayers().get(0).harvest(1));
+                for (CardObject object : gui.getCardObjectsInCompartment(field2)){
+                    gui.removeCard(object);
+                }
+                updateDiscardPile(discardPile);
+                updateTreasury(playerTreasury);
+                playerTreasuryButton.buttonHandler.buttonPressed(playerTreasuryButton);
+            }
+        });
+        Button arrangeField2Button = gui.addButton("arrange", new Coordinate(425, 508), new Size(50, 25), new ButtonHandler() {
+            @Override
+            public void buttonPressed(Button button) {
+                field2.distributeVertical(gui.getCardObjectsInCompartment(field2));
+                field2.centerHorizontal(gui.getCardObjectsInCompartment(field2));
             }
         });
 
         Compartment vCentCompartment = gui.addCompartment(new Coordinate(650, 410), new Size(150, 170), "BohnenFeld3", "BOHNENFELD_3");
-        gui.addButton("arrange", new Coordinate(650, 483), new Size(50, 25), new ButtonHandler() {
+        gui.addButton("harvest", new Coordinate(650, 483), new Size(50, 25), new ButtonHandler() {
 
             @Override
             public void buttonPressed(Button button) {
@@ -239,14 +277,17 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
 
 
         //--------- Handkarten des Spielers -------------
+
         int handCardX = 200;
         int handCardY = 645;
         Compartment playerHand = gui.addCompartment(new Coordinate(100, 600), new Size(800, 200), "Handkarten des Spielers");
-        for (int i = 0; i < 7 ; i++){
-            gui.addCard(CardType.AUGEN_BOHNE, new Coordinate(handCardX, handCardY));
-            handCardX += 90;
+        for (Card card : _table.getHumanPlayers().get(0).getHand()){
+            gui.addCard(card.getCardType().get_libraryCardType(), new Coordinate(handCardX, handCardY)).flip();
+            //handCardX += 90;
         }
-        gui.addButton("arange cards", new Coordinate(450, 600), new Size(99, 25), new ButtonHandler() {
+        System.out.println(gui.getCardObjectsInCompartment(playerHand).length);
+
+        Button playerHandButton = gui.addButton("arrange", new Coordinate(450, 600), new Size(100, 25), new ButtonHandler() {
 
             @Override
             public void buttonPressed(Button button) {
@@ -254,16 +295,20 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
                 playerHand.centerVertical(gui.getCardObjectsInCompartment(playerHand));
             }
         });
+        playerHandButton.buttonHandler.buttonPressed(playerHandButton);
+
 
         //--------- Bohnen Felder der Mafia -------------
 
-        gui.addCompartment(new Coordinate(1, 200), new Size(300, 200), "Bohnenfeld_Al_Cabohne", "AL_CABOHNE");
-        gui.addCompartment(new Coordinate(700, 200), new Size(300, 200), "Bohnenfeld_Don_Corlebohne", "DON_CORLEBOHNE");
-        gui.addCompartment(new Coordinate(350, 20), new Size(300, 200), "Bohnenfeld_Joe_Bohnano", "JOE_BOHNANO");
+        gui.addCompartment(new Coordinate(1, 20), new Size(300, 200), "Bohnenfeld_Al_Cabohne", "AL_CABOHNE");
+        gui.addCompartment(new Coordinate(700, 20), new Size(300, 200), "Bohnenfeld_Joe_Bohnano", "JOE_BOHNANO");
+        gui.addCompartment(new Coordinate(350, 20), new Size(300, 200), "Bohnenfeld_Don_Corlebohne", "DON_CORLEBOHNE");
 
 
         ////--------- Buttons -------------
-        gui.addButton("Exit", new Coordinate(880, 20), new Size(50, 25), new ButtonHandler() {
+        /*
+
+        gui.addButton("Exit", new Coordinate(880, 300), new Size(50, 25), new ButtonHandler() {
 
             @Override
             public void buttonPressed(Button button) {
@@ -278,14 +323,39 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
 
             }
         });
+         */
 
         final Label label = gui.addLabel(new Coordinate(350, 0), " ");
+
         gui.setCardDnDHandler(new CardDnDHandler() {
 
             @Override
             public Coordinate cardDraggedAndDropped(CardObject card, Coordinate mouseCoordinate, Coordinate newCoordinate) {
                 card.flip();
                 label.updateLabel(card.toString());
+                if (cardWasInHand(card) && movedToFirstField(newCoordinate)){
+                    player.plant(player.getHand().get(player.getHand().size()-1),0);
+                    System.out.println("Card was in Hand and planted into first Field");
+                    updatePlayerHand(playerHand);
+                    playerHandButton.buttonHandler.buttonPressed(playerHandButton);
+                    updateField1(field1);
+                    arrangeField1Button.buttonHandler.buttonPressed(arrangeField1Button);
+                }
+                if (cardWasInHand(card) && movedToSecondField(newCoordinate)){
+                    player.plant(player.getHand().get(player.getHand().size()-1),1);
+                    System.out.println("Card was in Hand and planted into second Field");
+                    updatePlayerHand(playerHand);
+                    playerHandButton.buttonHandler.buttonPressed(playerHandButton);
+                    updateField2(field2);
+                    arrangeField2Button.buttonHandler.buttonPressed(arrangeField2Button);
+                }
+                if (cardWasInDrawPile(card) && movedToHand(newCoordinate)){
+                    System.out.println("Card was in DrawPile and moved to Hand");
+                    player.addCardsToHand(draw(1));
+                    updatePlayerHand(playerHand);
+                    playerHandButton.buttonHandler.buttonPressed(playerHandButton);
+                    updateDrawPile(drawPile);
+                }
                 return newCoordinate;
 //                if (gui.getCardAtPosition(mouseCoordinate) != null) {
 //                    card.flip();
@@ -296,5 +366,85 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
 //                }
             }
         });
+
+
+    }
+
+    private boolean cardWasInHand(CardObject cardObject){
+        return cardObject.getX() >= 100 && cardObject.getX() <= 900 && cardObject.getY() >= 600 && cardObject.getY() <= 800;
+    }
+
+    private boolean cardWasInDrawPile(CardObject cardObject){
+        return cardObject.getX() >= 280 && cardObject.getX() <= 430 && cardObject.getY() >= 250 && cardObject.getY() <= 380;
+    }
+
+    private boolean movedToFirstField(Coordinate coordinate) {
+        return coordinate.x >= 200 && coordinate.x <= 350 && coordinate.y >= 410 && coordinate.y <= 580;
+    }
+
+    private boolean movedToSecondField(Coordinate coordinate) {
+        return coordinate.x >= 425 && coordinate.x <= 575 && coordinate.y >= 410 && coordinate.y <= 580;
+    }
+
+    private boolean movedToHand(Coordinate coordinate) {
+        return coordinate.x >= 100 && coordinate.x <= 900 && coordinate.y >= 600 && coordinate.y <= 800;
+    }
+
+    private void updatePlayerHand(Compartment playerHand){
+        for (CardObject object : gui.getCardObjectsInCompartment(playerHand)){
+            gui.removeCard(object);
+        }
+        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        for (Card card : player.getHand()){
+            gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(150, 650)).flip();
+        }
+    }
+
+    private void updateField1(Compartment field1){
+        for (CardObject object : gui.getCardObjectsInCompartment(field1)){
+            gui.removeCard(object);
+        }
+        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        for (Card card : player.getFields().get(0).getCards()){
+            gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(200, 460)).flip();
+        }
+    }
+
+    private void updateField2(Compartment field2){
+        for (CardObject object : gui.getCardObjectsInCompartment(field2)){
+            gui.removeCard(object);
+        }
+        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        for (Card card : player.getFields().get(1).getCards()){
+            gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(450, 460)).flip();
+        }
+    }
+
+    private void updateDrawPile(Compartment drawPile){
+        for (CardObject object : gui.getCardObjectsInCompartment(drawPile)){
+            gui.removeCard(object);
+        }
+        for (Card card : _table.drawPile()){
+            gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(310, 275));
+        }
+    }
+
+    private void updateDiscardPile(Compartment discardPile){
+        for (CardObject object : gui.getCardObjectsInCompartment(discardPile)){
+            gui.removeCard(object);
+        }
+        for (Card card : _table.discardPile()){
+            gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(630, 275)).flip();
+        }
+    }
+
+    private void updateTreasury(Compartment treasury){
+        for (CardObject object : gui.getCardObjectsInCompartment(treasury)){
+            gui.removeCard(object);
+        }
+        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        for (Card card : player.getTreasury()){
+            gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(25, 430));
+        }
     }
 }
