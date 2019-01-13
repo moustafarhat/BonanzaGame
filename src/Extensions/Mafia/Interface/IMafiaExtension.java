@@ -1,5 +1,5 @@
 package Extensions.Mafia.Interface;
-import BonanzaGame.IGameManager;
+import Bonanza.Core.Interface.IGameManager;
 
 public interface IMafiaExtension extends IGameManager
 {}

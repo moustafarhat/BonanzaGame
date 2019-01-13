@@ -1,11 +1,11 @@
 package Extensions.Mafia.Core;
 
-import BonanzaGame.Core.AbstractLayer.AbstractHumanPlayer;
-import BonanzaGame.Core.AbstractLayer.AbstractPlayer;
-import BonanzaGame.Core.Enums.GameStates;
-import BonanzaGame.Core.Enums.TurnPhases;
-import BonanzaGame.Core.GameSettings;
-import BonanzaGame.Entities.Card;
+import Bonanza.Core.AbstractLayer.HumanPlayer;
+import Bonanza.Core.AbstractLayer.AbstractPlayer;
+import Bonanza.Core.Enums.GameStates;
+import Bonanza.Core.Enums.TurnPhases;
+import Bonanza.Core.GameSettings;
+import Bonanza.Core.Entities.Card;
 import Extensions.Mafia.Core.AbstractLayer.BossPlayer;
 import Extensions.Mafia.Core.AbstractLayer.Table;
 import Extensions.Mafia.Core.Tables.TableSolo;
@@ -132,7 +132,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
             this._table = new TableSolo();
             this.shuffle(_table.drawPile());
             _table.addPlayer("Human Player", 1,3);
-            for (AbstractHumanPlayer player : _table.getHumanPlayers()){
+            for (HumanPlayer player : _table.getHumanPlayers()){
                 player.addCardsToHand(draw(7));
             }
             return true;
@@ -173,7 +173,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
     @Override
     public void run() {
 
-        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        HumanPlayer player = _table.getHumanPlayers().get(0);
 
         int x = 0;
         int y = 0;
@@ -390,7 +390,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         for (CardObject object : gui.getCardObjectsInCompartment(playerHand)){
             gui.removeCard(object);
         }
-        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        HumanPlayer player = _table.getHumanPlayers().get(0);
         for (Card card : player.getHand()){
             gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(150, 650)).flip();
         }
@@ -400,7 +400,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         for (CardObject object : gui.getCardObjectsInCompartment(field1)){
             gui.removeCard(object);
         }
-        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        HumanPlayer player = _table.getHumanPlayers().get(0);
         for (Card card : player.getFields().get(0).getCards()){
             gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(200, 460)).flip();
         }
@@ -410,7 +410,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         for (CardObject object : gui.getCardObjectsInCompartment(field2)){
             gui.removeCard(object);
         }
-        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        HumanPlayer player = _table.getHumanPlayers().get(0);
         for (Card card : player.getFields().get(1).getCards()){
             gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(450, 460)).flip();
         }
@@ -438,7 +438,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
         for (CardObject object : gui.getCardObjectsInCompartment(treasury)){
             gui.removeCard(object);
         }
-        AbstractHumanPlayer player = _table.getHumanPlayers().get(0);
+        HumanPlayer player = _table.getHumanPlayers().get(0);
         for (Card card : player.getTreasury()){
             gui.addCard(card.getCardType().get_libraryCardType(),new Coordinate(25, 430));
         }

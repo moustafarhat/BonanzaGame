@@ -24,9 +24,9 @@ public class GameInvoker {
                 new Color(50,50,50),
                 new Color(255,255,255));
 
-        //Injector injector = Guice.createInjector(new CoreGameModule() );
+        //Injector injector = Guice.createInjector(new BonanzaGameModule() );
 
-        //CoreGameManager gameManager = injector.getInstance( CoreGameManager.class );
+        //BonanzaGameManager gameManager = injector.getInstance( BonanzaGameManager.class );
 
         //IGameManager MafiagameManager = injector.getInstance( MafiaExtension.class );
 
@@ -41,7 +41,7 @@ public class GameInvoker {
             gui.start();
 
 /*            Scanner input = new Scanner(System.in);
-            System.out.println("Welcome to the BonanzaGame");
+            System.out.println("Welcome to the Bonanza");
             int selection;
 
             do {

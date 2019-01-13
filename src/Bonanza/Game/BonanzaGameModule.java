@@ -1,7 +1,6 @@
-package Extensions.Mafia;
+package Bonanza.Game;
 
 import Bonanza.Core.Interface.IGameManager;
-import Extensions.Mafia.Core.MafiaExtension;
 import com.google.inject.AbstractModule;
 
 /**
@@ -9,10 +8,10 @@ import com.google.inject.AbstractModule;
  * @version 1
  * @author Moustafa Farhat , Author
  */
-public class MafiaGameModule extends AbstractModule
+public class BonanzaGameModule extends AbstractModule
 {
     @Override
     protected void configure() {
-        bind(IGameManager.class).to(MafiaExtension.class);
+        bind(IGameManager.class).to(BonanzaGameManager.class);
     }
 }

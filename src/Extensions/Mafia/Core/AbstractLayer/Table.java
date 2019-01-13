@@ -1,6 +1,6 @@
 package Extensions.Mafia.Core.AbstractLayer;
 
-import BonanzaGame.Core.AbstractLayer.AbstractTable;
+import Bonanza.Core.AbstractLayer.AbstractTable;
 
 import java.util.ArrayList;
 import java.util.List;

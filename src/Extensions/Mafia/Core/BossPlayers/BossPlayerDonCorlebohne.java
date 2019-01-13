@@ -1,6 +1,6 @@
 package Extensions.Mafia.Core.BossPlayers;
 
-import BonanzaGame.Entities.Field;
+import Bonanza.Core.Entities.Field;
 import Extensions.Mafia.Core.AbstractLayer.BossPlayer;
 
 public class BossPlayerDonCorlebohne extends BossPlayer {
