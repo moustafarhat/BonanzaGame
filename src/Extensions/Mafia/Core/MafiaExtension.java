@@ -227,6 +227,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
                 for (CardObject object : gui.getCardObjectsInCompartment(field1)){
                     gui.removeCard(object);
                 }
+                updateField1(field1);
                 updateDiscardPile(discardPile);
                 updateTreasury(playerTreasury);
                 playerTreasuryButton.buttonHandler.buttonPressed(playerTreasuryButton);
@@ -249,6 +250,7 @@ public class MafiaExtension implements IMafiaExtension, Runnable {
                 for (CardObject object : gui.getCardObjectsInCompartment(field2)){
                     gui.removeCard(object);
                 }
+                updateField2(field2);
                 updateDiscardPile(discardPile);
                 updateTreasury(playerTreasury);
                 playerTreasuryButton.buttonHandler.buttonPressed(playerTreasuryButton);
