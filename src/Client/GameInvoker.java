@@ -1,5 +1,6 @@
 package Client;
-import Extensions.Mafia.Core.MafiaExtension;
+import BonanzaCore.Core.AbstractLayer.Gui.GuiManager;
+import Extension.Mafia.Core.View.MafiaGuiManager;
 import io.bitbucket.plt.sdp.bohnanza.gui.Color;
 import io.bitbucket.plt.sdp.bohnanza.gui.GUI;
 import io.bitbucket.plt.sdp.bohnanza.gui.Size;
@@ -28,32 +29,33 @@ public class GameInvoker {
 
         //BonanzaGameManager gameManager = injector.getInstance( BonanzaGameManager.class );
 
-        //IGameManager MafiagameManager = injector.getInstance( MafiaExtension.class );
+        //IGameManager MafiagameManager = injector.getInstance( MafiaGameManager.class );
 
-        //Start new Game ---> Mafia
+        //Start new BonanzaGame ---> Mafia
+
         //MafiagameManager.startNewGame();
+
 
         try {
 
-            MafiaExtension extension = new MafiaExtension(gui);
-            extension.startNewGame();
-            new Thread(extension).start();
+            GuiManager mafiaGuiManager= new MafiaGuiManager(gui);
+            new Thread(mafiaGuiManager).start();
             gui.start();
 
 /*            Scanner input = new Scanner(System.in);
-            System.out.println("Welcome to the Bonanza");
+            System.out.println("Welcome to the BonanzaCore");
             int selection;
 
             do {
-                System.out.println("[1] Start New Game");
+                System.out.println("[1] Start New BonanzaGame");
                 System.out.println("[2] Exit");
-                System.out.println("[3] Start Mafia Extension Game");
+                System.out.println("[3] Start Mafia Extension BonanzaGame");
                 System.out.println("Insert Selection: ");
                 selection = input.nextInt();
 
                 switch (selection) {
                     case 1:
-                        System.out.println("Started Game");
+                        System.out.println("Started BonanzaGame");
                         gameManager.startNewGame();
                         *//*
                         for (int i = 0; i < 100; i++){
@@ -65,8 +67,8 @@ public class GameInvoker {
                         System.exit(0);
                         break;
                     case 3:
-                        System.out.println("Start Mafia Extension Game");
-                        MafiaExtension extension = new MafiaExtension(gui);
+                        System.out.println("Start Mafia Extension BonanzaGame");
+                        MafiaGameManager extension = new MafiaGameManager(gui);
                         extension.startNewGame();
                         new Thread(extension).start();
                         gui.start();
