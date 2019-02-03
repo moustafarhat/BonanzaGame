@@ -32,7 +32,6 @@ public class MafiaGameManager implements IMafiaGameManager{
         super();
     }
 
-    @Override
     public void shuffle(List<Card> cards) {
         long seed = System.nanoTime();
         Collections.shuffle(_mafiaTable.drawPile(), new Random(seed));

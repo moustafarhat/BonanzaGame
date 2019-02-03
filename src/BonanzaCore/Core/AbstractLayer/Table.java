@@ -7,7 +7,7 @@ import BonanzaCore.Core.HumanPlayer;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Table {
+public  class Table {
 
     protected List<Player> players;
     protected List<HumanPlayer> humanPlayers;
