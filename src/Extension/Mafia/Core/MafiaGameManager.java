@@ -1,10 +1,12 @@
 package Extension.Mafia.Core;
 
-import BonanzaCore.Core.AbstractLayer.HumanPlayer;
+import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.AbstractLayer.Player;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Enums.GameStates;
 import BonanzaCore.Core.Enums.TurnPhases;
+import BonanzaCore.Core.TurnState.DrawingState;
+import BonanzaCore.Core.TurnState.PlayerState;
 import Extension.Mafia.Core.AbstractLayer.BossPlayer;
 import Extension.Mafia.Core.AbstractLayer.MafiaTable;
 import Extension.Mafia.Core.Tables.MafiaTableFactory;
@@ -53,7 +55,9 @@ public class MafiaGameManager implements IMafiaGameManager{
             this.shuffle(_mafiaTable.drawPile());
             _mafiaTable.addPlayer("Human GamePlayer", 1,3);
             for (HumanPlayer player : _mafiaTable.getHumanPlayers()){
-                player.addCardsToHand(draw(7));
+                //player.addCardsToHand(draw(7));
+                PlayerState playerState=new DrawingState(player);
+                playerState.onDrawing(_mafiaTable,7);
             }
             return true;
         } catch (Exception ex){
@@ -142,7 +146,7 @@ public class MafiaGameManager implements IMafiaGameManager{
         //return roundCount == maxRoundCount;//Integer.parseInt(gameSettings.getSettingValue("Round Count"));
     }
 
-    @Override
+   /* @Override
     public List<Card> draw(int count) {
         List<Card> hand = new ArrayList<>();
         //If there are not enough cards to draw normally, set the deck to 0 and finish the game
@@ -160,6 +164,5 @@ public class MafiaGameManager implements IMafiaGameManager{
             }
         }
         return hand;
-    }
-
+    }*/
 }

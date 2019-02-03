@@ -1,14 +1,15 @@
 package BonanzaCore.Core.TurnState;
 
+import BonanzaCore.Core.HumanPlayer;
+import BonanzaCore.Core.AbstractLayer.Table;
 import BonanzaCore.Core.TradingManager;
-import BonanzaGame.GamePlayer;
 
 public class TradingState extends PlayerState
 {
 
-    TradingState(GamePlayer gamePlayer) {
-        super(gamePlayer);
-        gamePlayer.setPlaying(false);
+    TradingState(HumanPlayer player) {
+        super(player);
+        player.setPlaying(false);
     }
 
     @Override
@@ -16,10 +17,6 @@ public class TradingState extends PlayerState
         return null;
     }
 
-    @Override
-    public String onReady() {
-        return null;
-    }
 
     @Override
     public String onTrading() {
@@ -27,12 +24,12 @@ public class TradingState extends PlayerState
     }
 
     @Override
-    public String onDrawing() {
+    public String onDrawing(Table table, int count) {
         return null;
     }
 
     @Override
-    public String onPlanting() {
+    public String onPlanting(int fieldIndex)  {
         return null;
     }
 

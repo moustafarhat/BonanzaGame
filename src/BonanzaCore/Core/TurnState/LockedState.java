@@ -1,22 +1,18 @@
 package BonanzaCore.Core.TurnState;
 
 
-import BonanzaGame.GamePlayer;
+import BonanzaCore.Core.HumanPlayer;
+import BonanzaCore.Core.AbstractLayer.Table;
 
 public class LockedState extends PlayerState {
 
-    LockedState(GamePlayer gamePlayer) {
-        super(gamePlayer);
-        gamePlayer.setPlaying(false);
+    public LockedState(HumanPlayer player) {
+        super(player);
+        player.setPlaying(false);
     }
 
     @Override
     public String onLock() {
-        return null;
-    }
-
-    @Override
-    public String onReady() {
         return null;
     }
 
@@ -26,12 +22,12 @@ public class LockedState extends PlayerState {
     }
 
     @Override
-    public String onDrawing() {
+    public String onDrawing(Table table, int count) {
         return null;
     }
 
     @Override
-    public String onPlanting() {
+    public String onPlanting(int fieldIndex)  {
         return null;
     }
 }

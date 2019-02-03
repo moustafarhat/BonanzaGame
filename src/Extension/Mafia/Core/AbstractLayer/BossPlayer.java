@@ -40,7 +40,9 @@ public abstract class BossPlayer extends Player {
         return false;
     }
 
-    public List<Card> harvest() {
+
+    @Override
+    public List<Card> harvest(int fieldPosition) {
         if (highestReward == null) {
             checkBossFieldIfReadyForHarvest();
         }
@@ -56,7 +58,7 @@ public abstract class BossPlayer extends Player {
         return new ArrayList<>();
     }
 
-    protected boolean plant(Card card) {
+    protected boolean steal(Card card) {
         Field field = fields.get(0);
         if (field.getCards().size() == 0){
             field.addCardToField(card);

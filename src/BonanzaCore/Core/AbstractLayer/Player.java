@@ -1,5 +1,6 @@
 package BonanzaCore.Core.AbstractLayer;
 
+import BonanzaCore.Core.Entities.Reward;
 import BonanzaCore.Core.TurnState.PlayerState;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Entities.Field;
@@ -13,8 +14,8 @@ import java.util.List;
     public String name;
     public List<Field> fields;
     public List<Card> treasury;
-    public PlayerState _playerstate;
     public boolean playing = false;
+      private Reward highestReward;
 
     protected Player() {
         this.fields = new ArrayList<>();
@@ -51,4 +52,7 @@ import java.util.List;
     }
 
     public List<Card> getTreasury() { return treasury; }
-}
+
+    public abstract List<Card> harvest(int fieldPosition);
+
+  }

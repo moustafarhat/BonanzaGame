@@ -12,5 +12,5 @@ public interface IGameManager
 	void finishGame();
 	boolean startNewGame();
 	List<Player> getWinner();
-	List<Card> draw(int count);
+	//List<Card> draw(int count);
 }

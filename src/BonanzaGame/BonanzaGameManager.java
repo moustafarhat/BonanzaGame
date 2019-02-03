@@ -1,11 +1,13 @@
 package BonanzaGame;
 
-import BonanzaCore.Core.AbstractLayer.HumanPlayer;
 import BonanzaCore.Core.AbstractLayer.Player;
 import BonanzaCore.Core.Enums.GameStates;
 import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.AbstractLayer.GameSettings;
 import BonanzaCore.Core.Entities.Card;
+import BonanzaCore.Core.HumanPlayer;
+import BonanzaCore.Core.TurnState.DrawingState;
+import BonanzaCore.Core.TurnState.PlayerState;
 import BonanzaGame.Interface.IBonanzaGameManager;
 
 
@@ -19,6 +21,7 @@ public class BonanzaGameManager implements IBonanzaGameManager {
     private GameSettings _gameSettings;
     private TurnPhases _currentTurnPhase;
     private int maxRoundCount;
+    private PlayerState playerState;
 
     @Override
     public void shuffle(List<Card> cards) {
@@ -57,7 +60,8 @@ public class BonanzaGameManager implements IBonanzaGameManager {
 
 
     @Override
-    public boolean startNewGame() {
+    public boolean startNewGame(){return false;}
+   /* public boolean startNewGame() {
         //GameInitializer sets up table, players, player cards
         GameInitializer();
         System.out.println("Cards in deck left: " + _Game_table.drawPile().size());
@@ -74,6 +78,7 @@ public class BonanzaGameManager implements IBonanzaGameManager {
                     // First step: GamePlayer plants up to two cards
                     System.out.println();
                     System.out.println(player.getName() + "'s turn");
+
                     _currentTurnPhase = TurnPhases.PLANTING;
                     System.out.println("---------- Planting Phase ----------");
                     if (!player.plant(player.getHand().get(0), 0)){
@@ -113,12 +118,13 @@ public class BonanzaGameManager implements IBonanzaGameManager {
         }
         finishGame();
         return true;
-    }
+    }*/
 
     private boolean GameInitializer()
     {
     	        try {
             //gameSettings.getSettingValue("Round Count");
+
             maxRoundCount = 1; //todo here needs to be a setting
             _randomizer = new Random();
             this._Game_table = new GameTable();
@@ -129,7 +135,10 @@ public class BonanzaGameManager implements IBonanzaGameManager {
             _Game_table.addPlayer("Player3", 3,2);
             _Game_table.addPlayer("Player4", 4,2);
             for (HumanPlayer player : _Game_table.getHumanPlayers()){
-                player.addCardsToHand(draw(5));
+                playerState =new DrawingState(player);
+                playerState.onDrawing(_Game_table,5);
+                playerState.nextState();//locked
+                //player.addCardsToHand(draw(5));
             }
             return true;
         } catch (Exception ex){
@@ -166,7 +175,7 @@ public class BonanzaGameManager implements IBonanzaGameManager {
         //return roundCount == maxRoundCount;//Integer.parseInt(gameSettings.getSettingValue("Round Count"));
     }
 
-    @Override
+   /* @Override
     public List<Card> draw(int count) {
         List<Card> hand = new ArrayList<>();
         //If there are not enough cards to draw normally, set the deck to 0 and finish the game
@@ -184,6 +193,6 @@ public class BonanzaGameManager implements IBonanzaGameManager {
         }
         return hand;
     }
-
+*/
 
 }

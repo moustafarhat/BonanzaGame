@@ -2,7 +2,7 @@ package BonanzaCore.Core.AbstractLayer;
 
 import BonanzaCore.Core.Enums.CardTypes;
 import BonanzaCore.Core.Entities.Card;
-import BonanzaGame.GamePlayer;
+import BonanzaCore.Core.HumanPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +27,8 @@ public abstract class Table {
         if (players.size()>= maxPlayerCount){
             return;
         }
-        this.players.add(new GamePlayer(name, position, fieldCount));
-        this.humanPlayers.add(new GamePlayer(name, position));
+        this.players.add(new HumanPlayer(name, position, fieldCount));
+        this.humanPlayers.add(new HumanPlayer(name, position));
     }
 
     public boolean addCardToDiscardPile(List<Card> cards){

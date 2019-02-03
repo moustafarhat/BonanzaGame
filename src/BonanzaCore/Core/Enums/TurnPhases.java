@@ -9,6 +9,7 @@ package BonanzaCore.Core.Enums;
  */
 public enum TurnPhases
 {
+    LOCKED,
     GIVEBEANSTOMAFIA,
     PLANTING,
     REVEALFROMPILE,

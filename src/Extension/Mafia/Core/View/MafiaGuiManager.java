@@ -1,8 +1,11 @@
 package Extension.Mafia.Core.View;
 
 import BonanzaCore.Core.AbstractLayer.Gui.GuiManager;
-import BonanzaCore.Core.AbstractLayer.HumanPlayer;
+import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.Entities.Card;
+import BonanzaCore.Core.TurnState.DrawingState;
+import BonanzaCore.Core.TurnState.PlantingState;
+import BonanzaCore.Core.TurnState.PlayerState;
 import Extension.Mafia.Core.AbstractLayer.MafiaTable;
 import Extension.Mafia.Core.MafiaGameManager;
 import Extension.Mafia.Interface.IMafiaGameManager;
@@ -169,7 +172,9 @@ public class MafiaGuiManager extends GuiManager {
             card.flip();
             label.updateLabel(card.toString());
             if (cardWasInHand(card) && movedToFirstField(newCoordinate)){
-                player.plant(player.getHand().get(player.getHand().size()-1),0);
+                //player.plant(player.getHand().get(player.getHand().size()-1),0);
+                PlayerState playerState=new PlantingState(player);
+                playerState.onPlanting(0);
                 System.out.println("Card was in Hand and planted into first Field");
                 updatePlayerHand(playerHand);
                 playerHandButton.buttonHandler.buttonPressed(playerHandButton);
@@ -177,7 +182,9 @@ public class MafiaGuiManager extends GuiManager {
                 arrangeField1Button.buttonHandler.buttonPressed(arrangeField1Button);
             }
             if (cardWasInHand(card) && movedToSecondField(newCoordinate)){
-                player.plant(player.getHand().get(player.getHand().size()-1),1);
+                //player.plant(player.getHand().get(player.getHand().size()-1),1);
+                PlayerState playerState=new PlantingState(player);
+                playerState.onPlanting(1);
                 System.out.println("Card was in Hand and planted into second Field");
                 updatePlayerHand(playerHand);
                 playerHandButton.buttonHandler.buttonPressed(playerHandButton);
@@ -186,7 +193,9 @@ public class MafiaGuiManager extends GuiManager {
             }
             if (cardWasInDrawPile(card) && movedToHand(newCoordinate)){
                 System.out.println("Card was in DrawPile and moved to Hand");
-                player.addCardsToHand(_mafiaGameManager.draw(1));
+                //player.addCardsToHand(_mafiaGameManager.draw(1));
+                PlayerState playerState=new DrawingState(player);
+                playerState.onDrawing(_mafiaTable,1);
                 updatePlayerHand(playerHand);
                 playerHandButton.buttonHandler.buttonPressed(playerHandButton);
                 updateDrawPile(drawPile);
