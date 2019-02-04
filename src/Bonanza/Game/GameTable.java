@@ -1,4 +1,4 @@
-package BonanzaGame;
+package Bonanza.Game;
 
 import BonanzaCore.Core.AbstractLayer.Table;
 

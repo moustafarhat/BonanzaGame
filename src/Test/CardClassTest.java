@@ -1,4 +1,4 @@
-package BonanzaCore.Test;
+package Test;
 
 import BonanzaCore.Core.Enums.CardTypes;
 import BonanzaCore.Core.Entities.Card;

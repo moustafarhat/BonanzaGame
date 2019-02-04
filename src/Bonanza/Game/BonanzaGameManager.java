@@ -1,5 +1,6 @@
-package BonanzaGame;
+package Bonanza.Game;
 
+import Bonanza.Game.Interface.IBonanzaGameManager;
 import BonanzaCore.Core.AbstractLayer.Player;
 import BonanzaCore.Core.Enums.GameStates;
 import BonanzaCore.Core.Enums.TurnPhases;
@@ -8,7 +9,6 @@ import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.TurnState.DrawingState;
 import BonanzaCore.Core.TurnState.PlayerState;
-import BonanzaGame.Interface.IBonanzaGameManager;
 
 
 import java.util.*;

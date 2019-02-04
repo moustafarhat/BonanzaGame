@@ -1,4 +1,4 @@
-package BonanzaGame.Interface;
+package Bonanza.Game.Interface;
 
 import BonanzaCore.Core.Interface.IGameManager;
 

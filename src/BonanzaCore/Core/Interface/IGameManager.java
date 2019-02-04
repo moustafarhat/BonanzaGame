@@ -8,7 +8,6 @@ public interface IGameManager extends IGameStarter
 {
 	void newRound();
 	void finishGame();
-	boolean startNewGame();
 	List<Player> getWinner();
 	//List<Card> draw(int count);
 }

@@ -1,7 +1,7 @@
-package BonanzaCore.Test;
+package Test;
 
 import BonanzaCore.Core.HumanPlayer;
-import BonanzaGame.BonanzaGameManager;
+import Bonanza.Game.BonanzaGameManager;
 import BonanzaCore.Core.Enums.CardTypes;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Entities.Field;

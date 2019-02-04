@@ -1,4 +1,4 @@
-package BonanzaGame.View;
+package Bonanza.Game.View;
 
 import BonanzaCore.Core.AbstractLayer.Gui.GuiManager;
 //View BonanzaCore

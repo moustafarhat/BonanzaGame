@@ -1,6 +1,6 @@
-package BonanzaCore.Test;
+package Test;
 import BonanzaCore.Core.Enums.CardTypes;
-import BonanzaGame.GameTable;
+import Bonanza.Game.GameTable;
 import BonanzaCore.Core.Entities.Card;
 import org.junit.Test;
 import org.junit.Assert;
