@@ -5,7 +5,7 @@ import BonanzaCore.Core.Entities.Card;
 import org.junit.Test;
 import org.junit.Assert;
 
-public class GameMafiaTableClassTest
+public class GameTableTest
 {
 
     GameTable gameTable = new GameTable();
