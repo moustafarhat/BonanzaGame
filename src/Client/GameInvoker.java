@@ -1,5 +1,7 @@
 package Client;
+import BonanzaCore.Core.AbstractLayer.Gui.GameStarter;
 import BonanzaCore.Core.AbstractLayer.Gui.GuiManager;
+import BonanzaCore.Core.Interface.IGameStarter;
 import Extension.Mafia.Core.View.MafiaGuiManager;
 import io.bitbucket.plt.sdp.bohnanza.gui.Color;
 import io.bitbucket.plt.sdp.bohnanza.gui.GUI;
@@ -19,7 +21,9 @@ public class GameInvoker {
      */
     public static void main(String[] args) {
 
-        GUI gui = new GUI(
+        IGameStarter game=new GameStarter();
+        game.startNewGame();
+       /* GUI gui = new GUI(
                 new Size(1015, 850),
                 new Size(80, 100),
                 new Color(50,50,50),
@@ -33,6 +37,6 @@ public class GameInvoker {
         catch (Exception ex)
         {
             System.out.println(ex);
-        }
+        }*/
     }
 }

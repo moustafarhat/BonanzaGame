@@ -1,6 +1,8 @@
 package BonanzaCore.Core.AbstractLayer;
 
 import BonanzaCore.Core.Entities.Reward;
+import BonanzaCore.Core.TurnState.LockedState;
+import BonanzaCore.Core.TurnState.PlantingState;
 import BonanzaCore.Core.TurnState.PlayerState;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Entities.Field;
@@ -10,7 +12,7 @@ import java.util.List;
 
   public abstract class Player {
 
-    public PlayerState _PlayerState;
+    protected PlayerState _PlayerState;
     public String name;
     public List<Field> fields;
     public List<Card> treasury;
