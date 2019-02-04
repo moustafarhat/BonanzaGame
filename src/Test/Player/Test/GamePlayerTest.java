@@ -1,4 +1,4 @@
-package Test;
+package Test.Player.Test;
 
 import BonanzaCore.Core.HumanPlayer;
 import Bonanza.Game.BonanzaGameManager;

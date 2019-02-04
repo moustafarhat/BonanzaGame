@@ -1,4 +1,4 @@
-package Test;
+package Test.Table.Test;
 import BonanzaCore.Core.Enums.CardTypes;
 import Bonanza.Game.GameTable;
 import BonanzaCore.Core.Entities.Card;
