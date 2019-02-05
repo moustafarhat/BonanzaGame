@@ -47,6 +47,7 @@ public class GamePlayerTest {
         assertEquals(testHumanPlayer.harvest(0).size(), 2);
         assertEquals(0, testHumanPlayer.getCoinCount());
     }
+
     @Test
     public void harvest2() {
         HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);

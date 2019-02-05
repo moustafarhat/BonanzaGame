@@ -1,11 +1,6 @@
 package Client;
 import BonanzaCore.Core.AbstractLayer.Gui.GameStarter;
-import BonanzaCore.Core.AbstractLayer.Gui.GuiManager;
 import BonanzaCore.Core.Interface.IGameStarter;
-import Extension.Mafia.Core.View.MafiaGuiManager;
-import io.bitbucket.plt.sdp.bohnanza.gui.Color;
-import io.bitbucket.plt.sdp.bohnanza.gui.GUI;
-import io.bitbucket.plt.sdp.bohnanza.gui.Size;
 
 /**
  * The class 'GameInvoker' handles the task of starting the game in the console and simulates one round in the game until the deck is empty

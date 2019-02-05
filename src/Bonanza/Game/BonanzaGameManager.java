@@ -4,7 +4,6 @@ import Bonanza.Game.Interface.IBonanzaGameManager;
 import BonanzaCore.Core.AbstractLayer.Player;
 import BonanzaCore.Core.Enums.GameStates;
 import BonanzaCore.Core.Enums.TurnPhases;
-import BonanzaCore.Core.AbstractLayer.GameSettings;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.TurnState.DrawingState;
@@ -18,7 +17,6 @@ public class BonanzaGameManager implements IBonanzaGameManager {
     private Random _randomizer;
     private int _roundCount;
     private GameStates _gameState;
-    private GameSettings _gameSettings;
     private TurnPhases _currentTurnPhase;
     private int maxRoundCount;
     private PlayerState playerState;
