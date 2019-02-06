@@ -56,7 +56,7 @@ public class MafiaGameManager implements IMafiaGameManager{
             for (HumanPlayer player : _mafiaTable.getHumanPlayers()){
                 //player.addCardsToHand(draw(7));
                 PlayerState playerState=new DrawingState(player);
-                playerState.onDrawing(_mafiaTable,7);
+                ((DrawingState)playerState).onDrawing(_mafiaTable,7);
             }
             return true;
         } catch (Exception ex){

@@ -1,15 +1,17 @@
 package BonanzaCore.Core.TurnState;
 
+import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.AbstractLayer.Table;
 import BonanzaCore.Core.TradingManager;
 
-public class TradingState extends PlayerState
+public class TradingState extends BonanzaPlayerState
 {
 
     TradingState(HumanPlayer player) {
         super(player);
         player.setPlaying(false);
+        turnPhase= TurnPhases.TRADING;
     }
 
     @Override
@@ -17,12 +19,17 @@ public class TradingState extends PlayerState
         return null;
     }
 
-
     @Override
     public String onTrading() {
         return null;
     }
 
+
+    /* @Override
+     public String onTrading() {
+         return null;
+     }
+ */
     @Override
     public String onDrawing(Table table, int count) {
         return null;

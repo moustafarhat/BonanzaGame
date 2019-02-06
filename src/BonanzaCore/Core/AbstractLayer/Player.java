@@ -12,7 +12,7 @@ import java.util.List;
 
   public abstract class Player {
 
-    protected PlayerState _PlayerState;
+    protected PlayerState playerState;
     public String name;
     public List<Field> fields;
     public List<Card> treasury;
@@ -38,11 +38,11 @@ import java.util.List;
     };
 
     public void changeState(PlayerState playerState) {
-        this._PlayerState = playerState;
+        this.playerState = playerState;
     }
 
-    public PlayerState get_PlayerState() {
-        return _PlayerState;
+    public PlayerState getPlayerState() {
+        return playerState;
     }
 
     public void setPlaying(boolean playing) {

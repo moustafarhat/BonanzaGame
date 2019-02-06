@@ -180,7 +180,7 @@ public class MafiaGuiManager extends GuiManager {
             if (cardWasInHand(card) && movedToFirstField(newCoordinate)){
                 //player.plant(player.getHand().get(player.getHand().size()-1),0);
                 PlayerState playerState=new PlantingState(player);
-                playerState.onPlanting(0);
+                ((PlantingState)playerState).onPlanting(0);
                 System.out.println("Card was in Hand and planted into first Field");
                 updatePlayerHand(playerHand);
                 playerHandButton.buttonHandler.buttonPressed(playerHandButton);
@@ -190,7 +190,7 @@ public class MafiaGuiManager extends GuiManager {
             if (cardWasInHand(card) && movedToSecondField(newCoordinate)){
                 //player.plant(player.getHand().get(player.getHand().size()-1),1);
                 PlayerState playerState=new PlantingState(player);
-                playerState.onPlanting(1);
+                ((PlantingState)playerState).onPlanting(1);
                 System.out.println("Card was in Hand and planted into second Field");
                 updatePlayerHand(playerHand);
                 playerHandButton.buttonHandler.buttonPressed(playerHandButton);
@@ -201,7 +201,7 @@ public class MafiaGuiManager extends GuiManager {
                 System.out.println("Card was in DrawPile and moved to Hand");
                 //player.addCardsToHand(_mafiaGameManager.draw(1));
                 PlayerState playerState=new DrawingState(player);
-                playerState.onDrawing(_mafiaTable,1);
+                ((DrawingState)playerState).onDrawing(_mafiaTable,1);
                 updatePlayerHand(playerHand);
                 playerHandButton.buttonHandler.buttonPressed(playerHandButton);
                 updateDrawPile(drawPile);

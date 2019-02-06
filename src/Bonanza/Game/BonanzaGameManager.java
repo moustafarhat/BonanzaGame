@@ -133,8 +133,8 @@ public class BonanzaGameManager implements IBonanzaGameManager {
             _Game_table.addPlayer("Player4", 4,2);
             for (HumanPlayer player : _Game_table.getHumanPlayers()){
                 playerState =new DrawingState(player);
-                playerState.onDrawing(_Game_table,5);
-                playerState.nextState();//locked
+                ((DrawingState)playerState).onDrawing(_Game_table,5);
+                //playerState.nextState();//locked
                 //player.addCardsToHand(draw(5));
             }
             return true;

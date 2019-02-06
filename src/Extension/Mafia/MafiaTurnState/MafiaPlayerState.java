@@ -1,39 +1,44 @@
 package Extension.Mafia.MafiaTurnState;
 
+import BonanzaCore.Core.AbstractLayer.Table;
 import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.HumanPlayer;
-import BonanzaCore.Core.TurnState.PlayerState;
+import BonanzaCore.Core.TurnState.*;
 
 public abstract class MafiaPlayerState extends PlayerState {
     public MafiaPlayerState(HumanPlayer player) {
         super(player);
+
     }
 
+    public abstract String onLock();
+    public abstract String onDrawing(Table table, int count);
+    public abstract String onPlanting(int fieldIndex);
     public abstract String onGiveBeansToMafia();
     public abstract String onRevealFromPile();
 
-    @Override
-    public void nextState() {
-        if(player.getTurnPhase()== TurnPhases.LOCKED)
+  /*  @Override
+    public void nextState(HumanPlayer player) {
+ if(turnPhase== TurnPhases.LOCKED)
         {
-            player.setTurnPhase(TurnPhases.GIVEBEANSTOMAFIA);
+            player.setPlayerState(new GiveBeansToMafiaState(getHumanPlayer()));
         }
-        else if(player.getTurnPhase()== TurnPhases.GIVEBEANSTOMAFIA)
+        else if(turnPhase== TurnPhases.GIVEBEANSTOMAFIA)
         {
-            player.setTurnPhase(TurnPhases.PLANTING);
+            player.setPlayerState(new PlantingState(getHumanPlayer()));
         }
-        else if(player.getTurnPhase()== TurnPhases.PLANTING)
+        else if(turnPhase== TurnPhases.PLANTING)
         {
-            player.setTurnPhase(TurnPhases.REVEALFROMPILE);
+            player.setPlayerState(new RevealFromPileState(getHumanPlayer()));
         }
-        else if(player.getTurnPhase()== TurnPhases.REVEALFROMPILE)
+        else if(turnPhase== TurnPhases.REVEALFROMPILE)
         {
-            player.setTurnPhase(TurnPhases.DRAWING);
+            player.setPlayerState(new DrawingState(getHumanPlayer()));
         }
         else
         {
-            player.setTurnPhase(TurnPhases.LOCKED);
+            player.setPlayerState(new LockedState(getHumanPlayer()));
         }
 
-    }
+    }*/
 }

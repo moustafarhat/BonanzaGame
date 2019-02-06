@@ -1,5 +1,6 @@
 package BonanzaCore.Core.TurnState;
 
+import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.AbstractLayer.Table;
 import BonanzaCore.Core.Entities.Card;
@@ -7,11 +8,12 @@ import BonanzaCore.Core.Entities.Card;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrawingState extends PlayerState {
+public class DrawingState extends BonanzaPlayerState {
 
     public DrawingState(HumanPlayer player) {
         super(player);
         player.setPlaying(false);
+        turnPhase=TurnPhases.DRAWING;
     }
     @Override
     public String onLock() {
@@ -22,6 +24,7 @@ public class DrawingState extends PlayerState {
     public String onTrading() {
         return null;
     }
+
 
     @Override
     public String onDrawing(Table table, int count) {
@@ -52,5 +55,7 @@ public class DrawingState extends PlayerState {
     public String onPlanting(int fieldIndex) {
         return null;
     }
+
+
 
 }

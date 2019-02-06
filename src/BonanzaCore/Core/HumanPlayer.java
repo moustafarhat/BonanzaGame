@@ -3,9 +3,11 @@ package BonanzaCore.Core;
 import BonanzaCore.Core.AbstractLayer.Player;
 import BonanzaCore.Core.Entities.Field;
 import BonanzaCore.Core.Entities.Reward;
+import BonanzaCore.Core.Enums.GameMode;
 import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.Entities.Card;
-import BonanzaCore.Core.TurnState.LockedState;
+import BonanzaCore.Core.TurnState.*;
+import Extension.Mafia.MafiaTurnState.MafiaPhaseChanger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class HumanPlayer extends Player {
     protected List<Card> tradingArea;
     protected int position;
     protected TurnPhases turnPhase;
+    private GameMode gameMode;
 
     protected HumanPlayer(){
         this.hand = new ArrayList<>();
@@ -24,12 +27,16 @@ public class HumanPlayer extends Player {
 
     public HumanPlayer(String name, int position) {
         super();
+
         this.name = name;
         this.position = position;
         this.fields.add(new Field());
         this.fields.add(new Field());
-        this._PlayerState = new LockedState(this);
+        this.playerState = new LockedState(this);
         setPlaying(true);
+
+        this.gameMode = GameMode.BonanzaGame;
+
     }
 
     public HumanPlayer(String name, int position, int fieldCount) {
@@ -39,8 +46,10 @@ public class HumanPlayer extends Player {
         for (int i = 0; i < fieldCount; i++){
             fields.add(new Field());
         }
-        this._PlayerState = new LockedState(this);
+        this.playerState = new LockedState(this);
         setPlaying(true);
+
+        this.gameMode = GameMode.BonanzaGame;
 
     }
 
@@ -55,6 +64,24 @@ public class HumanPlayer extends Player {
             return false;
         }
         return true;
+    }
+
+
+    public GameMode getGameMode(){return gameMode;}
+    public void setGameMode(GameMode gameMode){
+        this.gameMode= gameMode;
+    }
+
+    public PlayerState nextState()
+    {
+        if(gameMode==GameMode.BonanzaGame) {
+            return PhaseChanger.phaseChanger(new BonanzaPhaseChanger(), this);
+        }
+        else
+        {
+            return PhaseChanger.phaseChanger(new MafiaPhaseChanger(), this);
+        }
+
     }
 
 

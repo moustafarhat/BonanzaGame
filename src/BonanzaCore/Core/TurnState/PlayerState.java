@@ -10,19 +10,24 @@ import java.util.List;
 public abstract class PlayerState
 {
    protected HumanPlayer player;
+   protected TurnPhases turnPhase;
     public PlayerState(HumanPlayer player)
     {
         this.player=player;
+        turnPhase=TurnPhases.LOCKED;
+    }
+
+    public PlayerState() {
+
     }
 
     public HumanPlayer getHumanPlayer(){return player;}
 
+    public TurnPhases getTurnPhase(){return turnPhase;}
+
+
     public void setHumanPlayer(HumanPlayer player){this.player=player;}
 
-    public abstract String onLock();
-    public abstract String onTrading();
-    public abstract String onDrawing(Table table, int count);
-    public abstract String onPlanting(int fieldIndex);
 
 
 
@@ -49,28 +54,6 @@ public abstract class PlayerState
         return false;
     }
 
-
-    public void nextState()
-    {
-
-        if(player.getTurnPhase()== TurnPhases.LOCKED)
-        {
-            player.setTurnPhase(TurnPhases.PLANTING);
-        }
-        else if(player.getTurnPhase()== TurnPhases.PLANTING)
-        {
-            player.setTurnPhase(TurnPhases.TRADING);
-        }
-        else if(player.getTurnPhase()== TurnPhases.TRADING)
-        {
-            player.setTurnPhase(TurnPhases.DRAWING);
-        }
-        else
-        {
-            player.setTurnPhase(TurnPhases.LOCKED);
-        }
-
-    }
 
 
 }

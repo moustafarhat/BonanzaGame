@@ -13,18 +13,18 @@ import static org.junit.Assert.*;
 
 public class GamePlayerTest {
 
-    @Test
-    public void addCardsToHand() {
-        HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);
-        BonanzaGameManager gameManager = new BonanzaGameManager();
-        gameManager.startNewGame();
-        //testHumanPlayer.addCardsToHand(gameManager.draw(5));
-        assertEquals(5, testHumanPlayer.getHand().size());
-        System.out.println("HumanPlayer's random hand: ");
-        for (Card card : testHumanPlayer.getHand()){
-            System.out.println(card.getCardType());
+        @Test
+        public void addCardsToHand() {
+            HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);
+            BonanzaGameManager gameManager = new BonanzaGameManager();
+            gameManager.startNewGame();
+            //testHumanPlayer.addCardsToHand(gameManager.draw(5));
+            assertEquals(5, testHumanPlayer.getHand().size());
+            System.out.println("HumanPlayer's random hand: ");
+            for (Card card : testHumanPlayer.getHand()){
+                System.out.println(card.getCardType());
+            }
         }
-    }
 
     @Test
     public void plant() {
