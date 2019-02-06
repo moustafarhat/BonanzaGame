@@ -1,10 +1,13 @@
 package Test.Player.Test;
 
+import BonanzaCore.Core.Enums.GameMode;
+import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.HumanPlayer;
 import Bonanza.Game.BonanzaGameManager;
 import BonanzaCore.Core.Enums.CardTypes;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Entities.Field;
+import BonanzaCore.Core.TurnState.PlantingState;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -29,6 +32,10 @@ public class GamePlayerTest {
     @Test
     public void plant() {
         HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);
+        testHumanPlayer.setGameMode(GameMode.MafiaGame);
+        PlantingState plantingState=(PlantingState) testHumanPlayer.nextState();//PlantingState
+
+       Boolean result= plantingState.onPlanting(2);
         //assertFalse(testHumanPlayer.plant(new Card(CardTypes.REDBEAN), 2));
         testHumanPlayer.setTreasury(Arrays.asList(new Card(CardTypes.REDBEAN), new Card(CardTypes.REDBEAN), new Card(CardTypes.REDBEAN)));
         //assertTrue(testHumanPlayer.buyField());

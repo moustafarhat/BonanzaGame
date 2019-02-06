@@ -11,11 +11,11 @@ public abstract class MafiaPlayerState extends PlayerState {
 
     }
 
-    public abstract String onLock();
-    public abstract String onDrawing(Table table, int count);
-    public abstract String onPlanting(int fieldIndex);
-    public abstract String onGiveBeansToMafia();
-    public abstract String onRevealFromPile();
+    public abstract Boolean onLock();
+    public abstract Boolean onDrawing(Table table, int count);
+    public abstract Boolean onPlanting(int fieldIndex);
+    public abstract Boolean onGiveBeansToMafia();
+    public abstract Boolean onRevealFromPile();
 
   /*  @Override
     public void nextState(HumanPlayer player) {

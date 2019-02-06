@@ -13,8 +13,8 @@ public abstract class BonanzaPlayerState extends PlayerState
         super(player);
     }
 
-    public abstract String onLock();
-    public abstract String onTrading();
-    public abstract String onDrawing(Table table, int count);
-    public abstract String onPlanting(int fieldIndex);
+    public abstract Boolean onLock();
+    public abstract Boolean onTrading();
+    public abstract Boolean onDrawing(Table table, int count);
+    public abstract Boolean onPlanting(int fieldIndex);
 }

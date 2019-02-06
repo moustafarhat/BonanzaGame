@@ -12,29 +12,29 @@ public class GiveBeansToMafiaState extends MafiaPlayerState {
     }
 
     @Override
-    public String onLock() {
+    public Boolean onLock() {
         return null;
     }
 
 
 
     @Override
-    public String onDrawing(Table table, int count) {
+    public Boolean onDrawing(Table table, int count) {
         return null;
     }
 
     @Override
-    public String onPlanting(int fieldIndex) {
+    public Boolean onPlanting(int fieldIndex) {
         return null;
     }
 
     @Override
-    public String onGiveBeansToMafia() {
+    public Boolean onGiveBeansToMafia() {
         return null;
     }
 
     @Override
-    public String onRevealFromPile() {
+    public Boolean onRevealFromPile() {
         return null;
     }
 }

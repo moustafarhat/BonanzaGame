@@ -16,18 +16,18 @@ public class DrawingState extends BonanzaPlayerState {
         turnPhase=TurnPhases.DRAWING;
     }
     @Override
-    public String onLock() {
+    public Boolean onLock() {
         return null;
     }
 
     @Override
-    public String onTrading() {
+    public Boolean onTrading() {
         return null;
     }
 
 
     @Override
-    public String onDrawing(Table table, int count) {
+    public Boolean onDrawing(Table table, int count) {
 
         if(table==null || table.drawPile().size()<count) return  null;
 
@@ -48,11 +48,11 @@ public class DrawingState extends BonanzaPlayerState {
          hand.add(index,card);
             getHumanPlayer().setHand(hand);
         }
-        return "1";
+        return true;
     }
 
     @Override
-    public String onPlanting(int fieldIndex) {
+    public Boolean onPlanting(int fieldIndex) {
         return null;
     }
 

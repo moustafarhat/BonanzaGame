@@ -18,23 +18,23 @@ public  class PlantingState extends BonanzaPlayerState {
 
 
     @Override
-    public String onLock() {
+    public Boolean onLock() {
         return null;
     }
 
     @Override
-    public String onTrading() {
+    public Boolean onTrading() {
         return null;
     }
 
 
     @Override
-    public String onDrawing(Table table, int count) {
+    public Boolean onDrawing(Table table, int count) {
         return null;
     }
 
     @Override
-    public String onPlanting(int fieldIndex) {
+    public Boolean onPlanting(int fieldIndex) {
 
         Field field = super.getHumanPlayer().fields.get(fieldIndex);
 
@@ -48,7 +48,7 @@ public  class PlantingState extends BonanzaPlayerState {
                 if (inserted) {
                     List<Card> handCards = (List<Card>) getHumanPlayer().getHand().remove(0);
                     getHumanPlayer().setHand(handCards);
-                    return "1";
+                    return true;
                 }
             }
         }
