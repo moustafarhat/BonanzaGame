@@ -1,7 +1,6 @@
-package BonanzaCore.Core.TurnState;
+package BonanzaCore.Core.AbstractLayer;
 
 import BonanzaCore.Core.HumanPlayer;
-import BonanzaCore.Core.AbstractLayer.Table;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Entities.Field;
 import BonanzaCore.Core.Enums.TurnPhases;
@@ -10,7 +9,7 @@ import java.util.List;
 public abstract class PlayerState
 {
    protected HumanPlayer player;
-   protected TurnPhases turnPhase;
+   public TurnPhases turnPhase;
     public PlayerState(HumanPlayer player)
     {
         this.player=player;
@@ -25,13 +24,7 @@ public abstract class PlayerState
 
     public TurnPhases getTurnPhase(){return turnPhase;}
 
-
     public void setHumanPlayer(HumanPlayer player){this.player=player;}
-
-
-
-
-
 
     public static void giveGift(HumanPlayer player, List<Card> giftCards)
     {

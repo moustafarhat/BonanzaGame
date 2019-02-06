@@ -1,6 +1,7 @@
 package BonanzaCore.Core;
 
 import BonanzaCore.Core.AbstractLayer.Player;
+import BonanzaCore.Core.AbstractLayer.PlayerState;
 import BonanzaCore.Core.Entities.Field;
 import BonanzaCore.Core.Entities.Reward;
 import BonanzaCore.Core.Enums.GameMode;
@@ -17,7 +18,7 @@ public class HumanPlayer extends Player {
     protected List<Card> hand;
     protected List<Card> tradingArea;
     protected int position;
-    protected TurnPhases turnPhase;
+    public TurnPhases turnPhase;
     private GameMode gameMode;
 
     protected HumanPlayer(){
@@ -75,7 +76,7 @@ public class HumanPlayer extends Player {
     public PlayerState nextState()
     {
         if(gameMode==GameMode.BonanzaGame) {
-            return PhaseChanger.phaseChanger(new BonanzaPhaseChanger(), this);
+            return PhaseChanger.phaseChanger(new GamePhaseChanger(), this);
         }
         else
         {

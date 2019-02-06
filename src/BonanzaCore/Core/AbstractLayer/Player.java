@@ -1,9 +1,6 @@
 package BonanzaCore.Core.AbstractLayer;
 
 import BonanzaCore.Core.Entities.Reward;
-import BonanzaCore.Core.TurnState.LockedState;
-import BonanzaCore.Core.TurnState.PlantingState;
-import BonanzaCore.Core.TurnState.PlayerState;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Entities.Field;
 

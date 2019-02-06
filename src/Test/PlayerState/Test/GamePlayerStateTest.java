@@ -1,11 +1,8 @@
 package Test.PlayerState.Test;
 
-import BonanzaCore.Core.AbstractLayer.Player;
 import BonanzaCore.Core.Enums.GameMode;
 import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.HumanPlayer;
-import BonanzaCore.Core.TurnState.BonanzaPlayerState;
-import BonanzaCore.Core.TurnState.PhaseChanger;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -20,9 +17,7 @@ public class GamePlayerStateTest
 
      player.setGameMode(GameMode.BonanzaGame);
 
-
      TurnPhases phases1=player.nextState().getTurnPhase();
-
 
      assertEquals(TurnPhases.PLANTING,phases1);
 
@@ -42,7 +37,6 @@ public class GamePlayerStateTest
 
      assertEquals(TurnPhases.PLANTING, phases5);
 
-
     }
 
 
@@ -54,9 +48,7 @@ public class GamePlayerStateTest
 
         player.setGameMode(GameMode.MafiaGame);
 
-
         TurnPhases phases1=player.nextState().getTurnPhase();
-
 
         assertEquals(TurnPhases.GIVEBEANSTOMAFIA,phases1);
 
@@ -75,7 +67,6 @@ public class GamePlayerStateTest
         TurnPhases phases5=player.nextState().getTurnPhase();
 
         assertEquals(TurnPhases.LOCKED, phases5);
-
 
     }
 

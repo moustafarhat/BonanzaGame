@@ -1,6 +1,8 @@
 package BonanzaCore.Core.TurnState;
 
+import BonanzaCore.Core.AbstractLayer.PlayerState;
 import BonanzaCore.Core.HumanPlayer;
+import BonanzaCore.Core.Interface.IPhaseChanger;
 
 public class PhaseChanger
 {

@@ -1,50 +1,26 @@
 package Test.Player.Test;
 
-import BonanzaCore.Core.Enums.GameMode;
-import BonanzaCore.Core.Enums.TurnPhases;
-import BonanzaCore.Core.HumanPlayer;
-import Bonanza.Game.BonanzaGameManager;
-import BonanzaCore.Core.Enums.CardTypes;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Entities.Field;
-import BonanzaCore.Core.TurnState.PlantingState;
+import BonanzaCore.Core.Enums.CardTypes;
+import BonanzaCore.Core.HumanPlayer;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+/**
+ * The class 'GamePlayerTest' will test the core functions of class GamePlayer
+ * @version 2
+ * @author Moustafa Farhat
+ */
 public class GamePlayerTest {
 
-        @Test
-        public void addCardsToHand() {
-            HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);
-            BonanzaGameManager gameManager = new BonanzaGameManager();
-            gameManager.startNewGame();
-            //testHumanPlayer.addCardsToHand(gameManager.draw(5));
-            assertEquals(5, testHumanPlayer.getHand().size());
-            System.out.println("HumanPlayer's random hand: ");
-            for (Card card : testHumanPlayer.getHand()){
-                System.out.println(card.getCardType());
-            }
-        }
-
     @Test
-    public void plant() {
-        HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);
-        testHumanPlayer.setGameMode(GameMode.MafiaGame);
-        PlantingState plantingState=(PlantingState) testHumanPlayer.nextState();//PlantingState
-
-       Boolean result= plantingState.onPlanting(2);
-        //assertFalse(testHumanPlayer.plant(new Card(CardTypes.REDBEAN), 2));
-        testHumanPlayer.setTreasury(Arrays.asList(new Card(CardTypes.REDBEAN), new Card(CardTypes.REDBEAN), new Card(CardTypes.REDBEAN)));
-        //assertTrue(testHumanPlayer.buyField());
-        //assertTrue(testHumanPlayer.plant(new Card(CardTypes.REDBEAN), 2));
-    }
-
-    @Test
-    public void harvest() {
-        HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);
+    public void harvestTestScenario1() {
+        HumanPlayer testHumanPlayer = new HumanPlayer("TestVirtualPlayer", 1);
         testHumanPlayer.setFields(Arrays.asList(
                 new Field(Arrays.asList(new Card(CardTypes.CHILIBEAN), new Card(CardTypes.CHILIBEAN))),
                 new Field(Arrays.asList(new Card(CardTypes.BLUEBEAN)))));
@@ -56,8 +32,8 @@ public class GamePlayerTest {
     }
 
     @Test
-    public void harvest2() {
-        HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);
+    public void harvestTestScenario2() {
+        HumanPlayer testHumanPlayer = new HumanPlayer("TestVirtualPlayer", 1);
         //With 2 RedBeans in one field player should receive 1 coin
         testHumanPlayer.setFields(Arrays.asList(
                 new Field(Arrays.asList(new Card(CardTypes.REDBEAN), new Card(CardTypes.REDBEAN))),
@@ -72,13 +48,4 @@ public class GamePlayerTest {
         assertEquals(2, testHumanPlayer.getCoinCount());
 
     }
-
-    @Test
-    public void buyField() {
-        HumanPlayer testHumanPlayer = new HumanPlayer("TestPlayer", 1);
-        testHumanPlayer.setTreasury(Arrays.asList(new Card(CardTypes.REDBEAN), new Card(CardTypes.REDBEAN), new Card(CardTypes.REDBEAN)));
-        //assertTrue(testHumanPlayer.buyField());
-        //assertFalse(testHumanPlayer.buyField());
-    }
-
 }

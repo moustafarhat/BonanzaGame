@@ -1,5 +1,6 @@
-package BonanzaCore.Core.AbstractLayer.Gui;
+package BonanzaCore.Core;
 
+import BonanzaCore.Core.AbstractLayer.Gui.GuiManager;
 import BonanzaCore.Core.Interface.IGameStarter;
 import Extension.Mafia.Core.View.MafiaGuiManager;
 import io.bitbucket.plt.sdp.bohnanza.gui.Color;
@@ -28,9 +29,5 @@ public class GameStarter implements IGameStarter {
 
             return false;
         }
-
-
     }
-
-
 }

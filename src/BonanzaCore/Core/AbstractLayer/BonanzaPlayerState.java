@@ -1,9 +1,6 @@
-package BonanzaCore.Core.TurnState;
+package BonanzaCore.Core.AbstractLayer;
 
-import BonanzaCore.Core.AbstractLayer.Player;
-import BonanzaCore.Core.AbstractLayer.Table;
 import BonanzaCore.Core.HumanPlayer;
-import BonanzaCore.Core.Enums.TurnPhases;
 
 public abstract class BonanzaPlayerState extends PlayerState
 {

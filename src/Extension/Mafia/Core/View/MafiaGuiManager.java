@@ -1,13 +1,12 @@
 package Extension.Mafia.Core.View;
 
 import BonanzaCore.Core.AbstractLayer.Gui.GuiManager;
-import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.Entities.Card;
+import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.PlayerContext;
 import BonanzaCore.Core.TurnState.DrawingState;
 import BonanzaCore.Core.TurnState.PlantingState;
-import BonanzaCore.Core.TurnState.PlayerState;
-import Extension.Mafia.Core.AbstractLayer.BossPlayer;
+import BonanzaCore.Core.AbstractLayer.PlayerState;
 import Extension.Mafia.Core.AbstractLayer.MafiaTable;
 import Extension.Mafia.Core.MafiaGameManager;
 import Extension.Mafia.Interface.IMafiaGameManager;

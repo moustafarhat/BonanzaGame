@@ -3,6 +3,7 @@ package Extension.Mafia.MafiaTurnState;
 import BonanzaCore.Core.AbstractLayer.Table;
 import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.HumanPlayer;
+import Extension.Mafia.Core.AbstractLayer.MafiaPlayerState;
 
 public class RevealFromPileState extends MafiaPlayerState {
     public RevealFromPileState(HumanPlayer player) {
@@ -11,29 +12,27 @@ public class RevealFromPileState extends MafiaPlayerState {
     }
 
     @Override
-    public String onGiveBeansToMafia() {
+    public Boolean onGiveBeansToMafia() {
         return null;
     }
 
     @Override
-    public String onRevealFromPile() {
+    public Boolean onRevealFromPile() {
         return null;
     }
 
     @Override
-    public String onLock() {
-        return null;
-    }
-
-
-
-    @Override
-    public String onDrawing(Table table, int count) {
+    public Boolean onLock() {
         return null;
     }
 
     @Override
-    public String onPlanting(int fieldIndex) {
+    public Boolean onDrawing(Table table, int count) {
+        return null;
+    }
+
+    @Override
+    public Boolean onPlanting(int fieldIndex) {
         return null;
     }
 }

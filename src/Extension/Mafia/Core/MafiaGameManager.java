@@ -6,7 +6,7 @@ import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.Enums.GameStates;
 import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.TurnState.DrawingState;
-import BonanzaCore.Core.TurnState.PlayerState;
+import BonanzaCore.Core.AbstractLayer.PlayerState;
 import Extension.Mafia.Core.AbstractLayer.BossPlayer;
 import Extension.Mafia.Core.AbstractLayer.MafiaTable;
 import Extension.Mafia.Core.Tables.MafiaTableFactory;

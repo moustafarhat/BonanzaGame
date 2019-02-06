@@ -7,7 +7,7 @@ import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.TurnState.DrawingState;
-import BonanzaCore.Core.TurnState.PlayerState;
+import BonanzaCore.Core.AbstractLayer.PlayerState;
 
 
 import java.util.*;

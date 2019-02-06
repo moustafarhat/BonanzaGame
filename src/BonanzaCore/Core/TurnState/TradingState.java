@@ -1,5 +1,6 @@
 package BonanzaCore.Core.TurnState;
 
+import BonanzaCore.Core.AbstractLayer.BonanzaPlayerState;
 import BonanzaCore.Core.Enums.TurnPhases;
 import BonanzaCore.Core.HumanPlayer;
 import BonanzaCore.Core.AbstractLayer.Table;
