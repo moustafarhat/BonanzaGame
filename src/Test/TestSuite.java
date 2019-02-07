@@ -5,9 +5,6 @@ import org.junit.runners.Suite;
 import Test.Player.Test.GamePlayerTest;
 import Test.Table.Test.GameTableTest;
 import Test.PlayerState.Test.GamePlayerStateTest;
-import org.junit.runners.Suite;
-import org.junit.Test;
-import org.junit.Assert;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

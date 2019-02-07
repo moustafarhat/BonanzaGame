@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="BohnanzaGUI (4)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/BohnanzaGUI.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/BohnanzaGUI.jar!/" />
+    </SOURCES>
+  </library>
+</component>
