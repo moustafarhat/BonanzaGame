@@ -7,7 +7,7 @@ import BonanzaCore.Core.HumanPlayer;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class Table {
+public class Table {
 
     protected List<Player> players;
     protected List<HumanPlayer> humanPlayers;
@@ -37,7 +37,7 @@ public  class Table {
         } else return this.discardedCards.addAll(cards);
     }
 
-    protected List<Card> generateCards(){
+    public List<Card> generateCards(){
         //Generates 104 cards, with maxCardCount of each CardType
         List<Card> cards = new ArrayList<>();
 
@@ -59,7 +59,14 @@ public  class Table {
 
     public List<HumanPlayer> getHumanPlayers(){ return this.humanPlayers; }
     public void setDeck(List<Card> deck) { this.deck = deck; }
-    public boolean removeCardFromDrawPile(Card card){ return this.deck.remove(card); }
+    public boolean removeCardFromDrawPile(Card card){
+        for (Card oneCard : this.deck){
+            if (oneCard.getCardType().equals(card.getCardType())){
+                return this.deck.remove(oneCard);
+            }
+        }
+        return false;
+    }
     public List<Card> drawPile() { return this.deck; }
     public List<Player> playerList() { return this.players; }
     public List<Card> discardPile() { return this.discardedCards; }

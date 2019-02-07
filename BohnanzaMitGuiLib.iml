@@ -19,5 +19,9 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="com.google.inject:guice:4.2.2" level="project" />
+    <orderEntry type="library" name="BohnanzaGUI" level="project" />
+    <orderEntry type="library" name="BohnanzaGUI (2)" level="project" />
+    <orderEntry type="library" name="BohnanzaGUI (3)" level="project" />
+    <orderEntry type="library" name="BohnanzaGUI (4)" level="project" />
   </component>
 </module>
