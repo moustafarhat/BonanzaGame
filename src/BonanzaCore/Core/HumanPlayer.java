@@ -1,5 +1,6 @@
 package BonanzaCore.Core;
 
+import BonanzaCore.Core.AbstractLayer.BonanzaPlayerState;
 import BonanzaCore.Core.AbstractLayer.Player;
 import BonanzaCore.Core.AbstractLayer.PlayerState;
 import BonanzaCore.Core.Entities.Field;
@@ -55,17 +56,7 @@ public class HumanPlayer extends Player {
     }
 
 
-    private boolean isValidFieldPosition(int fieldPosition){
-        //Check for valid fieldPosition, when planting or harvesting, valid parameters are only 0,1,2
-        if (fieldPosition > 2 || fieldPosition <0){
-            return false;
-        }
-        //If parameter is 2, check if player has bought a third field, otherwise it's also not valid
-        if (fieldPosition == 2 && fields.size() < 3){
-            return false;
-        }
-        return true;
-    }
+
 
 
     public GameMode getGameMode(){return gameMode;}
@@ -88,41 +79,7 @@ public class HumanPlayer extends Player {
 
     @Override
     public List<Card> harvest(int fieldPosition) {
-        //Check fieldPosition parameter for validity
-        if (!isValidFieldPosition(fieldPosition)){
-            return new ArrayList<>();
-        }
-        //Before harvesting check if Bean-Protection-Rule was not violated
-        for (Field field : this.fields){
-            if (fields.get(fieldPosition).getCards().size() < field.getCards().size()){
-                return new ArrayList<>();
-            }
-        }
-        //Harvest cards from field at fieldPosition, if there are no cards in the field return empty harvest
-        List<Card> harvestedCards = new ArrayList<>(this.fields.get(fieldPosition).getCards());
-        this.fields.set(fieldPosition,new Field());
-        if (harvestedCards.size() == 0){
-            return new ArrayList<>();
-        }
-        //If there's at least one card check for highest suitable reward for that CardType based on number of cards harvested
-        List<Reward> rewardsForHarvestedCardType = harvestedCards.get(0).getRewards();
-        int harvestedCardCount = harvestedCards.size();
-        Reward highestReward = null;
-        for (Reward reward : rewardsForHarvestedCardType){
-            if (harvestedCardCount >= reward.getCardCount()){
-                highestReward = reward;
-            }
-        }
-        if (highestReward != null){
-            //Suitable reward found, now add some cards as coins to the treasury and remove them from the harvested cards pile
-            for (int i = 0; i < highestReward.getCoins(); i++){
-                this.treasury.add(harvestedCards.remove(0));
-            }
-            //returns leftover cards after turning some cards into coins
-            return harvestedCards;
-        }
-        //No reward found, therefore no coins will be added to the treasury and all harvestedCards go to the discardPile
-        return harvestedCards;
+        return playerState.harvest(fieldPosition);
     }
 
     public TurnPhases getTurnPhase(){ return turnPhase;}

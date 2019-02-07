@@ -3,7 +3,6 @@ package Extension.Mafia.Core.View;
 import BonanzaCore.Core.AbstractLayer.Gui.GuiManager;
 import BonanzaCore.Core.Entities.Card;
 import BonanzaCore.Core.HumanPlayer;
-import BonanzaCore.Core.PlayerContext;
 import BonanzaCore.Core.TurnState.DrawingState;
 import BonanzaCore.Core.TurnState.PlantingState;
 import BonanzaCore.Core.AbstractLayer.PlayerState;
@@ -12,13 +11,14 @@ import Extension.Mafia.Core.MafiaGameManager;
 import Extension.Mafia.Interface.IMafiaGameManager;
 import io.bitbucket.plt.sdp.bohnanza.gui.*;
 
+import java.util.List;
+
 //View Mafia
 public class MafiaGuiManager extends GuiManager {
 
     private MafiaTable _mafiaTable;
     private IMafiaGameManager _mafiaGameManager;
     private final GUI gui;
-    PlayerContext playerContext;
 
     @SuppressWarnings("unused")
 
@@ -28,7 +28,6 @@ public class MafiaGuiManager extends GuiManager {
         _mafiaGameManager=new MafiaGameManager();
         _mafiaGameManager.startNewGame();
         _mafiaTable= ((MafiaGameManager) _mafiaGameManager)._mafiaTable;
-        playerContext = new PlayerContext();
     }
 
     @Override
@@ -70,8 +69,8 @@ public class MafiaGuiManager extends GuiManager {
 
             @Override
             public void buttonPressed(Button button) {
-                playerContext.setPlayer(_mafiaTable.getHumanPlayers().get(0));
-                _mafiaTable.addCardToDiscardPile(playerContext.harvest(0));
+               List<Card> cards= _mafiaTable.getHumanPlayers().get(0).harvest(0);
+                _mafiaTable.addCardToDiscardPile(cards);
                 for (CardObject object : gui.getCardObjectsInCompartment(field1)){
                     gui.removeCard(object);
                 }
@@ -94,7 +93,8 @@ public class MafiaGuiManager extends GuiManager {
         gui.addButton("harvest", new Coordinate(425, 483), new Size(50, 25), new ButtonHandler() {
             @Override
             public void buttonPressed(Button button) {
-                _mafiaTable.addCardToDiscardPile(playerContext.harvest(1));
+                List<Card> cards= _mafiaTable.getHumanPlayers().get(0).harvest(1);
+                _mafiaTable.addCardToDiscardPile(cards);
                 for (CardObject object : gui.getCardObjectsInCompartment(field2)){
                     gui.removeCard(object);
                 }
