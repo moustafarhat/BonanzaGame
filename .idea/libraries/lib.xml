@@ -1,7 +1,6 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/BohnanzaGUI.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/src.zip!/" />
       <root url="jar://$PROJECT_DIR$/lib/swt.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/swt-4.9-win32-win32-x86_64.zip!/" />
